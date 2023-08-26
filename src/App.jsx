@@ -1,22 +1,19 @@
-import { Layout } from 'antd';
-import Header from './Components/Header/Header';
-import Footer from './Components/Footer/Footer';
-import AboutPage from './pages/AboutPage/AboutPage';
-import ProductPage from './pages/ProductPage/ProductPage';
-import EnquiryPage from './pages/EnquiryPage/EnquiryPage';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Landing from "./pages/Landing/Landing";
+import Products from "./pages/Products/Products";
+import Error404 from "./pages/Error404/Error404";
 
-function App() {
+const App = () => {
   return (
-    <Layout className="bg-blue-100">
-      <Header />
-      <Layout.Content>
-        <AboutPage />
-        <ProductPage />
-        <EnquiryPage />
-      </Layout.Content>
-      <Footer />
-    </Layout>
+    <div className="bg-white w-full min-h-screen overflow-hidden">
+      <Routes>
+        <Route index element={<Landing />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="*" element={<Error404 />} />
+      </Routes>
+    </div>
   );
-}
+};
 
 export default App;
