@@ -1,11 +1,12 @@
 import React from "react";
 import Header from "../../components/Header/Header";
 import About from "../../components/About/About";
-import Enquiry from "../../components/Enquiry/Enquiry";
+import Enquiry from "../../sections/Enquiry/Enquiry";
 import Footer from "../../Components/Footer/Footer";
-import CardTransition from "../../components/CardTransition/CardTransition";
-import LinkToProducts from "../../components/LinkToProducts/LinkToProducts";
-import Location from "../../components/Location/Location";
+import CardTransition from "../../sections/CardTransition/CardTransition";
+import LinkToProducts from "../../sections/LinkToProducts/LinkToProducts";
+import Location from "../../sections/Location/Location";
+import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 
 const Landing = () => {
   return (
@@ -17,6 +18,7 @@ const Landing = () => {
       <Enquiry />
       <Location />
       <Footer />
+      <ScrollToTop />
     </>
   );
 };

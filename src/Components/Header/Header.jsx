@@ -51,7 +51,7 @@ const HeaderComponent = () => {
       </div>
       <div className="hidden md:flex w-full">
         <Menu
-          className="border-none w-full flex flex-row-reverse"
+          className="border-none w-full flex flex-row-reverse font-poppins"
           theme="light"
           mode="horizontal"
           selectedKeys={[selectedKey]}
@@ -72,6 +72,7 @@ const HeaderComponent = () => {
           placement="top"
         >
           <Menu
+            className="font-poppins"
             style={{
               background: "transparent",
               border: "none",
