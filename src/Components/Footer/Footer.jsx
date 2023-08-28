@@ -1,79 +1,74 @@
-import React from "react";
-import { Layout, Row, Col, Divider } from "antd";
+import React from 'react';
+import { Layout, Row, Col, Divider, Input, Button } from 'antd';
 import {
   FacebookOutlined,
   TwitterOutlined,
   LinkedinOutlined,
   MailOutlined,
   PhoneOutlined,
-} from "@ant-design/icons";
+  SendOutlined,
+} from '@ant-design/icons';
 
 const { Footer } = Layout;
 
 const FooterComponent = () => {
   return (
-    <Footer className="bg-gray-800 text-white">
+    <Footer className="bg-gray-900 text-white py-8">
       <Row gutter={[16, 16]}>
-        <Col xs={24} md={8}>
-          <h3 className="text-lg font-semibold">About Us</h3>
-          <p>
-            Our company specializes in agro-product trading, offering a diverse
-            range of quality products.
-          </p>
+        <Col xs={24} md={12}>
+          <div className="flex flex-col space-y-4 h-full">
+            <div className="border border-gray-700 rounded-md p-4 bg-gray-800 flex-grow shadow-lg">
+              <h3 className="text-lg font-semibold text-gray-300">
+                Contact Us
+              </h3>
+              <div className="flex flex-col space-y-4 mt-4">
+                <a href="mailto:example@email.com" className="text-gray-400 hover:text-gray-300 flex items-center space-x-2">
+                  <MailOutlined className="text-white bg-gray-700 rounded-full p-2" />
+                  <span>Email: someone@gmail.com</span>
+                </a>
+                <a href="tel:132-123-123" className="text-gray-400 hover:text-gray-300 flex items-center space-x-2">
+                  <PhoneOutlined className="text-white bg-gray-700 rounded-full p-2" />
+                  <span>Call Us: 132-123-123</span>
+                </a>
+              </div>
+            </div>
+            
+          </div>
         </Col>
-        <Col xs={24} md={8}>
-          <h3 className="text-lg font-semibold">Quick Links</h3>
-          <ul className="list-inside list-disc">
-            <li>
-              <a href="#about" className="text-blue-300 hover:text-blue-400">
-                About
-              </a>
-            </li>
-            <li>
-              <a href="#products" className="text-blue-300 hover:text-blue-400">
-                Products
-              </a>
-            </li>
-            <li>
-              <a href="#contact" className="text-blue-300 hover:text-blue-400">
-                Contact
-              </a>
-            </li>
-          </ul>
-        </Col>
-        <Col xs={24} md={8}>
-          <h3 className="text-lg font-semibold">Contact</h3>
-          <p>
-            <MailOutlined /> example@email.com
-          </p>
-          <p>
-            <PhoneOutlined /> 123-456-789
-          </p>
-        </Col>
-      </Row>
-      <Divider className="bg-gray-600" />
-      <Row className="justify-center">
-        <Col>
-          <div className="flex space-x-4">
-            <a href="#link" className="text-blue-400 hover:text-blue-500">
-              <FacebookOutlined />
-            </a>
-            <a href="#link" className="text-blue-400 hover:text-blue-500">
-              <TwitterOutlined />
-            </a>
-            <a href="#link" className="text-blue-400 hover:text-blue-500">
-              <LinkedinOutlined />
-            </a>
+        <Col xs={24} md={12}>
+          <div className="border border-gray-700 rounded-md p-4 bg-gray-800 h-full shadow-lg">
+            <h3 className="text-lg font-semibold text-gray-300">
+              NEWSLETTER!
+            </h3>
+            <div className="flex flex-col space-y-4 mt-4">
+              <p className="text-gray-400">Be the first to know the latest offers on our products</p>
+              <Input placeholder="Your email" className="bg-gray-700 text-white border-gray-600" />
+              <Button type="primary" icon={<SendOutlined className="text-white" />} className="bg-gray-600 hover:bg-gray-500">
+                Subscribe
+              </Button>
+            </div>
           </div>
         </Col>
       </Row>
+      <Divider className="bg-gray-700" />
       <Row className="justify-center mt-2">
-        <Col>
-          <p className="text-center text-sm">
-            Copyright (c) 2023. All rights reserved.
-          </p>
+        <Col className="text-center">
+          <div className="flex justify-center items-center mb-4">
+            <div className="flex space-x-4 items-center">
+              <a href="#facebook" className="text-gray-400 hover:text-gray-300">
+                <FacebookOutlined className="text-white bg-gray-700 rounded-full p-2" />
+              </a>
+              <a href="#twitter" className="text-gray-400 hover:text-gray-300">
+                <TwitterOutlined className="text-white bg-gray-700 rounded-full p-2" />
+              </a>
+              <a href="#linkedin" className="text-gray-400 hover:text-gray-300">
+                <LinkedinOutlined className="text-white bg-gray-700 rounded-full p-2" />
+              </a>
+            </div>
+          </div>
+          <p className="text-center text-sm">Copyright (c) . All rights reserved.</p>
         </Col>
-      </Row>
+</Row>
     </Footer>
   );
 };
