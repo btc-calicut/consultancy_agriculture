@@ -30,10 +30,12 @@ const ScrollToTop = () => {
   return (
     <FloatButton
       onClick={scrollToTop}
-      style={{ display: visible ? "flex" : "none", right: 24 }}
+      style={{
+        display: visible ? "flex" : "none",
+        right: 24,
+      }}
       icon={<UpCircleFilled />}
       type="primary"
-      //   style={{ right: 24 }}
     />
   );
 };

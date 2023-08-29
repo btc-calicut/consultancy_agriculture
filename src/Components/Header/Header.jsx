@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import { Menu, Drawer, Button } from "antd";
-import { MenuOutlined } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
+import { Menu, Button } from "antd";
+import { CloseOutlined, MenuOutlined } from "@ant-design/icons";
 import logo from "../../assets/logo.png";
 
 const HeaderComponent = () => {
   const [selectedKey, setSelectedKey] = useState("about");
   const [drawerVisible, setDrawerVisible] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation();
 
   const MenuContents = [
     {
@@ -45,13 +44,13 @@ const HeaderComponent = () => {
   };
 
   return (
-    <div className="px-3 flex items-center justify-between bg-white">
-      <div className="rounded-full w-20 h-20 overflow-hidden">
+    <nav className="sticky top-0 z-10 px-3 flex items-center justify-between backdrop-blur-xl bg-white/75 shadow-md">
+      <div className="bg-transparent rounded-full w-20 h-20 overflow-hidden">
         <img alt="" src={logo} className="object-cover h-full w-full" />
       </div>
-      <div className="hidden md:flex w-full">
+      <div className="hidden sm:flex w-full">
         <Menu
-          className="border-none w-full flex flex-row-reverse font-poppins"
+          className="bg-transparent border-none w-full flex flex-row-reverse font-poppins"
           theme="light"
           mode="horizontal"
           selectedKeys={[selectedKey]}
@@ -59,33 +58,37 @@ const HeaderComponent = () => {
           onClick={handleMenuClick}
         />
       </div>
-      <div className="md:hidden">
+
+      <div className="visible sm:hidden">
         <Button
-          icon={<MenuOutlined />}
+          className={`border-none shadow-lg ${
+            drawerVisible ? `hidden` : `visible`
+          }`}
+          icon={<MenuOutlined style={{ fontSize: "27px" }} />}
           onClick={() => setDrawerVisible(true)}
         />
-        <Drawer
-          height={280}
-          style={{ background: "rgba(225, 226, 227, 0.99)" }}
-          open={drawerVisible}
-          onClose={() => setDrawerVisible(false)}
-          placement="top"
+        <div
+          className={`fixed top-0 left-0 right-0 z-20 h-60 flex flex-col-reverse items-center justify-center space-y-10 duration-500 backdrop-blur-xl bg-black/90 text-white ${
+            drawerVisible ? "shadow-2xl" : ""
+          }`}
+          style={{
+            transform: drawerVisible ? "none" : "translateY(-100%)",
+          }}
         >
-          <Menu
-            className="font-poppins"
-            style={{
-              background: "transparent",
-              border: "none",
-            }}
-            theme="light"
-            mode="vertical"
-            selectedKeys={[selectedKey]}
-            items={MenuContents}
-            onClick={handleMenuClick}
+          <CloseOutlined
+            className="fixed top-0 right-0 p-5 text-2xl"
+            onClick={() => setDrawerVisible(false)}
           />
-        </Drawer>
+          {MenuContents.map((menu) => {
+            return (
+              <a onClick={() => handleMenuClick(menu)} key={menu.key}>
+                {menu.label}
+              </a>
+            );
+          })}
+        </div>
       </div>
-    </div>
+    </nav>
   );
 };
 

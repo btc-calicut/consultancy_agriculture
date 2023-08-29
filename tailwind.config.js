@@ -7,6 +7,12 @@ export default {
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
       },
+      screens: {
+        xs: "480px",
+      },
+      colors: {
+        primary: "#00040f",
+      },
     },
   },
   plugins: [],

@@ -8,11 +8,20 @@ const LinkToProducts = () => {
     navigate("/products");
   };
   return (
-    <div className="flex flex-col items-center justify-center h-20 mx-10 bg-yellow-100">
-      <h1>Link will take to products page</h1>
-      <button className="border border-black" onClick={handleNavigate}>
-        Click me
-      </button>
+    <div className="bg-zinc-100 h-60 w-full">
+      <div className="px-4 sm:px-10 md:px-14 lg:px-36 py-7">
+        <div className="flex flex-col justify-center">
+          <h1 className="font-semibold text-[27px] xs:text-[35px] leading-normal w-full">
+            Browse our products
+          </h1>
+          <button
+            className="border bg-black text-white rounded-full w-fit p-2 px-3"
+            onClick={handleNavigate}
+          >
+            Click me
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
