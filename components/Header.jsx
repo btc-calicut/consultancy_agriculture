@@ -17,12 +17,12 @@ const Header = () => {
 
   const MenuContents = [
     {
-      label: "Enquiry",
-      key: "enquiry",
-    },
-    {
       label: "Location",
       key: "location",
+    },
+    {
+      label: "Enquiry",
+      key: "enquiry",
     },
     {
       label: "About",
@@ -74,6 +74,9 @@ const Header = () => {
         </div>
         <p className="hidden md:inline font-semibold text-lg text-black tracking-wide">
           Blueway Trading Company
+        </p>
+        <p className="max-xs:hidden max-md:inline hidden font-semibold text-2xl text-black tracking-wide">
+          BTC
         </p>
       </div>
 

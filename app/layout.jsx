@@ -32,12 +32,12 @@ const RootLayout = ({ children }) => {
       <body className={`${poppins.className}`}>
         {/* <div className="background_gradient" /> */}
 
-        <div className="main">
+        <main className="main">
           <Header />
           {children}
           <ScrollToTop />
           <FooterComponent />
-        </div>
+        </main>
       </body>
     </html>
   );
