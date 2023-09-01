@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
@@ -50,8 +50,13 @@ const Header = () => {
 
   const scrollToComponent = (componentId) => {
     const element = document.getElementById(componentId);
+    const navbarHeight = 80;
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      const elementTop = element.offsetTop - navbarHeight;
+      window.scrollTo({
+        top: elementTop,
+        behavior: "smooth",
+      });
     }
   };
 
