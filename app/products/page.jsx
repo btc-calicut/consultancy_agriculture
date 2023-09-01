@@ -1,6 +1,6 @@
 import { Breadcrumb } from "antd";
 
-const ProductPage = ({ params }) => {
+const ProductPage = () => {
   return (
     <div className="w-full">
       <div className="mx-4 sm:mx-10 md:mx-14 lg:mx-36 my-6">
@@ -24,8 +24,10 @@ const ProductPage = ({ params }) => {
             },
           ]}
         />
-        <div className="bg-violet-100 h-screen">
-          <h1 className="p-5 font-poppins">Our Products</h1>
+        <div className="bg-zinc-100 h-screen">
+          <h1 className="text-[#06051c] font-semibold text-[27px] xs:text-[35px] leading-normal w-full">
+            Our Products
+          </h1>
         </div>
       </div>
     </div>

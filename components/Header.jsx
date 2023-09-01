@@ -89,7 +89,7 @@ const Header = () => {
           onClick={() => setDrawerVisible(true)}
         />
         <div
-          className={`z-50 fixed top-0 left-0 right-0 h-80 flex flex-col-reverse items-center justify-center space-y-10 duration-500 backdrop-blur-2xl bg-black/90 text-white ${
+          className={`z-50 fixed top-0 left-0 right-0 h-80 flex flex-col-reverse items-center justify-center space-y-10 duration-500 backdrop-blur-2xl bg-[#050414]/90 text-white ${
             drawerVisible ? "shadow-2xl" : ""
           }`}
           style={{
