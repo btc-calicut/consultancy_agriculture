@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
@@ -13,6 +13,7 @@ const Header = () => {
   const [drawerVisible, setDrawerVisible] = useState(false);
 
   const router = useRouter();
+  const pathname = usePathname();
 
   const MenuContents = [
     {
@@ -31,11 +32,17 @@ const Header = () => {
 
   const handleMenuClick = (item) => {
     setSelectedKey(item.key);
-    // first navigate to landing page and then scroll to section
-    router.push("/");
-    setTimeout(() => {
+
+    if (pathname === "/") {
       scrollToComponent(item.key);
-    }, 100);
+    } else {
+      // first navigate to landing page and then scroll to section
+      router.push("/");
+      setTimeout(() => {
+        scrollToComponent(item.key);
+      }, 500);
+    }
+
     if (drawerVisible) {
       setDrawerVisible(false);
     }
