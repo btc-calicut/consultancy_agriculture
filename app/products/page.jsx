@@ -1,13 +1,8 @@
-import React from "react";
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
-import ScrollToTop from "../../components/ScrollToTop/ScrollToTop";
 import { Breadcrumb } from "antd";
 
-const Products = () => {
+const ProductPage = ({ params }) => {
   return (
-    <>
-      <Header />
+    <div className="w-full">
       <div className="mx-4 sm:mx-10 md:mx-14 lg:mx-36 my-6">
         <Breadcrumb
           className="mb-2"
@@ -33,10 +28,8 @@ const Products = () => {
           <h1 className="p-5 font-poppins">Our Products</h1>
         </div>
       </div>
-      <Footer />
-      <ScrollToTop />
-    </>
+    </div>
   );
 };
 
-export default Products;
+export default ProductPage;

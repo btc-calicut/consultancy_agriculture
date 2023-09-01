@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+
 import { Layout, Row, Col, Divider, Input, Button } from "antd";
 import {
   FacebookOutlined,

@@ -1,6 +1,5 @@
-import React from "react";
-import data from "../../assets/data.json";
-import TestimonialCard from "../../components/TestimonialCard/TestimonialCard";
+import data from "@public/assets/data.json";
+import TestimonialCard from "@components/TestimonialCard";
 
 const About = () => {
   return (
@@ -18,7 +17,7 @@ const About = () => {
             Hear from our customers
           </h1>
         </div>
-        <div className="w-full flex flex-wrap justify-center sm:justify-start relative">
+        <div className="w-full flex flex-wrap justify-center sm:justify-start">
           {data.testimonials.map((testimonial) => {
             return <TestimonialCard key={testimonial.id} {...testimonial} />;
           })}

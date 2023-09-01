@@ -1,11 +1,12 @@
-import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+"use client";
+
+import { useRouter } from "next/navigation";
 
 const LinkToProducts = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const handleNavigate = () => {
-    navigate("/products");
+    router.push("/products");
   };
   return (
     <div className="bg-zinc-100 h-60 w-full">

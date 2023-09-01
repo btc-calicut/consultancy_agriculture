@@ -1,5 +1,3 @@
-import React from "react";
-
 const Location = () => {
   return (
     <div id="location" className="bg-white h-60 w-full">

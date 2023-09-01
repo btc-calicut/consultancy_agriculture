@@ -1,5 +1,3 @@
-import React from "react";
-import quotes from "../../assets/quotes.svg";
 import { Card } from "antd";
 
 const TestimonialCard = ({ content, name, title, img }) => (

@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
 import { FloatButton } from "antd";
 import { UpCircleFilled } from "@ant-design/icons";

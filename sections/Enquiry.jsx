@@ -1,5 +1,3 @@
-import React from "react";
-
 const Enquiry = () => {
   return (
     <div id="enquiry" className="bg-zinc-100 h-80 w-full">
