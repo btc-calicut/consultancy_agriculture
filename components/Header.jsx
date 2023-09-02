@@ -3,7 +3,7 @@
 import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 import { useState } from "react";
-import { Menu, Button } from "antd";
+import { Button } from "antd";
 import { CloseOutlined, MenuOutlined } from "@ant-design/icons";
 import logo from "@public/assets/logo.png";
 
@@ -60,7 +60,7 @@ const Header = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 px-3 flex items-center justify-between backdrop-blur-xl bg-white/75 shadow-md">
+    <nav className="sticky top-0 z-50 px-3 flex items-center justify-end backdrop-blur-xl bg-white/75 shadow-md">
       <div className="flex gap-2 items-center w-full">
         <div className="bg-transparent rounded-full w-20 h-20 overflow-hidden">
           <Image alt="logo" src={logo} className="object-cover h-full w-full" />
@@ -76,14 +76,25 @@ const Header = () => {
       {/* Desktop view */}
 
       <div className="hidden sm:flex w-full">
-        <Menu
-          className="bg-transparent border-none w-full flex flex-row-reverse font-poppins"
-          theme="light"
-          mode="horizontal"
-          selectedKeys={[selectedKey]}
-          items={MenuContents}
-          onClick={handleMenuClick}
-        />
+        <div className="bg-transparent border-none w-full flex flex-row-reverse gap-x-6 font-poppins">
+          {MenuContents.map((menu) => {
+            const isSelected = menu.key === selectedKey;
+            return (
+              <a
+                className={`cursor-pointer relative inline-block text-black group ${
+                  isSelected
+                    ? "transition duration-300 ease-in-out text-blue-600"
+                    : ""
+                }`}
+                onClick={() => handleMenuClick(menu)}
+                key={menu.key}
+              >
+                {menu.label}
+                <span className="absolute inset-x-0 bottom-0 h-1 bg-blue-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></span>
+              </a>
+            );
+          })}
+        </div>
       </div>
 
       {/* Mobile view */}

@@ -36,11 +36,11 @@ const Enquiry = () => {
 
   return (
     <div id="enquiry" className="bg-zinc-100 w-full">
-      <div className="px-4 sm:px-10 md:px-14 lg:px-36 py-7">
+      <div className="px-4 sm:px-10 md:px-14 lg:px-36 py-9">
         <h1 className="text-[#0b0924] font-semibold text-[27px] xs:text-[35px] leading-normal w-full">
           Want to talk to us?
         </h1>
-        <div className="mx-auto max-w-screen-xl py-10">
+        <div className="mx-auto max-w-screen-xl py-7 xs:py-10">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-x-16 gap-y-8">
             <div className="lg:col-span-2 flex lg:flex-col justify-between lg:justify-center lg:gap-y-20">
               <div>
@@ -109,7 +109,7 @@ const Enquiry = () => {
                 <div className="mt-4">
                   <button
                     type="submit"
-                    className="inline-block w-full rounded-lg bg-black px-5 py-3 font-medium text-white sm:w-auto"
+                    className="inline-block w-full rounded-lg bg-[#080621] px-5 py-3 font-medium text-white sm:w-auto"
                   >
                     Send Enquiry
                   </button>
