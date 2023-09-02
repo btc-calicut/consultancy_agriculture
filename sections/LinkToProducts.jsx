@@ -5,34 +5,31 @@ import Image from "next/image";
 
 const LinkToProducts = () => {
   return (
-    <div className="xs:relative">
+    <div className="xs:relative xs:h-96">
       <Carousel dots={false} autoplay>
         {data.picture.map((item, index) => {
           return (
-            <div className="h-40 xs:h-96">
+            <div className="h-40 xs:h-96 relative">
               <Image
                 alt={item.name}
                 key={index}
                 src={item.path}
-                width={0}
-                height={0}
+                className="object-cover xs:brightness-50"
+                fill
+                priority
+                // placeholder="blur"
                 sizes="100vw"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  filter: "brightness(30%)",
-                }}
               />
             </div>
           );
         })}
       </Carousel>
 
-      <div className="max-xs:bg-zinc-100 flex items-center xs:absolute xs:inset-0">
+      <div className="max-xs:bg-gray-900 flex items-center xs:absolute xs:inset-0">
         <div className="py-3 xs:py-7 px-4 sm:px-10 md:px-14 lg:px-36">
           <div className="flex flex-col justify-center max-sm:items-center">
             <div className="flex flex-col gap-x-3 max-lg:gap-y-5">
-              <h1 className="text-[27px] xs:text-[40px] font-[1000] max-sm:text-center sm:leading-20 lg:leading-loose bg-gradient-to-r from-sky-700 to-sky-500 bg-clip-text text-transparent">
+              <h1 className="text-[27px] xs:text-[40px] font-[1000] max-sm:text-center sm:leading-20 lg:leading-loose bg-gradient-to-r from-yellow-500 via-teal-400 to-sky-500 bg-clip-text text-transparent">
                 Cultivating Quality, <br className="max-xs:block" />
                 Harvesting Opportunities,
                 <br className="max-xs:block sm:block" />
@@ -46,9 +43,9 @@ const LinkToProducts = () => {
 
             <Link
               href="/products"
-              className="relative w-40 h-10 my-2 xs:my-5 px-6 py-3 inline-flex items-center justify-center bg-blue-950 border-blue-950 border-2 rounded-full shadow-lg overflow-hidden transition duration-300 ease-out group"
+              className="relative w-40 h-10 my-2 xs:my-5 px-6 py-3 inline-flex items-center justify-center bg-white xs:bg-blue-950 border-white xs:border-blue-950 border-2 rounded-full shadow-lg overflow-hidden transition duration-300 ease-out group"
             >
-              <span className="absolute inset-0 w-full h-full flex items-center justify-center text-indigo-900 bg-white duration-300 -translate-x-full group-hover:translate-x-0 ease">
+              <span className="absolute inset-0 w-full h-full flex items-center justify-center text-white xs:text-blue-950 bg-blue-950 xs:bg-white duration-300 -translate-x-full group-hover:translate-x-0 ease">
                 <svg
                   className="w-6 h-6"
                   fill="none"
@@ -64,7 +61,7 @@ const LinkToProducts = () => {
                   ></path>
                 </svg>
               </span>
-              <span className="absolute w-full h-full flex items-center justify-center text-white transition-all duration-300 transform group-hover:translate-x-full ease">
+              <span className="absolute w-full h-full flex items-center justify-center xs:text-white transition-all duration-300 transform group-hover:translate-x-full ease">
                 Take to Products
               </span>
             </Link>

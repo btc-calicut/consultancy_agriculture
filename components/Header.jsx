@@ -60,11 +60,15 @@ const Header = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 px-3 flex items-center justify-end backdrop-blur-xl bg-white/75 shadow-md">
+    <nav className="sticky top-0 z-50 px-4 flex items-center justify-end backdrop-blur-xl bg-white/75 shadow-lg">
       <div className="flex gap-2 items-center w-full">
-        <div className="bg-transparent rounded-full w-20 h-20 overflow-hidden">
-          <Image alt="logo" src={logo} className="object-cover h-full w-full" />
-        </div>
+        <Image
+          alt="logo"
+          src={logo}
+          height={55}
+          width={55}
+          className="object-cover rounded-full my-2 bg-white"
+        />
         <p className="hidden md:inline font-semibold text-lg text-black tracking-wide">
           Blueway Trading Company
         </p>
