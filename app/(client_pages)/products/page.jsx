@@ -1,7 +1,7 @@
 import { Breadcrumb } from "antd";
 import Link from "next/link";
 
-const ProductPage = () => {
+const ProductsPage = () => {
   return (
     <section className="w-full">
       <div className="mx-4 sm:mx-10 md:mx-14 lg:mx-36 my-6">
@@ -34,4 +34,4 @@ const ProductPage = () => {
   );
 };
 
-export default ProductPage;
+export default ProductsPage;

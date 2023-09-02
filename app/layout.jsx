@@ -1,8 +1,5 @@
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import Header from "@components/Header";
-import ScrollToTop from "@components/ScrollToTop";
-import FooterComponent from "@components/Footer";
 
 export const metadata = {
   title: "AgriCorp",
@@ -30,14 +27,7 @@ const RootLayout = ({ children }) => {
         />
       </head>
       <body className={`${poppins.className}`}>
-        {/* <div className="background_gradient" /> */}
-
-        <main className="main">
-          <Header />
-          {children}
-          <ScrollToTop />
-          <FooterComponent />
-        </main>
+        <main className="main">{children}</main>
       </body>
     </html>
   );

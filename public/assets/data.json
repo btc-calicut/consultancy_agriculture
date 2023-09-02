@@ -1,26 +1,21 @@
 {
   "aboutus": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor ad neque, doloribus ipsam quia adipisci! Voluptatem unde in doloribus nobis voluptatum illo? Culpa ab dolores aperiam aut perspiciatis velit cupiditate?Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor ad neque, doloribus ipsam quia adipisci! Voluptatem unde in doloribus nobis voluptatum illo? Culpa ab dolores aperiam aut perspiciatis velit cupiditate?Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor ad neque, doloribus ipsam quia adipisci! Voluptatem unde in doloribus nobis voluptatum illo? Culpa ab dolores aperiam aut perspiciatis velit cupiditate",
-  "testimonials": [
+  "picture": [
     {
-      "id": "feedback-1",
-      "content": "Money is only a tool. It will take you wherever you wish, but it will not replace you as the driver.",
-      "name": "Herman Jensen",
-      "title": "Founder & Leader",
-      "img": "people01"
+      "name": "pict1",
+      "path": "/assets/pict1.png"
     },
     {
-      "id": "feedback-2",
-      "content": "Money makes your life easier. If you're lucky to have it, you're lucky.",
-      "name": "Steve Mark",
-      "title": "Founder & Leader",
-      "img": "people02"
+      "name": "pict2",
+      "path": "/assets/pict2.jpg"
     },
     {
-      "id": "feedback-3",
-      "content": "It is usually people in the money business, finance, and international trade that are really rich.",
-      "name": "Kenn Gallagher",
-      "title": "Founder & Leader",
-      "img": "people03"
+      "name": "pict3",
+      "path": "/assets/pict3.png"
+    },
+    {
+      "name": "pict4",
+      "path": "/assets/pict4.png"
     }
   ]
 }

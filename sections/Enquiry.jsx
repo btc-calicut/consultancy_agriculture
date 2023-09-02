@@ -58,7 +58,7 @@ const Enquiry = () => {
                   0151 475 4450
                 </p>
                 <address className="mt-2 not-italic text-md xs:text-lg">
-                  Imogeneborough, CA 58517
+                  Imogeneborough, CA
                 </address>
               </div>
             </div>

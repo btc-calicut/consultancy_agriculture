@@ -1,17 +1,29 @@
 import Link from "next/link";
 import { Carousel } from "antd";
+import data from "@public/assets/data.json";
+import Image from "next/image";
 
 const LinkToProducts = () => {
   return (
     <div className="relative h-96">
-      <div>
-        <Carousel dots={false} dotPosition="top" autoplay>
-          <div className="font-poppins bg-yellow-200 h-96">Pict 1</div>
-          <div className="font-poppins bg-yellow-400 h-96">Pict 2</div>
-          <div className="font-poppins bg-yellow-200 h-96">Pict 3</div>
-          <div className="font-poppins bg-yellow-300 h-96">Pict 4</div>
-        </Carousel>
-      </div>
+      <Carousel dots={false} autoplay>
+        {data.picture.map((item, index) => {
+          return (
+            <div className="h-96">
+              <Image
+                alt={item.name}
+                key={index}
+                src={item.path}
+                width={0}
+                height={0}
+                sizes="100vw"
+                style={{ width: "100%", height: "100%" }}
+              />
+            </div>
+          );
+        })}
+      </Carousel>
+
       <div className="absolute inset-0 flex items-center">
         <div className="py-7 px-4 sm:px-10 md:px-14 lg:px-36">
           <div className="flex flex-col justify-center max-sm:items-center">

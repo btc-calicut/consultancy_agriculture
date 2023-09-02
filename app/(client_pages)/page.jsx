@@ -3,7 +3,7 @@ import About from "@sections/About";
 import Enquiry from "@sections/Enquiry";
 import Location from "@sections/Location";
 
-const Home = () => {
+const HomePage = () => {
   return (
     <section className="w-full">
       <LinkToProducts />
@@ -14,4 +14,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;

@@ -1,7 +1,6 @@
 "use client";
 
 import { useRouter, usePathname } from "next/navigation";
-import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { Menu, Button } from "antd";
@@ -61,16 +60,10 @@ const Header = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-10 px-3 flex items-center justify-between backdrop-blur-xl bg-white/75 shadow-md">
+    <nav className="sticky top-0 z-50 px-3 flex items-center justify-between backdrop-blur-xl bg-white/75 shadow-md">
       <div className="flex gap-2 items-center w-full">
         <div className="bg-transparent rounded-full w-20 h-20 overflow-hidden">
-          <Link href="/">
-            <Image
-              alt="logo"
-              src={logo}
-              className="object-cover h-full w-full"
-            />
-          </Link>
+          <Image alt="logo" src={logo} className="object-cover h-full w-full" />
         </div>
         <p className="hidden md:inline font-semibold text-lg text-black tracking-wide">
           Blueway Trading Company
@@ -104,12 +97,10 @@ const Header = () => {
           onClick={() => setDrawerVisible(true)}
         />
         <div
-          className={`z-50 fixed top-0 left-0 right-0 h-80 flex flex-col-reverse items-center justify-center space-y-10 duration-500 backdrop-blur-2xl bg-[#050414]/90 text-white ${
-            drawerVisible ? "shadow-2xl" : ""
+          className={`fixed top-0 left-0 right-0 h-80 flex flex-col-reverse items-center justify-center space-y-10 transition duration-500 ease-in-out backdrop-blur-2xl bg-[#050414]/90 text-white ${
+            (drawerVisible ? "shadow-2xl" : "",
+            drawerVisible ? "none" : "translate-y-[-100%]")
           }`}
-          style={{
-            transform: drawerVisible ? "none" : "translateY(-100%)",
-          }}
         >
           <CloseOutlined
             className="fixed top-0 right-0 p-5 text-2xl"
