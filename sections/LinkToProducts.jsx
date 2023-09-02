@@ -5,11 +5,11 @@ import Image from "next/image";
 
 const LinkToProducts = () => {
   return (
-    <div className="relative h-96">
+    <div className="xs:relative">
       <Carousel dots={false} autoplay>
         {data.picture.map((item, index) => {
           return (
-            <div className="h-96">
+            <div className="h-64 xs:h-96">
               <Image
                 alt={item.name}
                 key={index}
@@ -17,23 +17,27 @@ const LinkToProducts = () => {
                 width={0}
                 height={0}
                 sizes="100vw"
-                style={{ width: "100%", height: "100%" }}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  filter: "brightness(30%)",
+                }}
               />
             </div>
           );
         })}
       </Carousel>
 
-      <div className="absolute inset-0 flex items-center">
+      <div className="flex items-center xs:absolute inset-0 ">
         <div className="py-7 px-4 sm:px-10 md:px-14 lg:px-36">
           <div className="flex flex-col justify-center max-sm:items-center">
             <div className="flex flex-col gap-x-3 max-lg:gap-y-5">
-              <h1 className="text-[27px] xs:text-[40px] font-[1000] max-sm:text-center sm:leading-20 lg:leading-loose bg-gradient-to-r from-sky-500 to-indigo-900 bg-clip-text text-transparent">
+              <h1 className="text-[27px] xs:text-[40px] font-[1000] max-sm:text-center sm:leading-20 lg:leading-loose bg-gradient-to-r from-sky-500 to-indigo-500 bg-clip-text text-transparent">
                 Cultivating Quality, Harvesting Opportunities,
                 <br className="hidden xs:block" />
                 Trading the Future
               </h1>
-              <p className="max-sm:hidden text-md w-full md:w-80 max-h-60 text-blue-950 md:leading-7">
+              <p className="max-sm:hidden text-md w-full md:w-80 max-h-60 text-white md:leading-7">
                 Elevate your agricultural ventures with Team BTC, your trusted
                 partner in trading top-quality produce worldwide
               </p>
