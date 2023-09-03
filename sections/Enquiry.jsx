@@ -1,6 +1,6 @@
 "use client";
 import data from "@public/assets/data.json";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Enquiry = () => {
   const [formData, setFormData] = useState({
@@ -9,6 +9,15 @@ const Enquiry = () => {
     number: "",
     message: "",
   });
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % data.employees.length);
+    }, 5000); // Change employee every 5 seconds
+    return () => clearInterval(intervalId);
+  }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -40,11 +49,26 @@ const Enquiry = () => {
         <h1 className="text-[#0b0924] font-semibold text-[27px] xs:text-[35px] leading-normal w-full">
           Want to talk to us?
         </h1>
-        <div className="mx-auto max-w-screen-xl py-7 xs:py-10">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-x-16 gap-y-8">
+        <div className="mx-auto max-w-screen-xl py-14 xs:py-20">
+          <div className="grid grid-cols-2 lg:grid-cols-5 gap-x-16 gap-y-8">
             <div className="lg:col-span-2 flex lg:flex-col justify-between lg:justify-center lg:gap-y-20">
               {data.employees.map((employee, index) => (
-                <div key={index} className="max-lg:flex-1">
+                <div
+                  key={index}
+                  className={`max-lg:flex-1 p-6 border rounded-lg ${
+                    currentIndex === index ? "block" : "hidden"
+                  }`}
+                >
+                  <div className="flex items-center justify-center bg-gray-200 w-44 h-44 rounded-full mx-auto mb-4">
+                    {" "}
+                    {/* Adjusted the size */}
+                    <img
+                      src={employee.image}
+                      alt={employee.name}
+                      className="w-40 h-40 rounded-full object-cover"
+                    />{" "}
+                    {/* Adjusted the size */}
+                  </div>
                   <p className="max-w-xl text-md xs:text-lg">{employee.role}</p>
                   <p className="xs:text-2xl text-sm font-bold text-blue-900">
                     {employee.phone}
