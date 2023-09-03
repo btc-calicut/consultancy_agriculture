@@ -70,7 +70,7 @@ const Header = () => {
           className="object-cover rounded-full my-2 bg-white"
         />
         <p className="hidden md:inline font-semibold text-lg text-black tracking-wide">
-          Blueway Trading Company
+          | BTC
         </p>
         <p className="max-xs:hidden max-md:inline hidden font-semibold text-2xl text-black tracking-wide">
           BTC
