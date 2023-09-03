@@ -1,5 +1,5 @@
 "use client";
-
+import data from "@public/assets/data.json";
 import { useState } from "react";
 
 const Enquiry = () => {
@@ -43,26 +43,18 @@ const Enquiry = () => {
         <div className="mx-auto max-w-screen-xl py-7 xs:py-10">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-x-16 gap-y-8">
             <div className="lg:col-span-2 flex lg:flex-col justify-between lg:justify-center lg:gap-y-20">
-              <div className="max-lg:flex-1">
-                <p className="max-w-xl text-md xs:text-lg">Manager</p>
-                <p className="xs:text-2xl text-sm font-bold text-blue-900">
-                  0151 475 4450
-                </p>
-                <h2 className="mt-2 not-italic text-md xs:text-lg">
-                  Keviner Brook T <br />
-                  <span className="text-sm">kevin@gmail.com</span>
-                </h2>
-              </div>
-              <div className="max-lg:flex-1">
-                <p className="max-w-xl text-md xs:text-lg">Executive</p>
-                <p className="xs:text-2xl text-sm font-bold text-blue-900">
-                  0151 475 4450
-                </p>
-                <h2 className="mt-2 not-italic text-md xs:text-lg">
-                  Imogeebor Adam <br />
-                  <span className="text-sm">adam@gmail.com</span>
-                </h2>
-              </div>
+              {data.employees.map((employee, index) => (
+                <div key={index} className="max-lg:flex-1">
+                  <p className="max-w-xl text-md xs:text-lg">{employee.role}</p>
+                  <p className="xs:text-2xl text-sm font-bold text-blue-900">
+                    {employee.phone}
+                  </p>
+                  <h2 className="mt-2 not-italic text-md xs:text-lg">
+                    {employee.name} <br />
+                    <span className="text-sm">{employee.email}</span>
+                  </h2>
+                </div>
+              ))}
             </div>
 
             <div className="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
