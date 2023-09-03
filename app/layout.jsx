@@ -1,6 +1,7 @@
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import data from "@public/assets/data.json";
+import StyledComponentsRegistry from "@lib/AntdRegistry";
 
 export const metadata = {
   title: data.title,
@@ -29,7 +30,9 @@ const RootLayout = ({ children }) => {
         />
       </head>
       <body className={`${poppins.className}`}>
-        <main className="main">{children}</main>
+        <main className="main">
+          <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+        </main>
       </body>
     </html>
   );

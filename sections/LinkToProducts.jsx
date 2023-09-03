@@ -24,11 +24,11 @@ const LinkToProducts = () => {
         })}
       </Carousel>
 
-      <div className="max-xs:bg-gray-900 flex items-center xs:absolute xs:inset-0">
+      <div className="flex items-center xs:absolute xs:inset-0 max-xs:bg-zinc-100">
         <div className="py-3 xs:py-7 px-4 sm:px-10 md:px-14 lg:px-36">
-          <div className="flex flex-col justify-center max-sm:items-center">
+          <div className="flex flex-col justify-center">
             <div className="flex flex-col gap-x-3 max-lg:gap-y-5">
-              <h1 className="text-[27px] xs:text-[40px] font-[1000] max-sm:text-center sm:leading-20 lg:leading-loose bg-gradient-to-r from-yellow-500 via-teal-400 to-sky-500 bg-clip-text text-transparent">
+              <h1 className="text-[27px] xs:text-[40px] font-[1000] sm:leading-20 lg:leading-loose max-xs:text-gray-500 bg-gradient-to-r from-yellow-500 via-teal-400 to-sky-500 bg-clip-text text-transparent">
                 Cultivating Quality, <br className="max-xs:block" />
                 Harvesting Opportunities,
                 <br className="max-xs:block sm:block" />

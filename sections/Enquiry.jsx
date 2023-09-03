@@ -1,6 +1,9 @@
 "use client";
-import data from "@public/assets/data.json";
+
 import { useState, useEffect } from "react";
+import data from "@public/assets/data.json";
+import Image from "next/image";
+import { Carousel } from "antd";
 
 const Enquiry = () => {
   const [formData, setFormData] = useState({
@@ -46,42 +49,55 @@ const Enquiry = () => {
   return (
     <div id="enquiry" className="bg-zinc-100 w-full">
       <div className="px-4 sm:px-10 md:px-14 lg:px-36 py-9">
-        <h1 className="text-[#0b0924] font-semibold text-[27px] xs:text-[35px] leading-normal w-full">
+        <h1 className="text-[#0b0924] font-semibold text-[27px] xs:text-[35px] w-full">
           Want to talk to us?
         </h1>
-        <div className="mx-auto max-w-screen-xl py-14 xs:py-20">
-          <div className="grid grid-cols-2 lg:grid-cols-5 gap-x-16 gap-y-8">
-            <div className="lg:col-span-2 flex lg:flex-col justify-between lg:justify-center lg:gap-y-20">
-              {data.employees.map((employee, index) => (
-                <div
-                  key={index}
-                  className={`max-lg:flex-1 p-6 border rounded-lg ${
-                    currentIndex === index ? "block" : "hidden"
-                  }`}
-                >
-                  <div className="flex items-center justify-center bg-gray-200 w-44 h-44 rounded-full mx-auto mb-4">
-                    {" "}
-                    {/* Adjusted the size */}
-                    <img
-                      src={employee.image}
-                      alt={employee.name}
-                      className="w-40 h-40 rounded-full object-cover"
-                    />{" "}
-                    {/* Adjusted the size */}
-                  </div>
-                  <p className="max-w-xl text-md xs:text-lg">{employee.role}</p>
-                  <p className="xs:text-2xl text-sm font-bold text-blue-900">
-                    {employee.phone}
-                  </p>
-                  <h2 className="mt-2 not-italic text-md xs:text-lg">
-                    {employee.name} <br />
-                    <span className="text-sm">{employee.email}</span>
-                  </h2>
-                </div>
-              ))}
+        <div className="py-10 xs:py-12">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-x-16 gap-y-8">
+            <div className="md:col-span-2 mx-3 md:my-3 flex md:flex-col items-center justify-center">
+              <div className="m-1 max-xs:hidden text-xl xs:text-[40px] tracking-wide leading-relaxed font-bold">
+                <h1 className="text-indigo-900 font-sans">Meet our team</h1>
+              </div>
+              <div className="p-2 w-64 xs:w-2/3 md:w-full h-fit md:h-80 border rounded-lg bg-zinc-50 shadow-lg">
+                <Carousel dots={false} autoplay>
+                  {data.employees.map((employee, index) => {
+                    return (
+                      <div key={index}>
+                        <div className="md:h-80 flex md:flex-col items-center justify-center gap-y-6">
+                          <div className="max-md:w-1/3">
+                            <div className="mx-2 w-16 xs:w-20 h-16 xs:h-20 overflow-hidden">
+                              <Image
+                                alt={employee.name}
+                                src={employee.image}
+                                className="object-cover h-full w-full rounded-full"
+                                width={100}
+                                height={100}
+                                priority
+                              />
+                            </div>
+                          </div>
+
+                          <div className="mx-2 flex flex-col justify-center font-poppins">
+                            <p className="text-sm xs:text-lg font-semibold">
+                              {employee.role}
+                            </p>
+                            <p className="text-sm xs:text-lg">
+                              {employee.name}
+                            </p>
+                            <p className="text-sm xs:text-2xl font-semibold text-blue-900">
+                              {employee.phone}
+                            </p>
+                            <p className="text-xs">{employee.email}</p>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </Carousel>
+              </div>
             </div>
 
-            <div className="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
+            <div className="md:col-span-3 p-8 lg:p-12 shadow-lg bg-white rounded-lg">
               <form onSubmit={handleSubmit} className="space-y-4">
                 <input
                   className="col-span-2 w-full text-sm rounded-lg border border-gray-300 p-3 text-gray-800 hover:border-black "

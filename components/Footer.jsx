@@ -14,7 +14,7 @@ const { Footer } = Layout;
 
 const FooterComponent = () => {
   return (
-    <Footer className="bg-gray-900 text-white py-8">
+    <div className="bg-gray-950 text-gray-400 py-8 px-12">
       <Row gutter={[16, 16]}>
         <Col xs={24} md={12}>
           <div className="flex flex-col space-y-4 h-full">
@@ -84,7 +84,7 @@ const FooterComponent = () => {
           </p>
         </Col>
       </Row>
-    </Footer>
+    </div>
   );
 };
 
