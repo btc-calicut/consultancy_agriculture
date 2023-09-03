@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import data from "@public/assets/data.json";
 import Image from "next/image";
 import { Carousel } from "antd";
@@ -12,15 +12,6 @@ const Enquiry = () => {
     number: "",
     message: "",
   });
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % data.employees.length);
-    }, 5000); // Change employee every 5 seconds
-    return () => clearInterval(intervalId);
-  }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
