@@ -1,9 +1,10 @@
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import data from "@public/assets/data.json";
 
 export const metadata = {
-  title: "AgriCorp",
-  description: "Buy the most organic agricultural products from us",
+  title: data.title,
+  description: data.description,
 };
 
 const poppins = Poppins({
@@ -15,6 +16,7 @@ const RootLayout = ({ children }) => {
   return (
     <html lang="en">
       <head>
+        <link rel="icon" href="/images/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"

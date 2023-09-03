@@ -5,19 +5,18 @@ import Image from "next/image";
 
 const LinkToProducts = () => {
   return (
-    <div className="xs:relative xs:h-96">
+    <div className="xs:relative xs:h-96 lg:min-h-[430px]">
       <Carousel dots={false} autoplay>
         {data.picture.map((item, index) => {
           return (
-            <div className="h-40 xs:h-96 relative">
+            <div className="h-40 xs:h-96 lg:min-h-[430px] relative">
               <Image
                 alt={item.name}
                 key={index}
                 src={item.path}
-                className="object-cover xs:brightness-50"
+                className="object-cover xs:brightness-[.3]"
                 fill
                 priority
-                // placeholder="blur"
                 sizes="100vw"
               />
             </div>
