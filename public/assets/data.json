@@ -1,7 +1,41 @@
 {
   "title": "BTC | Blueway Trading Company",
   "description": "BTC is based with their head office and operations from Calicut, Kerala. As an emerging Trading company primarily, we are into domestic and international trading of Agri-products like Coconut, Tender coconut, variety of vegetables and fruits.",
-  "aboutus": "Blueway Trading Company (BTC) is a partnership firm formed in the year 2023. The managing partners of our company is Mr. K.J. Dilip Kumar (Retd. Manager, SBI) who is handling the finance department and its operation, Mr. Rijul Manesh Joseph.K (Chartered Engineer) is taking care of the business development and strategies and he is currently acting as Business Development Head.\n\nTeam BTC is based with their head office and operations from Calicut, Kerala. As an emerging Trading company primarily, we are into domestic and international trading of Agri-products like Coconut, Tender coconut, variety of vegetables and fruits. We are committed to source and supply with utmost care in quality and goodness of the products. Our purchase team are based in different locations in India with their expertise in material selection. We also do have direct purchase system from the farmers with assured product quality & grade.\n\nOur aim is to emerge as a market leader in the Agri trading sector by 2026 and to expand our presence in the international markets with our own cultivated natural products.",
+  "aboutus": {
+    "mission" : "At our core, we aspire to become a market leader in the agricultural trading sector by the year 2026. Our vision extends beyond borders as we aim to expand our presence in international markets with our own naturally cultivated products",
+    "team" : [
+      {
+        "name":"Mr. JOSEPH DILIP KUMAR",
+        "role":"Manging Partner",
+        "description": "Has a distinguished career as a retired manager from SBI. He manages our finance department and its operations",
+        "image":"/images/pict1.png"
+      },
+      {
+        "name":"Mr. RIJUL JOSEPH",
+        "role":"Business Development Head",
+        "description": "A Chartered Engineer, spearheads our business development and strategies. He currently serves as our Business Development Head.",
+        "image":"/images/pict1.png"
+      }
+    ],
+    "operations": {
+      "location": "Our headquarters and primary operations are based in the vibrant city of Calicut, Kerala.",
+      "trading": "As an emerging trading company, we specialize in domestic and international trade of agricultural products, including Coconut,Tender coconut, various vegetables, and fruits. Our commitment lies in sourcing and supplying products of the highest quality and goodness. Our expert purchase team operates from different locations in India, ensuring the utmost care in material selection. We also maintain a direct purchase system from farmers, assuring product quality and grade."
+    },
+    "history": [
+    {
+      "children": "Formed BTC 2023"
+    },
+    {
+      "children": "Started domestic trading 2023"
+    },
+    {
+      "children": "Expanded to international markets 2023"
+    },
+    {
+      "children": "Aiming to be a market leader by 2026"
+    }
+  ]
+  },
   "picture": [
     {
       "name": "pict1",

@@ -54,7 +54,7 @@ const Enquiry = () => {
                   {data.employees.map((employee, index) => {
                     return (
                       <div key={index}>
-                        <div className="md:h-80 flex md:flex-col items-center justify-center gap-y-6">
+                        <div className="md:h-80 flex md:flex-col text-center items-center justify-center gap-y-6">
                           <div className="max-md:w-1/3">
                             <div className="mx-2 w-16 xs:w-20 h-16 xs:h-20 overflow-hidden">
                               <Image
