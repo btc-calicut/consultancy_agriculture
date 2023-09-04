@@ -48,7 +48,7 @@ const Header = () => {
 
   const scrollToComponent = (componentId) => {
     const element = document.getElementById(componentId);
-    const navbarHeight = 80;
+    const navbarHeight = 60;
     if (element) {
       const elementTop = element.offsetTop - navbarHeight;
       window.scrollTo({
