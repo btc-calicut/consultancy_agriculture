@@ -40,14 +40,12 @@ const Enquiry = () => {
   return (
     <div id="enquiry" className="bg-zinc-100 w-full">
       <div className="px-4 sm:px-10 md:px-14 lg:px-36 py-9">
-        <h1 className="text-[#0b0924] font-semibold text-[27px] xs:text-[35px] w-full">
-          Want to talk to us?
-        </h1>
+        
         <div className="py-10 xs:py-12">
           <div className="grid grid-cols-1 md:grid-cols-5 gap-x-16 gap-y-8">
             <div className="md:col-span-2 mx-3 md:my-3 flex md:flex-col items-center justify-center">
               <div className="m-1 max-xs:hidden text-xl xs:text-[40px] tracking-wide leading-relaxed font-bold">
-                <h1 className="text-indigo-900 font-sans">Meet our team</h1>
+                <h1 className="text-indigo-900 font-sans">Get in Touch!</h1>
               </div>
               <div className="p-2 w-64 xs:w-2/3 md:w-full h-fit md:h-80 border rounded-lg bg-zinc-50 shadow-lg">
                 <Carousel dots={false} autoplay>
