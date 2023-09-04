@@ -50,28 +50,27 @@ const ProductsPage = () => {
           </div>
 
           {showModal && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-              <div className="bg-white p-8 rounded-lg w-11/12 md:w-2/3 lg:w-1/2">
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 overflow-y-auto">
+              <div className="bg-white p-8 rounded-lg w-screen h-screen overflow-y-auto">
                 <button className="text-right w-full" onClick={closeModal}>
                   Close
                 </button>
-                <div className="flex">
+                <h2 className="text-2xl font-semibold text-center mt-4 mb-8">
+                  {selectedProduct.name}
+                </h2>
+                <div className="flex h-full">
                   <div className="w-1/2">
                     <div className="mb-4">
-                      <h2 className="text-2xl font-semibold">
-                        {selectedProduct.name}
-                      </h2>
-                    </div>
-                    <img
-                      className="rounded-lg w-full h-32 md:h-40 lg:h-48 object-cover mb-4"
-                      src={selectedProduct.image}
-                      alt={selectedProduct.name}
-                    />
-                    <div className="text-gray-700 bg-gray-100 p-4 rounded-md">
-                      {selectedProduct.description}
+                      <img
+                        className="rounded-lg w-full h-32 md:h-40 lg:h-48 object-cover mb-4"
+                        src={selectedProduct.image}
+                        alt={selectedProduct.name}
+                      />
+                      <div className="text-gray-700 bg-gray-100 p-4 rounded-md">
+                        {selectedProduct.description}
+                      </div>
                     </div>
                   </div>
-                  <div className="border-l-2 border-gray-300 mx-4 h-full"></div>
                   <div className="w-1/2 pl-4">
                     <div className="mb-4 bg-gray-100 p-4 rounded-md">
                       <h3 className="text-lg font-semibold">
