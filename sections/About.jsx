@@ -1,18 +1,74 @@
+import React from "react";
+import { Timeline } from "antd";
+import Image from "next/image";
+
 import data from "@public/assets/data.json";
 
+const aboutUsData = data.aboutus;
+
 const About = () => {
-  const aboutText = data.aboutus.replace(/\n/g, "<br>");
   return (
     <div id="about" className="bg-white w-full">
       <div className="px-4 sm:px-10 md:px-14 lg:px-36 py-9">
-        <h1 className="text-[#0b0924] font-semibold text-[27px] xs:text-[35px] leading-normal w-full">
+        <h1 className="mb-8 text-[#0b0924] font-semibold text-[27px] xs:mb-8   text-[35px] leading-normal  w-full">
           About Us
         </h1>
-        <p
-          className="text-[16px] leading-[28px]"
-          dangerouslySetInnerHTML={{ __html: aboutText }}
-        ></p>
+        <div className="mb-14">
+          <h3 className="text-xl font-semibold mb-4 xs:mb-6 ">Our Mission</h3>
+          <p className="text-[16px] leading-[28px]">{aboutUsData.mission}</p>
+        </div>
 
+        <div className="mb-14">
+          <h3 className="text-xl  font-semibold mb-4 xs:mb-6 ">Our Team</h3>
+          <div className="text-center grid grid-cols-1 xs:grid-cols-2 gap-x-14">
+            {aboutUsData.team.map((teamMember, index) => (
+              <div
+                key={index}
+                className="bg-white m-2 p-8 rounded-lg shadow-md grid justify-items-center"
+              >
+                <div className="mb-4 w-16 xs:w-20 h-16 xs:h-20 overflow-hidden">
+                  <Image
+                    alt={teamMember.name}
+                    src={teamMember.image}
+                    className="object-cover h-full w-full rounded-full"
+                    width={100}
+                    height={100}
+                    priority
+                  />
+                </div>
+
+                <h4 className="text-lg mb-6">{teamMember.name}</h4>
+                <p className="text-[16px] leading-[28px]">
+                  {teamMember.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="mb-14">
+          <h3 className="text-xl font-semibold mb-4 xs:mb-6">Our Operations</h3>
+          <div className="space-y-6">
+            <div className="bg-white p-4 rounded-lg shadow-md ">
+              <h4 className="text-lg font-semibold mb-2 xs:mb-4">Location</h4>
+              <p className="text-[16px] leading-[28px]">
+                {aboutUsData.operations.location}
+              </p>
+            </div>
+
+            <div className="bg-white p-4 rounded-lg shadow-md ">
+              <h4 className="text-lg font-semibold mb-2 xs:mb-4">Trading</h4>
+              <p className="text-[16px] leading-[28px]">
+                {aboutUsData.operations.trading}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="mb-4">
+          <h3 className="text-xl font-semibold mb-6">Our History</h3>
+          <Timeline items={aboutUsData.history} />
+        </div>
         {/* Testimonial section */}
       </div>
     </div>
