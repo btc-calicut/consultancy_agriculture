@@ -7,7 +7,7 @@
     },
     {
       "name": "pict2",
-      "path": "/images/pict2.jpg"
+      "path": "/images/pict2.png"
     },
     {
       "name": "pict3",
@@ -25,7 +25,7 @@
       "phone": "+91 9447384881",
       "address": "28/1034 A, Mispah, Mayday Road, Chevayur Calicut- 673017, 0495 2967448",
       "email": "btccalicut@outlook.com",
-      "image": "/images/pict1.png"
+      "image": "/images/pict1.jpg"
     },
     {
       "name": "Mr. RIJUL JOSEPH",
@@ -33,7 +33,69 @@
       "phone": "+91 8129736458",
       "address": "28/1034 A, Mispah, Mayday Road, Chevayur Calicut- 673017, 0495 2967448",
       "email": "btccalicut@outlook.com",
+      "image": "/images/pict1.jpg"
+    }
+  ],
+  "products": [
+    {
+      "name": "Tender Coconut",
+      "description": "Young, fresh and healthy tender coconuts are a pure, tasty and nutritious energy drink that keeps body hydrated round the clock.\nTender coconut is the most refreshing drink and best to quench your thirst in the summer.Tender coconut has antioxidant properties which help to protect the body from free radicals.It helps to lower blood pressure level, prevent kidney stone, and support heart health.",
+      "nutritional_facts": {
+        "One cup (240 ml) contains": "46 calories",
+        "Carbohydrates": "9 grams",
+        "Fibre": "3 grams",
+        "Protein": "2 grams",
+        "Vitamin C": "10% of the RDI",
+        "Magnesium": "15% of the RDI",
+        "Manganese": "17% of the RDI",
+        "Potassium": "17% of the RDI",
+        "Sodium": "11% of the RDI",
+        "Calcium": "6% of the RDI"
+      },
+      "benefits": "Coconuts are a source of quick energy and refreshment. They improve digestion and immune system health.\nThey also prevent heart diseases by increasing good cholesterol and protect cells from cancer and ageing as they contain Cytokinin.",
       "image": "/images/pict1.png"
+    },
+    {
+      "name": "Tomato",
+      "description": "Fresh and juicy tomatoes...",
+      "nutritional_facts": {
+        "One cup contains": "18 calories",
+        "Carbohydrates": "4 grams",
+        "Fibre": "1 gram",
+        "Protein": "1 gram",
+        "Vitamin C": "28% of the RDI",
+        "Vitamin A": "20% of the RDI"
+      },
+      "benefits": "Rich in antioxidants...",
+      "image": "/images/pict2.jpg"
+    },
+    {
+      "name": "Coconut",
+      "description": "Whole mature coconuts...",
+      "nutritional_facts": {
+        "One cup contains": "283 calories",
+        "Carbohydrates": "12 grams",
+        "Fibre": "7 grams",
+        "Protein": "3 grams",
+        "Saturated Fat": "24 grams",
+        "Vitamin B6": "5% of the RDI"
+      },
+      "benefits": "Rich in healthy fats...",
+      "image": "/images/pict3.png"
+    },
+    {
+      "name": "Potato",
+      "description": "Starchy, tuberous crop...",
+      "nutritional_facts": {
+        "One cup contains": "116 calories",
+        "Carbohydrates": "26 grams",
+        "Fibre": "3 grams",
+        "Protein": "3 grams",
+        "Vitamin C": "37% of the RDI",
+        "Potassium": "25% of the RDI"
+      },
+      "benefits": "Rich in fiber...",
+      "image": "/images/pict4.png"
     }
   ]
 }
