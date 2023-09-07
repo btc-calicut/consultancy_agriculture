@@ -61,7 +61,7 @@ const Header = () => {
   return (
     <nav
       id="navbar"
-      className="sticky top-0 z-50 px-5 xs:p-4 flex items-center justify-end backdrop-blur-xl xs:backdrop-blur-none bg-white/70 xs:bg-white shadow-lg"
+      className="sticky top-0 z-50 px-5 xs:p-2 flex items-center justify-end backdrop-blur-xl bg-white/75 shadow-lg"
     >
       <div className="flex gap-2 items-center w-full">
         <Image

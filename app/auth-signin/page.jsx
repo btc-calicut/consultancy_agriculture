@@ -10,6 +10,14 @@ import theme from "@theme/themeConfig";
 
 const AuthSigninPage = () => {
   const isUserLoggedIn = true;
+  const [providers, setProviders] = useState(null);
+
+  useEffect(() => {
+    const setProviders = async () => {
+      const response = await getProviders();
+      setProviders(response);
+    };
+  }, []);
 
   return (
     <ConfigProvider theme={theme}>

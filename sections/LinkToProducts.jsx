@@ -5,25 +5,25 @@ import Image from "next/image";
 
 const LinkToProducts = () => {
   return (
-    <div className="relative h-[80vh] lg:min-h-[430px]">
+    <div className="relative max-xs:h-[85vh] lg:min-h-[430px]">
       <Carousel dots={false} autoplay>
         {data.picture.map((item, index) => {
           return (
-            <div className="h-[80vh] relative lg:min-h-[430px]">
+            <div className="max-xs:h-[85vh] relative lg:min-h-[430px]">
               <Image
                 alt={item.name}
                 key={index}
                 src={item.path}
-                className="object-cover xs:brightness-[.1]"
+                className="object-cover brightness-[.3] xs:brigntness-[.1]"
                 fill
                 priority
                 sizes="100vw"
               />
               <div className="flex items-center justify-center xs:justify-start absolute inset-0">
                 <div className=" py-3 xs:py-7 px-4 sm:px-10 md:px-14 lg:px-36">
-                  <div className="flex flex-col items-center xs:items-start h-full">
+                  <div className="flex flex-col xs:items-start h-full">
                     <div className="flex flex-col py-6 gap-x-3 max-lg:gap-y-5">
-                      <h1 className="text-[33px] xs:text-[40px] font-[1000] sm:leading-20 lg:leading-loose bg-gradient-to-r from-yellow-500 via-teal-400 to-sky-500 bg-clip-text text-transparent drop-shadow-[0_5px_1.2px_rgba(0,0,0,0.8)] text-center xs:text-left">
+                      <h1 className="max-xs:pl-4 text-[40px] xs:text-[40px] font-[1000] sm:leading-20 lg:leading-loose bg-gradient-to-r from-yellow-500 via-teal-400 to-sky-500 bg-clip-text text-transparent drop-shadow-[0_5px_1.2px_rgba(0,0,0,0.8)] text-left font-poppins">
                         Cultivating Quality, <br className="max-xs:block" />
                         Harvesting Opportunities,
                         <br className="max-xs:block sm:block" />
