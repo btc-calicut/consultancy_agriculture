@@ -28,11 +28,11 @@ const ProductsPage = () => {
     <section className="w-full">
       <div className="mx-4 sm:mx-10 md:mx-14 lg:mx-36 my-6">
         <Breadcrumb />
-        <div className="bg-zinc-100 h-screen">
-          <h1 className="p-5 text-[#0b0924] font-semibold text-[27px] xs:text-[30px] leading-normal w-full">
+        <div className="bg-zinc-100 py-3">
+          <h1 className="px-5 py-2 mb-4 text-[#0b0924] font-semibold text-[27px] xs:text-[30px] leading-normal w-full">
             Our Products
           </h1>
-          <div className="px-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="px-5 mb-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 xs:gap-4">
             {products.map((product, index) => (
               <div
                 key={index}
@@ -51,15 +51,15 @@ const ProductsPage = () => {
 
           {showModal && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 overflow-y-auto">
-              <div className="bg-white p-8 rounded-lg w-screen h-screen overflow-y-auto">
+              <div className="bg-white p-8 rounded-lg h-3/4 w-3/4 overflow-y-auto">
                 <button className="text-right w-full" onClick={closeModal}>
                   Close
                 </button>
                 <h2 className="text-2xl font-semibold text-center mt-4 mb-8">
                   {selectedProduct.name}
                 </h2>
-                <div className="flex h-full">
-                  <div className="w-1/2">
+                <div className="grid grid-cols-1 xs:grid-cols-2 h-full">
+                  <div className="pl-4">
                     <div className="mb-4">
                       <img
                         className="rounded-lg w-full h-32 md:h-40 lg:h-48 object-cover mb-4"
@@ -71,7 +71,7 @@ const ProductsPage = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="w-1/2 pl-4">
+                  <div className=" pl-4">
                     <div className="mb-4 bg-gray-100 p-4 rounded-md">
                       <h3 className="text-lg font-semibold">
                         Nutritional Facts
