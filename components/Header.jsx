@@ -48,9 +48,9 @@ const Header = () => {
 
   const scrollToComponent = (componentId) => {
     const element = document.getElementById(componentId);
-    const navbarHeight = 60;
+    const navbarHeight = document.getElementById("navbar");
     if (element) {
-      const elementTop = element.offsetTop - navbarHeight;
+      const elementTop = element.offsetTop - navbarHeight.offsetHeight;
       window.scrollTo({
         top: elementTop,
         behavior: "smooth",
@@ -59,7 +59,10 @@ const Header = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 px-5 flex items-center justify-end backdrop-blur-xl bg-white/70 shadow-lg">
+    <nav
+      id="navbar"
+      className="sticky top-0 z-50 px-5 xs:p-4 flex items-center justify-end backdrop-blur-xl xs:backdrop-blur-none bg-white/70 xs:bg-white shadow-lg"
+    >
       <div className="flex gap-2 items-center w-full">
         <Image
           alt="logo"
@@ -76,7 +79,7 @@ const Header = () => {
       {/* Desktop view */}
 
       <div className="hidden sm:flex w-full">
-        <div className="bg-transparent border-none w-full flex flex-row-reverse gap-x-6 font-poppins">
+        <div className="bg-transparent border-none w-full flex flex-row-reverse gap-x-8 font-poppins">
           {MenuContents.map((menu) => {
             const isSelected = menu.key === selectedKey;
             return (

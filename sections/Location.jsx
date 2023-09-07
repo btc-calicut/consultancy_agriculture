@@ -4,7 +4,7 @@ const Location = () => {
   return (
     <div id="location" className="bg-white w-full py-7">
       <div className="px-4 sm:px-10 md:px-14 lg:px-36">
-        <h1 className="text-[#0b0924] font-semibold text-[27px] xs:text-[35px] leading-normal">
+        <h1 className="text-[#0b0924] text-center font-semibold text-[27px] xs:text-[35px] leading-normal">
           Our Location
         </h1>
         <div className="mt-6">
