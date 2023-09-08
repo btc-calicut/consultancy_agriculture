@@ -30,9 +30,17 @@ const About = () => {
             />
           </div>
         </div>
+        <div className="mb-14 py-5 px-8">
+          <h3 className="text-2xl text-center xs:text-left font-semibold mb-4 xs:mb-10 ">
+            Our Operations
+          </h3>
+          <p className="text-[16px] leading-[28px]">
+            {aboutUsData.operations.trading}
+          </p>
+        </div>
 
         <div className="mb-14 py-5 px-8">
-          <h3 className="text-2xl text-center font-semibold mb-4 xs:mb-10 ">
+          <h3 className="text-2xl text-center xs:text-left font-semibold mb-4 xs:mb-10 ">
             Our Team
           </h3>
           <div className="text-center xs:px-20 grid grid-cols-1 xs:grid-cols-2 gap-x-14">
@@ -61,34 +69,12 @@ const About = () => {
           </div>
         </div>
 
-        <div className="mb-14 py-5 px-8">
-          <h3 className="text-2xl text-center font-semibold mb-6 xs:mb-6">
-            Our Operations
-          </h3>
-          <div className="space-y-6">
-            <div className="bg-white p-4 rounded-lg shadow-md ">
-              <h4 className="text-lg font-semibold mb-2 xs:mb-4">Location</h4>
-              <p className="text-[16px] leading-[28px]">
-                {aboutUsData.operations.location}
-              </p>
-            </div>
-
-            <div className="bg-white p-4 rounded-lg shadow-md ">
-              <h4 className="text-lg font-semibold mb-2 xs:mb-4">Trading</h4>
-              <p className="text-[16px] leading-[28px]">
-                {aboutUsData.operations.trading}
-              </p>
-            </div>
-          </div>
-        </div>
-
         <div className="mb-4 px-8">
           <h3 className="text-2xl text-center xs:text-left font-semibold mb-10">
             Our History
           </h3>
           <Timeline items={aboutUsData.history} color="red" mode="alternate" />
         </div>
-        {/* Testimonial section */}
       </div>
     </div>
   );

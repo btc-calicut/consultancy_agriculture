@@ -5,11 +5,11 @@ import Image from "next/image";
 
 const LinkToProducts = () => {
   return (
-    <div className="relative max-xs:h-[85vh] lg:min-h-[430px]">
+    <div className="relative h-[85vh] xs:h-96 lg:min-h-[430px]">
       <Carousel dots={false} autoplay>
         {data.picture.map((item, index) => {
           return (
-            <div className="max-xs:h-[85vh] relative lg:min-h-[430px]">
+            <div className="h-[85vh] xs:h-96 relative lg:min-h-[430px]">
               <Image
                 alt={item.name}
                 key={index}
@@ -37,7 +37,7 @@ const LinkToProducts = () => {
 
                     <Link
                       href="/products"
-                      className="relative w-40 h-10 my-2 xs:my-5 px-6 py-3 inline-flex items-center justify-center bg-white xs:bg-blue-950 border-white xs:border-blue-950 border-2 rounded-full shadow-xl overflow-hidden transition duration-300 ease-out group"
+                      className="relative w-40 h-10 my-2 xs:mb-6 px-6 py-3 inline-flex items-center justify-center bg-white xs:bg-blue-950 border-white xs:border-blue-950 border-2 rounded-full shadow-xl overflow-hidden transition duration-300 ease-out group"
                     >
                       <span className="absolute inset-0 w-full h-full flex items-center justify-center text-white xs:text-blue-950 bg-blue-950 xs:bg-white duration-300 -translate-x-full group-hover:translate-x-0 ease">
                         <svg
