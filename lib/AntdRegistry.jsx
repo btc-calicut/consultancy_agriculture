@@ -1,6 +1,6 @@
 "use client";
 
-// This config is only required for antd and not related to project 'lib' folder can be deleted if not using antd.
+// This config is only required for antd and not related to project.
 
 import React from "react";
 import { StyleProvider, createCache, extractStyle } from "@ant-design/cssinjs";

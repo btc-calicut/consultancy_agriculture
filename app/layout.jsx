@@ -1,7 +1,6 @@
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import data from "@public/assets/data.json";
-import Provider from "@components/Provider";
 
 // This config is only required for antd and not related to project.
 import StyledComponentsRegistry from "@lib/AntdRegistry";
