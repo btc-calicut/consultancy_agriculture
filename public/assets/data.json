@@ -17,10 +17,7 @@
         "image":"/images/pict1.png"
       }
     ],
-    "operations": {
-      "location": "Our headquarters and primary operations are based in the vibrant city of Calicut, Kerala.",
-      "trading": "As an emerging trading company, we specialize in domestic and international trade of agricultural products, including Coconut,Tender coconut, various vegetables, and fruits. Our commitment lies in sourcing and supplying products of the highest quality and goodness. Our expert purchase team operates from different locations in India, ensuring the utmost care in material selection. We also maintain a direct purchase system from farmers, assuring product quality and grade."
-    },
+    "trading": "As an emerging trading company, we specialize in domestic and international trade of agricultural products, including Coconut,Tender coconut, various vegetables, and fruits. Our commitment lies in sourcing and supplying products of the highest quality and goodness. Our expert purchase team operates from different locations in India, ensuring the utmost care in material selection. We also maintain a direct purchase system from farmers, assuring product quality and grade.",
     "history": [
     {
       "children": "Formed BTC 2023"
