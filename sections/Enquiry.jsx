@@ -39,15 +39,14 @@ const Enquiry = () => {
 
   return (
     <div id="enquiry" className="bg-zinc-100 w-full">
-      <div className="px-4 sm:px-10 md:px-14 lg:px-36 py-9">
-        
+      <div className="px-4 sm:px-10 md:px-14 lg:px-36">
         <div className="py-10 xs:py-12">
           <div className="grid grid-cols-1 md:grid-cols-5 gap-x-16 gap-y-8">
-            <div className="md:col-span-2 mx-3 md:my-3 flex md:flex-col items-center justify-center">
-              <div className="m-1 max-xs:hidden text-xl xs:text-[40px] tracking-wide leading-relaxed font-bold">
-                <h1 className="text-indigo-900 font-sans">Get in Touch!</h1>
-              </div>
-              <div className="p-2 w-64 xs:w-2/3 md:w-full h-fit md:h-80 border rounded-lg bg-zinc-50 shadow-lg">
+            <div className="mx-3 grid grid-cols-1 items-center justify-center text-center xs:col-span-2 xs:my-3">
+              <h1 className="text-indigo-900 font-sans m-1 max-xs:mb-4 text-[35px] tracking-wide leading-relaxed font-bold">
+                Get in Touch!
+              </h1>
+              <div className="p-2 mx-6 xs:mx-2 border rounded-lg bg-zinc-50 shadow-lg">
                 <Carousel dots={false} autoplay>
                   {data.employees.map((employee, index) => {
                     return (
