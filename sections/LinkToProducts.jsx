@@ -14,7 +14,7 @@ const LinkToProducts = () => {
                 alt={item.name}
                 key={index}
                 src={item.path}
-                className="object-cover brightness-[.3] xs:brigntness-[.1]"
+                className="object-cover brightness-[.5]"
                 fill
                 priority
                 sizes="100vw"
@@ -22,7 +22,7 @@ const LinkToProducts = () => {
               <div className="flex items-center justify-center xs:justify-start absolute inset-0">
                 <div className=" py-3 xs:py-7 px-4 sm:px-10 md:px-14 lg:px-36">
                   <div className="flex flex-col xs:items-start h-full">
-                    <div className="flex flex-col py-6 gap-x-3 max-lg:gap-y-5">
+                    <div className="flex flex-col py-2 gap-x-3 max-lg:gap-y-5">
                       <h1 className="max-xs:pl-4 text-[40px] xs:text-[40px] font-[1000] sm:leading-20 lg:leading-loose bg-gradient-to-r from-yellow-500 via-teal-400 to-sky-500 bg-clip-text text-transparent drop-shadow-[0_5px_1.2px_rgba(0,0,0,0.8)] text-left font-poppins">
                         Cultivating Quality, <br className="max-xs:block" />
                         Harvesting Opportunities,
@@ -37,7 +37,7 @@ const LinkToProducts = () => {
 
                     <Link
                       href="/products"
-                      className="relative w-40 h-10 my-2 xs:mb-6 px-6 py-3 inline-flex items-center justify-center bg-white xs:bg-blue-950 border-white xs:border-blue-950 border-2 rounded-full shadow-xl overflow-hidden transition duration-300 ease-out group"
+                      className="relative max-xs:ml-3 w-40 h-10 my-2 xs:mb-6 px-6 py-3 inline-flex items-center justify-center bg-white xs:bg-blue-950 border-white xs:border-blue-950 border-2 rounded-full shadow-xl overflow-hidden transition duration-300 ease-out group"
                     >
                       <span className="absolute inset-0 w-full h-full flex items-center justify-center text-white xs:text-blue-950 bg-blue-950 xs:bg-white duration-300 -translate-x-full group-hover:translate-x-0 ease">
                         <svg

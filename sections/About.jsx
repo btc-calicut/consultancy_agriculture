@@ -8,12 +8,12 @@ const aboutUsData = data.aboutus;
 
 const About = () => {
   return (
-    <div id="about" className="bg-white w-full pt-4">
+    <div id="about" className="bg-white w-full">
       <div className="px-4 sm:px-10 md:px-14 lg:px-36 py-9">
         <h1 className="mb-8 text-center text-[#0b0924] font-semibold text-[27px] xs:mb-14 text-[35px] leading-normal w-full">
           About Us
         </h1>
-        <div className="mb-14 py-5 px-8 text-center xs:text-left xs:grid grid-cols-2 gap-x-14">
+        <div className="mb-10 py-5 px-8 text-center xs:text-left xs:grid grid-cols-2 gap-x-14">
           <div>
             <h3 className="text-2xl font-semibold mb-4 xs:mb-6 ">
               Our Mission
@@ -30,19 +30,15 @@ const About = () => {
             />
           </div>
         </div>
-        <div className="mb-14 py-5 px-8">
-          <h3 className="text-2xl text-center xs:text-left font-semibold mb-4 xs:mb-10 ">
+        <div className="mb-10 py-5 px-8 text-center xs:text-left">
+          <h3 className="text-2xl  font-semibold mb-4 xs:mb-10 ">
             Our Operations
           </h3>
-          <p className="text-[16px] leading-[28px]">
-            {aboutUsData.operations.trading}
-          </p>
+          <p className="text-[16px] leading-[28px]">{aboutUsData.trading}</p>
         </div>
 
-        <div className="mb-14 py-5 px-8">
-          <h3 className="text-2xl text-center xs:text-left font-semibold mb-4 xs:mb-10 ">
-            Our Team
-          </h3>
+        <div className="mb-10 py-5 px-8 text-center xs:text-left">
+          <h3 className="text-2xl  font-semibold mb-4 xs:mb-10 ">Our Team</h3>
           <div className="text-center xs:px-20 grid grid-cols-1 xs:grid-cols-2 gap-x-14">
             {aboutUsData.team.map((teamMember, index) => (
               <div
