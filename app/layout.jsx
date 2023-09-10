@@ -1,6 +1,7 @@
 import { Poppins } from "next/font/google";
-import "./globals.css";
+import "@styles/globals.css";
 import data from "@public/assets/data.json";
+import AuthContextProvider from "@context/AuthContextProvider";
 
 // This config is only required for antd and not related to project.
 import StyledComponentsRegistry from "@lib/AntdRegistry";
@@ -17,26 +18,28 @@ const poppins = Poppins({
 
 const RootLayout = ({ children }) => {
   return (
-    <html lang="en">
-      <head>
-        <link rel="icon" href="/images/favicon.ico" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="true"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body className={`${poppins.className}`}>
-        <main className="main">
-          <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
-        </main>
-      </body>
-    </html>
+    <AuthContextProvider>
+      <html lang="en">
+        <head>
+          <link rel="icon" href="/images/favicon.ico" />
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossOrigin="true"
+          />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap"
+            rel="stylesheet"
+          />
+        </head>
+        <body className={`${poppins.className}`}>
+          <main className="main">
+            <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+          </main>
+        </body>
+      </html>
+    </AuthContextProvider>
   );
 };
 
