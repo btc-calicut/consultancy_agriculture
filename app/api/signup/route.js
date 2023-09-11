@@ -32,7 +32,7 @@ export async function POST(request) {
       const hashedpassword = await bcrypt.hash(password, 10);
 
       // create the admin in database
-      const newAdmin = await AdminModel.create({
+      await AdminModel.create({
         username: username,
         email: email,
         password: hashedpassword,

@@ -13,7 +13,7 @@ const AdminSignUp = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("/api/auth/auth-signup", {
+      const response = await fetch("/api/signup", {
         method: "POST",
         body: JSON.stringify(formData),
       });
@@ -108,7 +108,7 @@ const AdminSignUp = () => {
               </button>
 
               <Link
-                href="/auth-signin"
+                href="/auth/signin"
                 className="font-medium text-primary-600 hover:underline dark:text-primary-500"
               >
                 Login here

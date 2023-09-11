@@ -3,20 +3,42 @@
 import { signOut, useSession } from "next-auth/react";
 
 const AdminDashboard = () => {
-  const { data, status } = useSession();
-  const isAuth = status === "authenticated";
+  const session = useSession();
+
+  const isAuth = session.status === "authenticated";
+
+  const test = async () => {
+    try {
+      const response = await fetch("/api/dashboard", {
+        method: "GET",
+        headers: {
+          // Authorization: `Bearer ${session.data?.user?.accessToken}` // this doesnt work
+          Authorization: session.data?.user?.accessToken, // send accesstoken from session as header
+        },
+      });
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   if (isAuth) {
     return (
       <div>
         <button
+          className="border p-2"
           onClick={() => {
             signOut();
           }}
         >
           Logout
         </button>
-        <h1>{data?.user?.email}</h1>
-        <h1>{data?.user?.username}</h1>
+        <button className="border p-2" onClick={test}>
+          Click me Test
+        </button>
+        <h1>{session.data?.user?.email}</h1>
+        <h1>{session.data?.user?.username}</h1>
       </div>
     );
   }
