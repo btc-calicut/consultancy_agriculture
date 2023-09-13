@@ -75,10 +75,12 @@ export const authOptions = {
 
   callbacks: {
     // params have some predefined keys: params.user, params.token , params.account, etc
-    // params.user will have all the values that are returned from above authorize ()
+    // params.user will have all the values that are returned from above authorize() and will be only available when the user signin for the first time
     async jwt(params) {
-      if (params.user?.role) {
-        // we are copying all data in params.user to params.token
+      // if condition is necessary becz, this function must only run when the user signin for the first time
+      // it should not run if the user refresh the page
+      if (params?.user) {
+        // copy all data in params.user to params.token
         params.token.id = params.user.id;
         params.token.username = params.user.username;
         params.token.email = params.user.email;
@@ -88,10 +90,10 @@ export const authOptions = {
       return params.token;
     },
 
+    // inorder to use the the data in token in the client components, we need to copy it into session
     // session also have predefined keys: session.user, session.expires.
     async session({ session, token }) {
       if (session?.user) {
-        // we are copying all data in jwttoken to session.user which is to be send to frontend
         session.user.id = token.id;
         session.user.username = token.username;
         session.user.email = token.email;
