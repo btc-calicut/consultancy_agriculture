@@ -7,11 +7,13 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import logo from "@public/images/light-logo.png";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const AdminNavBar = () => {
   const session = useSession();
+  const path = usePathname();
 
-  const [selectedKey, setSelectedKey] = useState("allproducts");
+  const [selectedKey, setSelectedKey] = useState(path);
 
   const user = {
     name: session.data?.user?.username,
@@ -20,16 +22,16 @@ const AdminNavBar = () => {
       "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEysmd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
   };
   const navigation = [
-    { name: "All products", href: "/dashboard", key: "allproducts" },
+    { name: "All products", href: "/dashboard", key: "/dashboard" },
     {
       name: "Add products",
       href: "/dashboard/addproducts",
-      key: "addproducts",
+      key: "/dashboard/addproducts",
     },
     {
       name: "Customer enquiry",
       href: "/dashboard/customerenquiry",
-      key: "enquiry",
+      key: "/dashboard/customerenquiry",
     },
   ];
   const userNavigation = [
