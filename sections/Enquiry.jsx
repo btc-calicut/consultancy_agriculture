@@ -39,21 +39,21 @@ const Enquiry = () => {
 
   return (
     <div id="enquiry" className="bg-zinc-100 w-full">
-      <div className="px-4 sm:px-10 md:px-14 lg:px-36">
-        <div className="py-10 xs:py-12">
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-x-16 gap-y-8">
-            <div className="mx-3 grid grid-cols-1 items-center justify-center text-center xs:col-span-2 xs:my-3">
-              <h1 className="text-indigo-900 font-sans m-1 max-xs:mb-4 text-[35px] tracking-wide leading-relaxed font-bold">
+      <div className="px-4 sm:px-10 md:px-4 md:px-14 lg:px-32">
+        <div className="py-10 sm:py-12">
+          <div className="grid grid-cols-1 md:grid-cols-5 md:gap-x-4 lg:gap-x-16 gap-y-5">
+            <div className="mx-3 grid grid-cols-1 items-center justify-center text-center sm:col-span-2 sm:my-3">
+              <h1 className="text-indigo-900 font-sans m-1 max-sm:mb-4 text-[35px] tracking-wide leading-relaxed font-bold">
                 Get in Touch!
               </h1>
-              <div className="p-2 mx-6 xs:mx-2 border rounded-lg bg-zinc-50 shadow-lg">
+              <div className="p-4 sm:p-6 mx-6 xs:mx-16 sm:mx-20 md:mx-2 border rounded-lg bg-zinc-50 shadow-lg">
                 <Carousel dots={false} autoplay>
                   {data.employees.map((employee, index) => {
                     return (
                       <div key={index}>
                         <div className="md:h-80 flex md:flex-col text-center items-center justify-center gap-y-6">
                           <div className="max-md:w-1/3">
-                            <div className="mx-2 w-16 xs:w-20 h-16 xs:h-20 overflow-hidden">
+                            <div className="mx-2 w-16 sm:w-20 h-16 sm:h-20 overflow-hidden">
                               <Image
                                 alt={employee.name}
                                 src={employee.image}
@@ -66,16 +66,16 @@ const Enquiry = () => {
                           </div>
 
                           <div className="mx-2 flex flex-col justify-center font-poppins">
-                            <p className="text-sm xs:text-lg font-semibold">
+                            <p className="text-sm sm:text-lg font-semibold">
                               {employee.role}
                             </p>
-                            <p className="text-sm xs:text-lg">
+                            <p className="text-sm sm:text-lg">
                               {employee.name}
                             </p>
-                            <p className="text-sm xs:text-2xl font-semibold text-blue-900">
+                            <p className="text-sm sm:text-2xl font-semibold text-blue-900">
                               {employee.phone}
                             </p>
-                            <p className="text-xs">{employee.email}</p>
+                            <p className="text-sm">{employee.email}</p>
                           </div>
                         </div>
                       </div>
