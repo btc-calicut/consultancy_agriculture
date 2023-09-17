@@ -70,5 +70,4 @@ const CustomerEnquiry = () => {
     </section>
   );
 };
-
 export default CustomerEnquiry;
