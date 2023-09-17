@@ -91,15 +91,15 @@ const AdminSignin = () => {
         <div className="absolute -top-20 -right-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
       </div>
 
-      <div className="md:hidden absolute -bottom-32 -left-40 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
+      {/* <div className="md:hidden absolute -bottom-32 -left-40 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
       <div className="md:hidden absolute -bottom-40 -left-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
       <div className="md:hidden absolute -top-40 -right-0 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
-      <div className="md:hidden absolute -top-20 -right-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
+      <div className="md:hidden absolute -top-20 -right-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div> */}
 
-      <div className="flex md:w-1/2 justify-center p-10 bg-red-200 items-center max-md:z-20">
+      <div className="md:w-1/2 flex justify-center items-center max-md:z-20">
         <form
           onSubmit={handleSubmit}
-          className="bg-white max-md:rounded-lg max-md:p-7 max-md:py-9"
+          className="bg-white max-md:mx-10 max-md:rounded-lg max-md:p-7 max-md:py-9"
         >
           <div className="hidden my-3 max-md:flex gap-2 items-center w-full">
             <Image
