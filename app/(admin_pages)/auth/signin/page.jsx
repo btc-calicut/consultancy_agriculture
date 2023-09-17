@@ -37,8 +37,8 @@ const AdminSignin = () => {
       }
 
       if (!response?.error && response?.ok) {
-        message.success("Logged in");
         router.replace("/dashboard");
+        message.success("Logged in");
       }
     } catch (error) {
       console.log(error);

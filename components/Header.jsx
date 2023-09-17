@@ -4,7 +4,7 @@ import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 import { useState } from "react";
 import { CloseOutlined, MenuOutlined } from "@ant-design/icons";
-import logo from "@public/images/light-logo.png";
+import logo from "@public/images/logo.png";
 
 const Header = () => {
   const [selectedKey, setSelectedKey] = useState("about");
@@ -61,7 +61,7 @@ const Header = () => {
   return (
     <nav
       id="navbar"
-      className="sticky top-0 z-50 px-5 xs:py-2 flex items-center justify-end backdrop-blur-sm bg-[#01000a]/[.95] shadow-lg"
+      className="sticky top-0 z-50 px-5 xs:py-2 flex items-center justify-end backdrop-blur-lg bg-white/60 shadow-xl"
     >
       <div className="flex gap-2 items-center w-full">
         <Image
@@ -69,9 +69,12 @@ const Header = () => {
           src={logo}
           height={50}
           width={50}
-          className="object-cover rounded-full my-3 max-xs:w-[48px] max-xs:h-[48px]"
+          className="object-cover rounded-full my-3 max-xs:w-[48px] max-xs:w-[48px]"
         />
-        <p className="hidden xs:inline font-semibold text-xl text-gray-200 tracking-wide">
+        <p className="max-md:hidden font-semibold text-md text-black tracking-wide">
+          | BLUEWAY TRADING COMPANY
+        </p>
+        <p className="md:hidden font-semibold text-xl text-black tracking-wide">
           | BTC
         </p>
       </div>
@@ -84,16 +87,16 @@ const Header = () => {
             const isSelected = menu.key === selectedKey;
             return (
               <a
-                className={`cursor-pointer relative inline-block text-gray-400 group ${
+                className={`cursor-pointer relative inline-block text-black group ${
                   isSelected
-                    ? "transition duration-300 ease-in-out text-white"
+                    ? "transition duration-300 ease-in-out text-blue-800"
                     : ""
                 }`}
                 onClick={() => handleMenuClick(menu)}
                 key={menu.key}
               >
                 {menu.label}
-                <span className="absolute inset-x-0 bottom-0 h-0.5 bg-blue-300 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-in-out"></span>
+                <span className="absolute inset-x-0 bottom-0 h-0.5 bg-blue-700 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-in-out"></span>
               </a>
             );
           })}
@@ -104,16 +107,16 @@ const Header = () => {
 
       <div className="visible sm:hidden">
         <button
-          className={`flex items-center border-none rounded-sm ${
+          className={`flex items-center border-none ${
             drawerVisible ? `hidden` : `visible`
           }`}
           onClick={() => setDrawerVisible(true)}
         >
-          <MenuOutlined style={{ fontSize: "30px", color: "#edeef5" }} />
+          <MenuOutlined style={{ fontSize: "30px" }} />
         </button>
 
         <div
-          className={`fixed top-0 left-0 right-0 h-80 flex flex-col-reverse items-center justify-center space-y-10 transition duration-500 ease-in-out backdrop-blur-2xl bg-[#050414]/90 text-white ${
+          className={`fixed top-0 left-0 right-0 h-80 flex flex-col-reverse items-center justify-center space-y-10 transition duration-200 ease-in-out backdrop-blur-2xl bg-[#050414]/90 text-white ${
             (drawerVisible ? "shadow-2xl" : "",
             drawerVisible ? "none" : "translate-y-[-100%]")
           }`}
