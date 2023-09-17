@@ -72,7 +72,7 @@ const AdminSignin = () => {
 
   return (
     <div className="min-h-screen max-md:bg-gradient-to-tr from-blue-600 to-purple-500">
-      <div className="min-h-screen flex max-md:items-center max-md:justify-center">
+      <div className="min-h-screen flex max-md:items-center max-md:justify-center max-md:relative max-md:overflow-hidden">
         <div className="relative overflow-hidden hidden md:flex w-1/2 bg-gradient-to-tr from-blue-800 to-purple-700 justify-around items-center">
           <div className="p-4">
             <h1 className="text-white font-bold text-4xl font-sans">
@@ -91,16 +91,15 @@ const AdminSignin = () => {
           <div className="absolute -top-40 -right-0 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
           <div className="absolute -top-20 -right-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
         </div>
+        <div className="md:hidden absolute -bottom-32 -left-40 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
+        <div className="md:hidden absolute -bottom-40 -left-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
+        <div className="md:hidden absolute -top-40 -right-0 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
+        <div className="md:hidden absolute -top-20 -right-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
 
-        {/* <div className="md:hidden absolute -bottom-32 -left-40 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
-      <div className="md:hidden absolute -bottom-40 -left-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
-      <div className="md:hidden absolute -top-40 -right-0 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
-      <div className="md:hidden absolute -top-20 -right-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div> */}
-
-        <div className="md:w-1/2 flex justify-center items-center max-md:z-20">
+        <div className="md:w-1/2 w-full flex justify-center items-center max-md:z-20">
           <form
             onSubmit={handleSubmit}
-            className="bg-white max-md:rounded-lg max-md:p-7 max-md:py-9"
+            className="max-xs:w-5/6 bg-white max-md:rounded-lg max-md:px-5 max-md:py-9"
           >
             <div className="hidden my-3 max-md:flex gap-2 items-center w-full">
               <Image
@@ -137,7 +136,7 @@ const AdminSignin = () => {
                 />
               </svg>
               <input
-                className="pl-2 outline-none border-none"
+                className="pl-2 outline-none border-none w-full"
                 type="text"
                 name="username"
                 id="username"
@@ -163,7 +162,7 @@ const AdminSignin = () => {
                 />
               </svg>
               <input
-                className="pl-2 outline-none border-none"
+                className="pl-2 outline-none border-none w-full"
                 type="email"
                 name="email"
                 id="email"
@@ -187,7 +186,7 @@ const AdminSignin = () => {
                 />
               </svg>
               <input
-                className="pl-2 outline-none border-none"
+                className="pl-2 outline-none border-none w-full"
                 type="password"
                 name="password"
                 id="password"
@@ -206,9 +205,6 @@ const AdminSignin = () => {
             >
               {disabled ? <Spin indicator={antIcon} /> : `Login`}
             </button>
-            {/* <span className="text-sm ml-2 hover:text-blue-500 cursor-pointer">
-            Forgot Password ?
-          </span> */}
           </form>
         </div>
       </div>
