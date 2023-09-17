@@ -43,9 +43,9 @@ const LinkToProducts = () => {
 
             <Link
               href="/products"
-              className="relative max-xs:ml-3 w-40 h-10 my-2 xs:mb-6 px-6 py-3 inline-flex items-center justify-center bg-white xs:bg-blue-950 border-white xs:border-blue-950 border-2 rounded-full shadow-xl overflow-hidden transition duration-300 ease-out group"
+              className="relative max-xs:ml-3 w-40 h-10 my-2 xs:mb-6 px-6 py-3 inline-flex items-center justify-center bg-white xs:bg-[#02010d] border-white xs:border-[#02010d] border-2 rounded-full shadow-xl overflow-hidden transition duration-300 ease-out group"
             >
-              <span className="absolute inset-0 w-full h-full flex items-center justify-center text-white xs:text-blue-950 bg-blue-950 xs:bg-white duration-300 -translate-x-full group-hover:translate-x-0 ease">
+              <span className="absolute inset-0 w-full h-full flex items-center justify-center text-white xs:text-[#02010d] bg-[#02010d] xs:bg-white duration-300 -translate-x-full group-hover:translate-x-0 ease">
                 <svg
                   className="w-6 h-6"
                   fill="none"
@@ -61,7 +61,7 @@ const LinkToProducts = () => {
                   ></path>
                 </svg>
               </span>
-              <span className="absolute w-full h-full flex items-center justify-center text-blue-950 xs:text-white transition-all duration-300 transform group-hover:translate-x-full ease">
+              <span className="absolute w-full h-full flex items-center justify-center text-[#02010d] xs:text-white transition-all duration-300 transform group-hover:translate-x-full ease">
                 Take to Products
               </span>
             </Link>
