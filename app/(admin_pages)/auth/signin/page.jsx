@@ -71,8 +71,8 @@ const AdminSignin = () => {
   );
 
   return (
-    <div className="h-screen flex max-md:items-center max-md:relative max-md:overflow-hidden max-md:justify-center max-md:bg-gradient-to-tr from-blue-600 to-purple-500">
-      <div className="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-blue-800 to-purple-700 justify-around items-center hidden">
+    <div className="h-screen flex max-md:items-center max-md:justify-center max-md:bg-gradient-to-tr from-blue-600 to-purple-500">
+      <div className="relative overflow-hidden hidden md:flex w-1/2 bg-gradient-to-tr from-blue-800 to-purple-700 justify-around items-center">
         <div className="p-4">
           <h1 className="text-white font-bold text-4xl font-sans">
             Blueway Trading Company
