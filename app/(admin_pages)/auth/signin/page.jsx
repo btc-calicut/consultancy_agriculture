@@ -96,7 +96,7 @@ const AdminSignin = () => {
       <div className="md:hidden absolute -top-40 -right-0 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
       <div className="md:hidden absolute -top-20 -right-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
 
-      <div className="flex md:w-1/2 justify-center py-10 items-center max-md:z-20">
+      <div className="flex md:w-1/2 justify-center p-10 bg-red-200 items-center max-md:z-20">
         <form
           onSubmit={handleSubmit}
           className="bg-white max-md:rounded-lg max-md:p-7 max-md:py-9"
@@ -114,7 +114,7 @@ const AdminSignin = () => {
             </p>
           </div>
           <h1 className="text-gray-800 font-bold text-2xl mb-1">
-            Hello Again!
+            Hello Admin!
           </h1>
           <p className="text-sm font-normal text-gray-600 mb-7">Welcome Back</p>
 
