@@ -5,12 +5,12 @@ import Image from "next/image";
 
 const LinkToProducts = () => {
   return (
-    <div className="h-[87vh] xs:h-[80vh] relative lg:min-h-[430px]">
+    <div className="h-[87vh] xs:h-98 relative lg:min-h-[430px]">
       <Carousel dots={false} autoplay>
         {data.picture.map((item, index) => {
           return (
             <div>
-              <div className="h-[87vh] xs:h-[80vh] relative lg:min-h-[430px]">
+              <div className="h-[87vh] xs:h-98 relative lg:min-h-[430px]">
                 <Image
                   alt={item.name}
                   key={index}
