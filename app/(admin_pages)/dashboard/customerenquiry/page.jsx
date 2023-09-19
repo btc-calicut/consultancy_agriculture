@@ -1,6 +1,15 @@
 "use client";
-import React from "react";
-import { Table } from "antd";
+
+import React from 'react';
+import { Table } from 'antd';
+
+const columns = [
+  { title: 'Name', dataIndex: 'name', key: 'name' },
+  { title: 'Email', dataIndex: 'email', key: 'email' },
+  { title: 'Phone', dataIndex: 'phone', key: 'phone' },
+  Table.EXPAND_COLUMN,
+  Table.SELECTION_COLUMN,
+];
 
 const CustomerEnquiry = () => {
   const data = [
@@ -114,44 +123,14 @@ const CustomerEnquiry = () => {
     },
   ];
 
+
   const dataSource = data.map((item, index) => ({
-    key: (index + 1).toString(),
+    key: index + 1,
     name: item.name,
     email: item.email,
     phone: item.phone,
     message: item.message,
   }));
-
-  const columns = [
-    {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
-      width: 200,
-      align: "center",
-    },
-    {
-      title: "Email",
-      dataIndex: "email",
-      key: "email",
-      width: 200,
-      align: "center",
-    },
-    {
-      title: "Phone",
-      dataIndex: "phone",
-      key: "phone",
-      width: 200,
-      align: "center",
-    },
-    {
-      title: "Message",
-      dataIndex: "message",
-      key: "message",
-      width: 250,
-      align: "center",
-    },
-  ];
 
   return (
     <section className="min-h-full">
@@ -161,17 +140,23 @@ const CustomerEnquiry = () => {
         </h1>
       </div>
       <div className="mx-auto px-4 py-6 sm:px-6 lg:px-8 bg-white shadow">
-        <div>
-          <Table
-            dataSource={dataSource}
-            columns={columns}
-            pagination={true}
-            scroll={{ y: 500 }}
-            bordered
-          />
-        </div>
+        <Table
+          columns={columns}
+          dataSource={dataSource}
+          pagination={true}
+          rowSelection={{}} // Enables row selection checkbox
+          expandable={{
+            expandedRowRender: (record) => (
+              <p>{record.message}</p>
+            ),
+          }}
+          scroll={{ y: 500 }}
+          bordered
+        />
       </div>
     </section>
   );
 };
+
 export default CustomerEnquiry;
+
