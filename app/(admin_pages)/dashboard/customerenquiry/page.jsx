@@ -144,7 +144,6 @@ const CustomerEnquiry = () => {
           columns={columns}
           dataSource={dataSource}
           pagination={true}
-          rowSelection={{}} // Enables row selection checkbox
           expandable={{
             expandedRowRender: (record) => (
               <p>{record.message}</p>
