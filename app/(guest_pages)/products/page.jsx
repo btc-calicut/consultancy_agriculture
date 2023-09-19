@@ -1,9 +1,9 @@
 "use client";
 
-import Breadcrumb from "@components/Breadcrumb";
 import { useState, useEffect } from "react";
-import { Modal } from "antd";
+import { Modal, Breadcrumb } from "antd";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
@@ -37,8 +37,17 @@ const ProductsPage = () => {
   return (
     <section className="w-full">
       <div className="mx-4 sm:mx-10 md:mx-14 lg:mx-36 my-6">
-        <Breadcrumb />
-        <div className="bg-zinc-100 py-3">
+        <Breadcrumb
+          items={[
+            {
+              title: <Link href="/">Home</Link>,
+            },
+            {
+              title: "Products",
+            },
+          ]}
+        />
+        <div className="mt-4 bg-zinc-100 py-3 rounded-md">
           <h1 className="px-5 py-2 mb-4 text-[#0b0924] font-semibold text-[27px] md:text-[30px] leading-normal w-full">
             Our Products
           </h1>

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { Breadcrumb } from "antd";
+import Link from "next/link";
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
@@ -23,12 +24,10 @@ const ProductsPage = () => {
       <Breadcrumb
         items={[
           {
-            href: "/",
-            title: "Home",
+            title: <Link href="/">Home</Link>,
           },
           {
-            href: "/products",
-            title: "Products",
+            title: <Link href="/products">Products</Link>,
           },
           {
             title: productName,

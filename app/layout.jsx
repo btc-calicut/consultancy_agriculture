@@ -6,7 +6,6 @@ import AuthContextProvider from "@context/AuthContextProvider";
 // This config is only required for antd and not related to project.
 import StyledComponentsRegistry from "@lib/AntdRegistry";
 import { ConfigProvider } from "antd";
-import theme from "@theme/themeConfig";
 
 export const metadata = {
   title: data.title,
@@ -38,7 +37,7 @@ const RootLayout = ({ children }) => {
         <body className={`${poppins.className}`}>
           <main className="main">
             <StyledComponentsRegistry>
-              <ConfigProvider theme={theme}>{children}</ConfigProvider>
+              <ConfigProvider>{children}</ConfigProvider>
             </StyledComponentsRegistry>
           </main>
         </body>

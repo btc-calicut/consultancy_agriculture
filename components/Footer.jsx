@@ -53,10 +53,9 @@ const FooterComponent = () => {
               />
               <Button
                 type="primary"
-                // icon={<SendOutlined className="text-white" />}
-                className="font-poppins bg-gray-500 hover:bg-gray-500 flex items-center justify-center"
+                className="font-poppins"
+                icon={<SendOutlined className="text-white" />}
               >
-                <SendOutlined className="text-white" />
                 Subscribe
               </Button>
             </div>
