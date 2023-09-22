@@ -61,19 +61,24 @@ const Header = () => {
   return (
     <nav
       id="navbar"
-      className="sticky top-0 z-50 px-5 xs:py-2 flex items-center justify-end backdrop-blur-lg bg-white/60 shadow-xl"
+      className="sticky top-0 z-50 px-5 xs:py-2 flex items-center justify-end backdrop-blur-md bg-white/50 shadow-xl"
     >
       <div className="flex gap-2 items-center w-full">
         <Image
           alt="logo"
           src={logo}
-          height={50}
-          width={50}
-          className="object-cover rounded-full my-3 max-xs:w-[48px] max-xs:w-[48px]"
+          height={33}
+          width={33}
+          className="object-cover rounded-full my-3"
         />
-        <p className="font-thin mb-2 font-serif text-6xl text-black">|</p>
-        <p className="font-thin font-serif font-playfair-display text-4xl text-black tracking-wide">
+        <p className="text-4xl md:text-5xl mb-2 font-thin font-playfair-display">
+          |
+        </p>
+        <p className="md:hidden font-thin font-serif font-playfair-display text-xl text-black tracking-wide">
           BTC
+        </p>
+        <p className="max-md:hidden font-thin font-serif font-playfair-display text-xl text-black lg:tracking-wide">
+          BLUEWAY TRADING COMPANY
         </p>
       </div>
 

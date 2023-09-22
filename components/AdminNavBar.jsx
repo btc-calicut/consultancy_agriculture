@@ -1,28 +1,48 @@
 "use client";
 
-import { useSession } from "next-auth/react";
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import logo from "@public/images/light-logo.png";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Avatar } from "antd";
-import { UserOutlined } from "@ant-design/icons";
+import {
+  Avatar,
+  Button,
+  Form,
+  Input,
+  Modal,
+  message,
+  notification,
+} from "antd";
 
 const AdminNavBar = () => {
   const session = useSession();
   const path = usePathname();
+
+  const [isModelOpen, setIsModelOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [form] = Form.useForm();
 
   const [selectedKey, setSelectedKey] = useState(path);
 
   const user = {
     name: session.data?.user?.username,
     email: session.data?.user?.email,
-    imageUrl:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEysmd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
   };
+
+  const [api, contextHolder] = notification.useNotification({
+    placement: "top",
+  });
+  const openNotificationWithIcon = (type, message) => {
+    api[type]({
+      message: "Success",
+      description: message,
+    });
+  };
+
   const navigation = [
     { name: "All products", href: "/dashboard", key: "/dashboard" },
     {
@@ -36,13 +56,77 @@ const AdminNavBar = () => {
       key: "/dashboard/customerenquiry",
     },
   ];
-  const userNavigation = [
-    { name: "Change password", href: "#" },
-    { name: "Sign out", href: "#" },
-  ];
+
+  const initialValues = {
+    username: session.data?.user?.username,
+  };
+
+  const changePassword = () => {
+    setIsModelOpen(true);
+  };
+
+  const onCancel = () => {
+    form.resetFields();
+    setIsModelOpen(false);
+  };
+
+  const validateConfirmPassword = (rule, value) => {
+    // even though rule is not used, it must be used as parameter to the correct syntax
+    return new Promise((resolve, reject) => {
+      if (value && value !== form.getFieldValue("newpassword"))
+        reject("The two passwords do not match");
+      else resolve();
+    });
+  };
+
+  const onHandleSubmit = async (newcredentials) => {
+    setLoading(true);
+    try {
+      const response = await fetch(`/api/changepassword`, {
+        method: "POST",
+        headers: {
+          // Authorization: `Bearer ${session.data?.user?.accessToken}` // this doesnt work
+          Authorization: session.data?.user?.accessToken, // send accesstoken from session as header
+        },
+        body: JSON.stringify(newcredentials),
+      });
+      const data = await response.json();
+
+      if (response.status === 200) {
+        setLoading(false);
+        form.resetFields();
+        form.setFieldsValue({
+          username: newcredentials.username,
+        });
+        // closing the model
+        setTimeout(() => {
+          setIsModelOpen(false);
+        }, 1000);
+        openNotificationWithIcon("success", data.message);
+        // signout the user
+        setTimeout(() => {
+          signOut();
+        }, 5000);
+      } else if (response.status === 401) {
+        message.error("Session expired. Please login again");
+        setTimeout(() => {
+          signOut();
+        }, 2000);
+      } else if (response.status === 400) {
+        message.error(data.message);
+      } else if (response.status === 500) {
+        message.error("Please try again");
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <section>
+      {contextHolder}
       <Disclosure as="nav" className="bg-gray-800">
         {({ open }) => (
           <>
@@ -81,25 +165,28 @@ const AdminNavBar = () => {
                 </div>
                 <div className="hidden sm:block">
                   <div className="ml-4 flex items-center sm:ml-6">
-                    <button
+                    {/* Notification button for desktop */}
+                    {/* <button
                       type="button"
                       className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                     >
                       <span className="absolute -inset-1.5" />
                       <BellIcon className="h-6 w-6" aria-hidden="true" />
-                    </button>
+                    </button> */}
 
-                    {/* Profile dropdown */}
+                    {/* Profile dropdown menu*/}
                     <Menu as="div" className="relative ml-3">
                       <div>
                         <Menu.Button className="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                           <span className="absolute -inset-1.5" />
                           <span className="sr-only">Open user menu</span>
-                          <img
-                            className="h-8 w-8 rounded-full"
-                            src={user.imageUrl}
-                            alt=""
-                          />
+                          <Avatar
+                            style={{
+                              backgroundColor: "#87d068",
+                            }}
+                          >
+                            B
+                          </Avatar>
                         </Menu.Button>
                       </div>
                       <Transition
@@ -112,20 +199,30 @@ const AdminNavBar = () => {
                         leaveTo="transform opacity-0 scale-95"
                       >
                         <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                          {userNavigation.map((item) => (
-                            <Menu.Item key={item.name}>
-                              {({ active }) => (
-                                <a
-                                  href={item.href}
-                                  className={`block px-4 py-2 text-sm text-gray-700 ${
-                                    active ? "bg-gray-100" : ""
-                                  }`}
-                                >
-                                  {item.name}
-                                </a>
-                              )}
-                            </Menu.Item>
-                          ))}
+                          <Menu.Item>
+                            {({ active }) => (
+                              <a
+                                onClick={changePassword}
+                                className={`block px-4 py-2 text-sm text-gray-700 cursor-pointer ${
+                                  active ? "bg-gray-100" : ""
+                                }`}
+                              >
+                                Change password
+                              </a>
+                            )}
+                          </Menu.Item>
+                          <Menu.Item>
+                            {({ active }) => (
+                              <a
+                                onClick={() => signOut()}
+                                className={`block px-4 py-2 text-sm text-gray-700 cursor-pointer ${
+                                  active ? "bg-gray-100" : ""
+                                }`}
+                              >
+                                Sign out
+                              </a>
+                            )}
+                          </Menu.Item>
                         </Menu.Items>
                       </Transition>
                     </Menu>
@@ -174,8 +271,9 @@ const AdminNavBar = () => {
                       style={{
                         backgroundColor: "#87d068",
                       }}
-                      icon={<UserOutlined />}
-                    />
+                    >
+                      B
+                    </Avatar>
                   </div>
                   <div className="ml-3">
                     <div className="text-base font-medium leading-none text-white">
@@ -186,7 +284,7 @@ const AdminNavBar = () => {
                     </div>
                   </div>
 
-                  {/* Notification button */}
+                  {/* Notification button for mobile devices*/}
 
                   {/* <button
                     type="button"
@@ -197,22 +295,91 @@ const AdminNavBar = () => {
                   </button> */}
                 </div>
                 <div className="mt-3 space-y-1 px-2">
-                  {userNavigation.map((item) => (
-                    <Link href={item.href} key={item.name}>
-                      <Disclosure.Button
-                        className="w-full block text-left rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
-                        onClick={() => {}}
-                      >
-                        {item.name}
-                      </Disclosure.Button>
-                    </Link>
-                  ))}
+                  <Disclosure.Button
+                    className="w-full block text-left rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
+                    onClick={changePassword}
+                  >
+                    Change password
+                  </Disclosure.Button>
+                  <Disclosure.Button
+                    className="w-full block text-left rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
+                    onClick={() => signOut()}
+                  >
+                    Sign out
+                  </Disclosure.Button>
                 </div>
               </div>
             </Disclosure.Panel>
           </>
         )}
       </Disclosure>
+      <Modal
+        title="Change Password"
+        open={isModelOpen}
+        maskClosable={false} // this will make the Model not disappear even if we click outside the Model
+        onCancel={onCancel}
+        okButtonProps={{ style: { display: "none" } }}
+      >
+        <Form
+          form={form}
+          name="changepasswordform"
+          initialValues={initialValues}
+          onFinish={onHandleSubmit}
+          labelCol={{ span: 9 }}
+          wrapperCol={{ span: 12 }}
+        >
+          <Form.Item name="username" label="Username">
+            <Input readOnly />
+          </Form.Item>
+          <Form.Item
+            name="oldpassword"
+            label="Old Password"
+            rules={[
+              {
+                required: true,
+                message: "Please enter your old password",
+              },
+            ]}
+          >
+            <Input type="password" />
+          </Form.Item>
+          <Form.Item
+            name="newpassword"
+            label="New Password"
+            rules={[
+              {
+                required: true,
+                message: "Please enter your new password",
+              },
+            ]}
+          >
+            <Input placeholder="Donot reuse old password" type="password" />
+          </Form.Item>
+          <Form.Item
+            name="confirmnewpassword"
+            label="Confirm New Password"
+            rules={[
+              {
+                required: true,
+                message: "Please confirm your new password",
+              },
+              { validator: validateConfirmPassword },
+            ]}
+          >
+            <Input type="password" />
+          </Form.Item>
+          <Form.Item wrapperCol={{ offset: 7 }}>
+            <Button
+              className="bg-blue-500"
+              type="primary"
+              htmlType="submit"
+              loading={loading}
+            >
+              {loading ? "Updating..." : "Verify and Update password"}
+            </Button>
+          </Form.Item>
+        </Form>
+      </Modal>
     </section>
   );
 };

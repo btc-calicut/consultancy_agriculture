@@ -2,36 +2,36 @@
   "title": "BTC | Blueway Trading Company",
   "description": "BTC is based with their head office and operations from Calicut, Kerala. As an emerging Trading company primarily, we are into domestic and international trading of Agri-products like Coconut, Tender coconut, variety of vegetables and fruits.",
   "aboutus": {
-    "mission" : "At our core, we aspire to become a market leader in the agricultural trading sector by the year 2026. Our vision extends beyond borders as we aim to expand our presence in international markets with our own naturally cultivated products",
-    "team" : [
+    "mission": "At our core, we aspire to become a market leader in the agricultural trading sector by the year 2026. Our vision extends beyond borders as we aim to expand our presence in international markets with our own naturally cultivated products",
+    "team": [
       {
-        "name":"Mr. JOSEPH DILIP KUMAR",
-        "role":"Manging Partner",
-        "description": "Has a distinguished career as a retired manager from SBI. He manages our finance department and its operations",
-        "image":"/images/pict1.png"
+        "name": "Mr. JOSEPH DILIP KUMAR",
+        "role": "Manging Partner",
+        "description": "Has a distinguished career as a retired manager from SBI. Manages our finance department and its operations",
+        "image": "/images/pict1.png"
       },
       {
-        "name":"Mr. RIJUL JOSEPH",
-        "role":"Business Development Head",
-        "description": "A Chartered Engineer, spearheads our business development and strategies. He currently serves as our Business Development Head.",
-        "image":"/images/pict1.png"
+        "name": "Mr. RIJUL JOSEPH",
+        "role": "Business Development Head",
+        "description": "A Chartered Engineer, spearheads our business development and strategies. Currently serves as our business development head",
+        "image": "/images/pict1.png"
       }
     ],
     "trading": "As an emerging trading company, we specialize in domestic and international trade of agricultural products, including Coconut,Tender coconut, various vegetables, and fruits. Our commitment lies in sourcing and supplying products of the highest quality and goodness. Our expert purchase team operates from different locations in India, ensuring the utmost care in material selection. We also maintain a direct purchase system from farmers, assuring product quality and grade.",
     "history": [
-    {
-      "children": "Formed BTC 2023"
-    },
-    {
-      "children": "Started domestic trading 2023"
-    },
-    {
-      "children": "Expanded to international markets 2023"
-    },
-    {
-      "children": "Aiming to be a market leader by 2026"
-    }
-  ]
+      {
+        "children": "Formed BTC 2023"
+      },
+      {
+        "children": "Started domestic trading 2023"
+      },
+      {
+        "children": "Expanded to international markets 2023"
+      },
+      {
+        "children": "Aiming to be a market leader by 2026"
+      }
+    ]
   },
   "picture": [
     {

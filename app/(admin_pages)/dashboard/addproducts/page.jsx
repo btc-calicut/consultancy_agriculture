@@ -1,113 +1,69 @@
 "use client";
 
-import React, { useState } from "react";
-import { Form, Input, Button, Space, Row, Col } from "antd";
-import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
+import { Form, Input, Button, Space } from "antd";
+import { CloseOutlined } from "@ant-design/icons";
 
 const AddProductsPage = () => {
-  const [form] = Form.useForm();
-  const [nutritionalFacts, setNutritionalFacts] = useState([
-    { key: "", value: "" },
-  ]);
-
   const onFinish = (values) => {
     console.log("Received values:", values);
-  };
-
-  const addNutritionalFact = () => {
-    setNutritionalFacts([...nutritionalFacts, { key: "", value: "" }]);
-  };
-
-  const removeNutritionalFact = (index) => {
-    const newNutritionalFacts = [...nutritionalFacts];
-    newNutritionalFacts.splice(index, 1);
-    setNutritionalFacts(newNutritionalFacts);
   };
 
   return (
     <section className="min-h-full">
       <div className="mx-auto px-4 py-6 sm:px-6 lg:px-8 bg-white shadow">
         <h1 className="text-3xl font-bold tracking-tight text-gray-900">
-          All products
+          Add products
         </h1>
       </div>
 
       <div className="mx-auto px-4 py-6 sm:px-6 lg:px-8">
-        <Form
-          form={form}
-          name="dynamic_form_nutritional_facts"
-          onFinish={onFinish}
-          initialValues={{
-            nutritional_facts: nutritionalFacts,
-          }}
-        >
-          <Row gutter={16}>
-            <Col span={12}>
-              <Form.Item
-                name="name"
-                label="Name"
-                rules={[{ required: true, message: "Please enter the name" }]}
-              >
-                <Input placeholder="Name" />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item
-                name="description"
-                label="Description"
-                rules={[
-                  { required: true, message: "Please enter the description" },
-                ]}
-              >
-                <Input placeholder="Description" />
-              </Form.Item>
-            </Col>
-          </Row>
+        <Form name="dynamic_form_nutritional_facts" onFinish={onFinish}>
+          <div className="outline grid gap-4 text-sm grid-cols-1 sm:grid-cols-3"></div>
 
-          <Form.List name="nutritional_facts" initialValue={nutritionalFacts}>
-            {(fields, { add, remove }) => (
-              <>
-                {fields.map(({ key, name, fieldKey, ...restField }) => (
-                  <Space
-                    key={key}
-                    style={{ display: "flex", marginBottom: 8 }}
-                    align="baseline"
-                  >
-                    <Form.Item
-                      {...restField}
-                      name={[name, "key"]}
-                      fieldKey={[fieldKey, "key"]}
-                      rules={[
-                        { required: true, message: "Please enter the key" },
-                      ]}
-                    >
-                      <Input placeholder="Key" />
-                    </Form.Item>
-                    <Form.Item
-                      {...restField}
-                      name={[name, "value"]}
-                      fieldKey={[fieldKey, "value"]}
-                      rules={[
-                        { required: true, message: "Please enter the value" },
-                      ]}
-                    >
-                      <Input placeholder="Value" />
-                    </Form.Item>
-                    <MinusCircleOutlined onClick={() => remove(name)} />
-                  </Space>
-                ))}
-                <Form.Item>
-                  <Button
-                    type="dashed"
-                    onClick={() => add()}
-                    icon={<PlusOutlined />}
-                  >
-                    Add Nutritional Fact
+          <Form.Item
+            name="name"
+            label="Name"
+            rules={[{ required: true, message: "Please enter the name" }]}
+          >
+            <Input placeholder="Name" />
+          </Form.Item>
+          <Form.Item
+            name="description"
+            label="Description"
+            rules={[
+              { required: true, message: "Please enter the description" },
+            ]}
+          >
+            <Input placeholder="Description" />
+          </Form.Item>
+
+          {/* Nested Form.List */}
+          <Form.Item label="Nutritional Facts">
+            <Form.List name="nutritionalFacts" required>
+              {(fields, actions) => (
+                <div className="flex flex-col gap-y-2">
+                  {fields.map((field) => (
+                    <Space key={field.key}>
+                      <Form.Item noStyle name={[field.name, "nutrient"]}>
+                        <Input placeholder="Nutrient" required />
+                      </Form.Item>
+                      <Form.Item noStyle name={[field.name, "quantitiy"]}>
+                        <Input placeholder="Quantitiy" required />
+                      </Form.Item>
+                      <CloseOutlined
+                        onClick={() => {
+                          actions.remove(field.key);
+                        }}
+                      />
+                    </Space>
+                  ))}
+                  <Button type="dashed" onClick={() => actions.add()} block>
+                    + Add Sub Item
                   </Button>
-                </Form.Item>
-              </>
-            )}
-          </Form.List>
+                </div>
+              )}
+            </Form.List>
+          </Form.Item>
 
           <Form.Item
             name="benefits"

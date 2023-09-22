@@ -29,11 +29,14 @@ const LinkToProducts = () => {
         <div className=" py-3 xs:py-7 px-4 sm:px-10 md:px-14 lg:px-36">
           <div className="flex flex-col xs:items-start h-full">
             <div className="flex flex-col py-2 gap-x-3 max-lg:gap-y-5">
-              <h1 className="max-xs:pl-4 text-[40px] xs:text-[40px] font-[1000] sm:leading-20 lg:leading-loose bg-gradient-to-r from-sky-400 via-teal-200 to-white bg-clip-text text-transparent font-poppins">
+              {/* <h1 className="max-xs:pl-4 text-[40px] xs:text-[40px] font-[1000] sm:leading-20 lg:leading-loose bg-gradient-to-r from-sky-400 via-teal-200 to-white bg-clip-text text-transparent font-poppins">
                 Cultivating Quality, <br className="max-xs:block" />
                 Harvesting Opportunities,
                 <br className="max-xs:block sm:block" />
                 Trading the Future
+              </h1> */}
+              <h1 className="max-xs:pl-4 text-[40px] xs:text-[40px] font-[1000] sm:leading-20 lg:leading-loose bg-gradient-to-r from-sky-400 via-teal-200 to-white bg-clip-text text-transparent font-poppins">
+                Serving Your <br /> Needs
               </h1>
               <p className="max-xs:pl-4 text-md w-full md:w-80 max-h-60 text-white md:leading-7 text-left">
                 Elevate your agricultural ventures with Team BTC, your trusted

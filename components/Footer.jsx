@@ -24,15 +24,20 @@ const FooterComponent = () => {
               </h3>
               <div className="flex flex-col space-y-4 mt-4">
                 <a
-                  href="mailto:example@email.com"
+                  href="mailto:btccalicut@outlook.com"
                   className="text-gray-400 hover:text-gray-300 flex items-center space-x-2"
                 >
                   <MailOutlined className="text-white bg-gray-700 rounded-full p-2" />
-                  <span className="font-poppins">Email: someone@gmail.com</span>
+                  <span className="font-poppins">
+                    Email: btccalicut@outlook.com
+                  </span>
                 </a>
-                <a className="text-gray-400 hover:text-gray-300 flex items-center space-x-2">
+                <a
+                  href="tel:04952967448"
+                  className="text-gray-400 hover:text-gray-300 flex items-center space-x-2"
+                >
                   <PhoneOutlined className="text-white bg-gray-700 rounded-full p-2" />
-                  <span className="font-poppins">Call Us: 132-123-123</span>
+                  <span className="font-poppins">Call Us: 04952967448</span>
                 </a>
               </div>
             </div>
@@ -79,7 +84,12 @@ const FooterComponent = () => {
             </div>
           </div>
           <p className="font-poppins text-center text-sm">
-            Copyright (c) . All rights reserved.
+            Copyright (c) . All rights reserved.{" "}
+          </p>
+
+          <br />
+          <p className="text-gray-600 font-poppins text-center text-sm">
+            Blueway Trading Company
           </p>
         </Col>
       </Row>
