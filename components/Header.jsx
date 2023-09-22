@@ -71,11 +71,9 @@ const Header = () => {
           width={50}
           className="object-cover rounded-full my-3 max-xs:w-[48px] max-xs:w-[48px]"
         />
-        <p className="max-md:hidden font-semibold text-md text-black tracking-wide">
-          | BLUEWAY TRADING COMPANY
-        </p>
-        <p className="md:hidden font-semibold text-xl text-black tracking-wide">
-          | BTC
+        <p className="font-thin mb-2 font-serif text-6xl text-black">|</p>
+        <p className="font-thin font-serif font-playfair-display text-4xl text-black tracking-wide">
+          BTC
         </p>
       </div>
 
