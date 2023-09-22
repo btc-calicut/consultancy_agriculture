@@ -1,6 +1,6 @@
 "use client";
 
-import { Layout, Row, Col, Divider, Input, Button } from "antd";
+import { Row, Col, Divider, Input, Button } from "antd";
 import {
   FacebookOutlined,
   TwitterOutlined,
@@ -9,8 +9,7 @@ import {
   PhoneOutlined,
   SendOutlined,
 } from "@ant-design/icons";
-
-const { Footer } = Layout;
+import Link from "next/link";
 
 const FooterComponent = () => {
   return (
@@ -72,15 +71,24 @@ const FooterComponent = () => {
         <Col className="text-center">
           <div className="flex justify-center items-center mb-4">
             <div className="flex space-x-4 items-center">
-              <a href="#facebook" className="text-gray-400 hover:text-gray-300">
+              <Link
+                href="https://facebook.com/"
+                className="text-gray-400 hover:text-gray-300"
+              >
                 <FacebookOutlined className="text-white bg-gray-700 rounded-full p-2" />
-              </a>
-              <a href="#twitter" className="text-gray-400 hover:text-gray-300">
+              </Link>
+              <Link
+                href="https://twitter.com/"
+                className="text-gray-400 hover:text-gray-300"
+              >
                 <TwitterOutlined className="text-white bg-gray-700 rounded-full p-2" />
-              </a>
-              <a href="#linkedin" className="text-gray-400 hover:text-gray-300">
+              </Link>
+              <Link
+                href="https://www.linkedin.com/"
+                className="text-gray-400 hover:text-gray-300"
+              >
                 <LinkedinOutlined className="text-white bg-gray-700 rounded-full p-2" />
-              </a>
+              </Link>
             </div>
           </div>
           <p className="font-poppins text-center text-sm">

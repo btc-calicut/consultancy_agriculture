@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 
 const AdminSchema = new mongoose.Schema({
-  username: { type: String, unique: true, required: true },
+  username: { type: String, unique: true, required: true, trim: true },
   email: { type: String, unique: true, required: true, trim: true },
-  password: { type: String, required: true },
+  password: { type: String, required: true, trim: true },
   role: {
     type: String,
     enum: ["admin"],

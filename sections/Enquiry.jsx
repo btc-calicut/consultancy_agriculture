@@ -3,9 +3,10 @@
 import { useState } from "react";
 import data from "@public/assets/data.json";
 import Image from "next/image";
-import { Carousel } from "antd";
+import { Carousel, notification } from "antd";
 
 const Enquiry = () => {
+  const [disabled, setDisabled] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -13,20 +14,39 @@ const Enquiry = () => {
     message: "",
   });
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const allValuesFilled = Object.values(formData).every(
-      (value) => value !== ""
-    );
-    if (allValuesFilled) {
-      console.log("Form submitted with data:", formData);
-    }
-    setFormData({
-      name: "",
-      email: "",
-      number: "",
-      message: "",
+  const [api, contextHolder] = notification.useNotification({
+    placement: "top",
+  });
+  const openNotificationWithIcon = (type, message) => {
+    api[type]({
+      message: message,
+      description: "Our team will contact with you at the earliest",
+      duration: 2.5,
+      closeIcon: false,
     });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setDisabled(true);
+    try {
+      const response = await fetch(`api/enquiry`, {
+        method: "POST",
+        body: JSON.stringify(formData),
+      });
+      const data = await response.json();
+      openNotificationWithIcon("success", data.message);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setDisabled(false);
+      setFormData({
+        name: "",
+        email: "",
+        number: "",
+        message: "",
+      });
+    }
   };
 
   const handleChange = (event) => {
@@ -39,6 +59,7 @@ const Enquiry = () => {
 
   return (
     <div id="enquiry" className="bg-zinc-100 w-full">
+      {contextHolder}
       <div className="px-4 sm:px-10 md:px-4 md:px-14 lg:px-32">
         <div className="py-10 sm:py-12">
           <div className="grid grid-cols-1 md:grid-cols-5 md:gap-x-4 lg:gap-x-16 gap-y-5">
@@ -135,6 +156,7 @@ const Enquiry = () => {
                   <button
                     type="submit"
                     className="inline-block w-full rounded-lg bg-[#080621] px-5 py-3 font-medium text-white sm:w-auto"
+                    disabled={disabled}
                   >
                     Send Enquiry
                   </button>
