@@ -22,8 +22,6 @@ const Dashboard = () => {
         const newSelectedProducts = selectedProducts.filter(
           (item) => item.name !== product.name
         );
-        console.log(newSelectedProducts);
-        console.log(product);
         setSelectedProducts(newSelectedProducts);
       } else {
         const newSelectedProducts = [...selectedProducts, product];
@@ -43,8 +41,7 @@ const Dashboard = () => {
     setIsSelected(!isSelected);
   };
 
-  const isProductSeleced = (prod) => {
-    console.log(selectedProducts);
+  const isProductSelected = (prod) => {
     return selectedProducts.some(
       (item) => JSON.stringify(item) === JSON.stringify(prod)
     );
@@ -55,61 +52,145 @@ const Dashboard = () => {
       name: "Tender Coconut",
       description:
         "Young, fresh and healthy tender coconuts are a pure, tasty and nutritious energy drink that keeps body hydrated round the clock.\nTender coconut is the most refreshing drink and best to quench your thirst in the summer.Tender coconut has antioxidant properties which help to protect the body from free radicals.It helps to lower blood pressure level, prevent kidney stone, and support heart health.",
-      nutritional_facts: {
-        "One cup (240 ml) contains": "46 calories",
-        Carbohydrates: "9 grams",
-        Fibre: "3 grams",
-        Protein: "2 grams",
-        "Vitamin C": "10% of the RDI",
-        Magnesium: "15% of the RDI",
-        Manganese: "17% of the RDI",
-        Potassium: "17% of the RDI",
-        Sodium: "11% of the RDI",
-        Calcium: "6% of the RDI",
-      },
+      nutritional_facts: [
+        {
+          nutrients: "One cup (240 ml) contains",
+          quantity: "46 calories",
+        },
+        {
+          nutrients: "Carbohydrates",
+          quantity: "9 grams",
+        },
+        {
+          nutrients: "Fibre",
+          quantity: "3 grams",
+        },
+        {
+          nutrients: "Protein",
+          quantity: "2 grams",
+        },
+        {
+          nutrients: "Vitamin C",
+          quantity: "10% of the RDI",
+        },
+        {
+          nutrients: "Magnesium",
+          quantity: "15% of the RDI",
+        },
+        {
+          nutrients: "Manganese",
+          quantity: "17% of the RDI",
+        },
+        {
+          nutrients: "Potassium",
+          quantity: "17% of the RDI",
+        },
+        {
+          nutrients: "Sodium",
+          quantity: "11% of the RDI",
+        },
+        {
+          nutrients: "Calcium",
+          quantity: "6% of the RDI",
+        },
+      ],
       benefits:
-        "Coconuts are a source of quick energy and refreshment. They improve digestion and immune system health.\nThey also prevent heart diseases by increasing good cholesterol and protect cells from cancer and ageing as they contain Cytokinin.",
+        "Coconuts are a source of quick energy and refreshment. They improve digestion and immune system health.\nThey also prevent heart diseases by increasing good cholesterol and protect cells from cancer and aging as they contain Cytokinin.",
       image: "/images/pict1.png",
     },
     {
       name: "Tomato",
       description: "Fresh and juicy tomatoes...",
-      nutritional_facts: {
-        "One cup contains": "18 calories",
-        Carbohydrates: "4 grams",
-        Fibre: "1 gram",
-        Protein: "1 gram",
-        "Vitamin C": "28% of the RDI",
-        "Vitamin A": "20% of the RDI",
-      },
+      nutritional_facts: [
+        {
+          nutrients: "One cup contains",
+          quantity: "18 calories",
+        },
+        {
+          nutrients: "Carbohydrates",
+          quantity: "4 grams",
+        },
+        {
+          nutrients: "Fibre",
+          quantity: "1 gram",
+        },
+        {
+          nutrients: "Protein",
+          quantity: "1 gram",
+        },
+        {
+          nutrients: "Vitamin C",
+          quantity: "28% of the RDI",
+        },
+        {
+          nutrients: "Vitamin A",
+          quantity: "20% of the RDI",
+        },
+      ],
       benefits: "Rich in antioxidants...",
       image: "/images/pict2.jpg",
     },
     {
       name: "Coconut",
       description: "Whole mature coconuts...",
-      nutritional_facts: {
-        "One cup contains": "283 calories",
-        Carbohydrates: "12 grams",
-        Fibre: "7 grams",
-        Protein: "3 grams",
-        "Saturated Fat": "24 grams",
-        "Vitamin B6": "5% of the RDI",
-      },
+      nutritional_facts: [
+        {
+          nutrients: "One cup contains",
+          quantity: "283 calories",
+        },
+        {
+          nutrients: "Carbohydrates",
+          quantity: "12 grams",
+        },
+        {
+          nutrients: "Fibre",
+          quantity: "7 grams",
+        },
+        {
+          nutrients: "Protein",
+          quantity: "3 grams",
+        },
+        {
+          nutrients: "Saturated Fat",
+          quantity: "24 grams",
+        },
+        {
+          nutrients: "Vitamin B6",
+          quantity: "5% of the RDI",
+        },
+      ],
       benefits: "Rich in healthy fats...",
       image: "/images/pict3.png",
     },
     {
       name: "Potato",
       description: "Starchy, tuberous crop...",
-      nutritional_facts: {
-        "One cup contains": "116 calories",
-        Carbohydrates: "26 grams",
-        Fibre: "3 grams",
-        Protein: "3 grams",
-        "Vitamin C": "37% of the RDI",
-        Potassium: "25% of the RDI",
-      },
+      nutritional_facts: [
+        {
+          nutrients: "One cup contains",
+          quantity: "116 calories",
+        },
+        {
+          nutrients: "Carbohydrates",
+          quantity: "26 grams",
+        },
+        {
+          nutrients: "Fibre",
+          quantity: "3 grams",
+        },
+        {
+          nutrients: "Protein",
+          quantity: "3 grams",
+        },
+        {
+          nutrients: "Vitamin C",
+          quantity: "37% of the RDI",
+        },
+        {
+          nutrients: "Potassium",
+          quantity: "25% of the RDI",
+        },
+      ],
       benefits: "Rich in fiber...",
       image: "/images/pict4.png",
     },
@@ -125,10 +206,11 @@ const Dashboard = () => {
       <div className="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {products.map((prod) => (
           <div
+            key={prod.name}
             onClick={() => openModal(prod)}
-            className={` ${
-              isProductSeleced(prod) ? `bg-blue-500` : `bg-white`
-            } shadow-lg p-4 rounded-lg overflow-hidden m-4 transition-transform transform hover:scale-105 hover:shadow-xl`}
+            className={`${
+              isProductSelected(prod) ? "bg-blue-500" : "bg-white"
+            } shadow-lg p-4 rounded-lg overflow-hidden m-4 transition-transform transform hover:scale-105 hover:shadow-xl cursor-pointer`}
           >
             <img
               src={prod.image}
@@ -169,13 +251,11 @@ const Dashboard = () => {
                     Nutritional Facts
                   </h3>
                   <ul className="list-disc list-inside my-2">
-                    {Object.keys(productDetails.nutritional_facts).map(
-                      (key, index) => (
-                        <li key={index} className="text-gray-600">
-                          {key}: {productDetails.nutritional_facts[key]}
-                        </li>
-                      )
-                    )}
+                    {productDetails.nutritional_facts.map((fact, index) => (
+                      <li key={index} className="text-gray-600">
+                        {fact.nutrients}: {fact.quantity}
+                      </li>
+                    ))}
                   </ul>
                 </div>
                 <div className="bg-gray-100 p-4 rounded-md">
