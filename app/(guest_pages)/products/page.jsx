@@ -96,13 +96,11 @@ const ProductsPage = () => {
                   Nutritional Facts
                 </h3>
                 <ul className="list-disc list-inside my-2">
-                  {Object.keys(selectedProduct.nutritional_facts).map(
-                    (key, index) => (
-                      <li key={index} className="text-gray-600">
-                        {key}: {selectedProduct.nutritional_facts[key]}
-                      </li>
-                    )
-                  )}
+                  {selectedProduct.nutritional_facts.map((key, index) => (
+                    <li key={index} className="text-gray-600">
+                      {key.nutrients}: {key.quantity}
+                    </li>
+                  ))}
                 </ul>
               </div>
               <div className="bg-gray-100 p-4 rounded-md">
