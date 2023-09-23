@@ -10,7 +10,7 @@ const About = () => {
   return (
     <div id="about" className="bg-white w-full h-full">
       <div className="px-5 sm:px-10 md:px-14 lg:px-36 py-10">
-        <h1 className="mb-8 text-center text-[#0b0924] font-semibold text-[27px] sm:mb-14 text-[35px] leading-normal w-full">
+        <h1 className="mb-8 text-center text-[#0b0924] font-semibold sm:mb-14 text-[35px] leading-normal w-full">
           About Us
         </h1>
         <div className="mb-10 py-5 sm:px-4 px-8 text-center sm:text-left sm:grid grid-cols-2 sm:gap-x-7 gap-x-14">

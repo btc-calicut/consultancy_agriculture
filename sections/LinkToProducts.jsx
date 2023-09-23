@@ -5,16 +5,16 @@ import Image from "next/image";
 
 const LinkToProducts = () => {
   return (
-    <div className="h-[87vh] xs:h-[460px] relative lg:min-h-[430px]">
+    <div className="h-[85vh] xs:h-[460px] relative lg:min-h-[430px]">
       <Carousel dots={false} autoplay>
         {data.picture.map((item, index) => {
           return (
             <div key={index}>
-              <div className="h-[87vh] xs:h-[460px] relative lg:min-h-[430px]">
+              <div className="h-[85vh] xs:h-[460px] relative lg:min-h-[430px]">
                 <Image
                   alt={item.name}
                   src={item.path}
-                  className="object-cover brightness-[.4]"
+                  className="object-cover brightness-[.5]"
                   fill
                   priority
                   sizes="100vw"
@@ -34,7 +34,7 @@ const LinkToProducts = () => {
                 <br className="max-xs:block sm:block" />
                 Trading the Future
               </h1> */}
-              <h1 className="max-xs:pl-4 text-[40px] xs:text-[40px] font-[1000] sm:leading-20 lg:leading-loose bg-gradient-to-r from-sky-400 via-teal-200 to-white bg-clip-text text-transparent font-poppins">
+              <h1 className="max-xs:pl-4 text-[50px] font-[1000] sm:leading-20 lg:leading-loose bg-gradient-to-r from-sky-400 via-teal-200 to-white bg-clip-text text-transparent font-poppins">
                 Serving Your <br className="block xs:hidden" /> Needs
               </h1>
               <p className="max-xs:pl-4 text-md w-full md:w-80 max-h-60 text-white md:leading-7 text-left">
@@ -45,9 +45,9 @@ const LinkToProducts = () => {
 
             <Link
               href="/products"
-              className="relative max-xs:ml-3 w-40 h-10 my-2 xs:mb-6 px-6 py-3 inline-flex items-center justify-center bg-white xs:bg-blue-950 border-white xs:border-blue-950 border-2 rounded-full shadow-xl overflow-hidden transition duration-300 ease-out group"
+              className="relative max-xs:ml-3 w-40 h-10 my-2 xs:mb-6 px-6 py-3 inline-flex items-center justify-center bg-gradient-to-tl from-blue-700 via-blue-800 to-indigo-950 rounded-full shadow-3xl overflow-hidden transition duration-300 ease-out group"
             >
-              <span className="absolute inset-0 w-full h-full flex items-center justify-center text-white xs:text-blue-950 bg-blue-950 xs:bg-white duration-300 -translate-x-full group-hover:translate-x-0 ease">
+              <span className="absolute inset-0 w-full h-full flex items-center justify-center text-blue-900 bg-white duration-300 -translate-x-full group-hover:translate-x-0 ease">
                 <svg
                   className="w-6 h-6"
                   fill="none"
@@ -63,7 +63,7 @@ const LinkToProducts = () => {
                   ></path>
                 </svg>
               </span>
-              <span className="absolute w-full h-full flex items-center justify-center text-blue-950 xs:text-white transition-all duration-300 transform group-hover:translate-x-full ease">
+              <span className="absolute w-full h-full flex items-center justify-center text-white transition-all duration-300 transform group-hover:translate-x-full ease">
                 Take to Products
               </span>
             </Link>

@@ -61,9 +61,9 @@ const Header = () => {
   return (
     <nav
       id="navbar"
-      className="sticky top-0 z-50 px-5 xs:py-2 flex items-center justify-end backdrop-blur-md bg-white/50 shadow-xl"
+      className="sticky top-0 z-50 px-5 py-2 flex items-center justify-end backdrop-blur-md bg-white/50 shadow-xl"
     >
-      <div className="flex gap-2 items-center w-full">
+      <div className="flex gap-x-1 xs:gap-x-2 items-center w-full">
         <Image
           alt="logo"
           src={logo}
@@ -71,10 +71,8 @@ const Header = () => {
           width={33}
           className="object-cover rounded-full my-3"
         />
-        <p className="text-4xl md:text-5xl mb-2 font-thin font-playfair-display">
-          |
-        </p>
-        <p className="font-thin font-serif font-playfair-display text-xl xs:text-2xl text-black tracking-wide">
+        <p className="text-4xl mb-2 font-thin font-playfair-display">|</p>
+        <p className="font-thin font-playfair-display text-xl xs:text-2xl text-black tracking-wide">
           BTC
         </p>
       </div>
