@@ -1,22 +1,56 @@
 "use client";
 
 import { useState } from "react";
-import { message, Modal } from "antd";
+import { message, Modal, FloatButton } from "antd";
+import { CheckCircleOutlined, DeleteOutlined } from "@ant-design/icons";
 /* import { signOut, useSession } from "next-auth/react"; */
 
 const Dashboard = () => {
   /* const session = useSession(); */
 
-  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [productDetails, setProductDetails] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSelected, setIsSelected] = useState(false);
+  const [selectedProducts, setSelectedProducts] = useState([]);
 
   const openModal = (product) => {
-    setSelectedProduct(product);
-    setIsModalOpen(true);
+    if (!isSelected) {
+      setProductDetails(product);
+      setIsModalOpen(true);
+    } else {
+      const isProductInList = selectedProducts.some(
+        (item) => item.name === product.name
+      );
+      if (isProductInList) {
+        const newSelectedProducts = selectedProducts.filter(
+          (item) => item.name !== product.name
+        );
+        console.log(newSelectedProducts);
+        console.log(product);
+        setSelectedProducts(newSelectedProducts);
+      } else {
+        const newSelectedProducts = [...selectedProducts, product];
+        setSelectedProducts(newSelectedProducts);
+      }
+    }
   };
 
   const handleCancel = () => {
     setIsModalOpen(false);
+  };
+
+  const onSelectClick = () => {
+    if (isSelected) {
+      setSelectedProducts([]);
+    }
+    setIsSelected(!isSelected);
+  };
+
+  const isProductSeleced = (prod) => {
+    console.log(selectedProducts);
+    return selectedProducts.some(
+      (item) => JSON.stringify(item) === JSON.stringify(prod)
+    );
   };
 
   const products = [
@@ -117,7 +151,9 @@ const Dashboard = () => {
         {products.map((prod) => (
           <div
             onClick={() => openModal(prod)}
-            className="bg-white shadow-lg p-4 rounded-lg overflow-hidden m-4 transition-transform transform hover:scale-105 hover:shadow-xl"
+            className={` ${
+              isProductSeleced(prod) ? `bg-blue-500` : `bg-white`
+            } shadow-lg p-4 rounded-lg overflow-hidden m-4 transition-transform transform hover:scale-105 hover:shadow-xl`}
           >
             <img
               src={prod.image}
@@ -131,10 +167,10 @@ const Dashboard = () => {
         ))}
       </div>
       <div>
-        {selectedProduct && (
+        {productDetails && (
           <Modal
             title={
-              <h2 className="text-2xl font-semibold">{selectedProduct.name}</h2>
+              <h2 className="text-2xl font-semibold">{productDetails.name}</h2>
             }
             open={isModalOpen}
             onCancel={handleCancel}
@@ -145,11 +181,11 @@ const Dashboard = () => {
               <div>
                 <img
                   className="rounded-lg w-full h-48 object-cover mb-6"
-                  src={selectedProduct.image}
-                  alt={selectedProduct.name}
+                  src={productDetails.image}
+                  alt={productDetails.name}
                 />
                 <div className="text-gray-700 bg-gray-100 p-4 rounded-md">
-                  {selectedProduct.description}
+                  {productDetails.description}
                 </div>
               </div>
               <div>
@@ -158,10 +194,10 @@ const Dashboard = () => {
                     Nutritional Facts
                   </h3>
                   <ul className="list-disc list-inside my-2">
-                    {Object.keys(selectedProduct.nutritional_facts).map(
+                    {Object.keys(productDetails.nutritional_facts).map(
                       (key, index) => (
                         <li key={index} className="text-gray-600">
-                          {key}: {selectedProduct.nutritional_facts[key]}
+                          {key}: {productDetails.nutritional_facts[key]}
                         </li>
                       )
                     )}
@@ -169,9 +205,7 @@ const Dashboard = () => {
                 </div>
                 <div className="bg-gray-100 p-4 rounded-md">
                   <h3 className="text-lg mb-4 font-semibold">Benefits</h3>
-                  <div className="text-gray-700">
-                    {selectedProduct.benefits}
-                  </div>
+                  <div className="text-gray-700">{productDetails.benefits}</div>
                 </div>
               </div>
             </div>
@@ -194,6 +228,17 @@ const Dashboard = () => {
           Signout
         </button>
       </div> */}
+
+      <FloatButton
+        icon={<CheckCircleOutlined />}
+        type={isSelected ? "primary" : "default"}
+        onClick={onSelectClick}
+        style={{ right: 24 }}
+      />
+      <FloatButton
+        icon={<DeleteOutlined />}
+        style={{ right: 94, visibility: isSelected ? "visible" : "hidden" }}
+      />
     </section>
   );
 };
