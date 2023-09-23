@@ -1,13 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { message, Modal, FloatButton } from "antd";
+import { Modal, FloatButton } from "antd";
 import { CheckCircleOutlined, DeleteOutlined } from "@ant-design/icons";
-/* import { signOut, useSession } from "next-auth/react"; */
 
 const Dashboard = () => {
-  /* const session = useSession(); */
-
   const [productDetails, setProductDetails] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
@@ -118,28 +115,6 @@ const Dashboard = () => {
     },
   ];
 
-  /* const testApi = async () => {
-    try {
-      const response = await fetch("/api/dashboard", {
-        method: "GET",
-        headers: {
-          // Authorization: `Bearer ${session.data?.user?.accessToken}` // this doesnt work
-          Authorization: session.data?.user?.accessToken, // send accesstoken from session as header
-        },
-      });
-      const data = await response.json();
-      console.log(data);
-      if (response.status === 401) {
-        message.error("Session expired. Please login again");
-        setTimeout(() => {
-          signOut();
-        }, 2000);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }; */
-
   return (
     <section className="min-h-screen bg-zinc-100">
       <div className="mx-auto px-4 py-6 sm:px-6 lg:px-8 bg-white shadow">
@@ -212,22 +187,6 @@ const Dashboard = () => {
           </Modal>
         )}
       </div>
-
-      {/* <div className="mx-auto px-4 py-6 sm:px-6 lg:px-8">
-        <button
-          className="p-3 border rounded-md shadow-md hover:bg-gray-200 transition ease-in-out duration-300"
-          onClick={testApi}
-        >
-          Click to test api
-        </button>
-        <br />
-        <button
-          className="p-3 border rounded-md shadow-md hover:bg-gray-200 transition ease-in-out duration-300"
-          onClick={() => signOut()}
-        >
-          Signout
-        </button>
-      </div> */}
 
       <FloatButton
         icon={<CheckCircleOutlined />}
