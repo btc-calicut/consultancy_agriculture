@@ -38,8 +38,8 @@ const LinkToProducts = () => {
                 Serving Your <br className="block xs:hidden" /> Needs
               </h1>
               <p className="max-xs:pl-4 text-md w-full md:w-80 max-h-60 text-white md:leading-7 text-left">
-                Elevate your agricultural ventures with Team BTC, your trusted
-                partner in trading top-quality produce worldwide
+                Elevate your agricultural ventures with Blueway Trading Company,
+                your trusted partner in trading top-quality produce worldwide
               </p>
             </div>
 

@@ -74,11 +74,8 @@ const Header = () => {
         <p className="text-4xl md:text-5xl mb-2 font-thin font-playfair-display">
           |
         </p>
-        <p className="md:hidden font-thin font-serif font-playfair-display text-xl text-black tracking-wide">
+        <p className="font-thin font-serif font-playfair-display text-xl xs:text-2xl text-black tracking-wide">
           BTC
-        </p>
-        <p className="max-md:hidden font-thin font-serif font-playfair-display text-xl text-black lg:tracking-wide">
-          BLUEWAY TRADING COMPANY
         </p>
       </div>
 

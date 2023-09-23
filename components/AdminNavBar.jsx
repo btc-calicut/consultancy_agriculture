@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
@@ -8,78 +8,53 @@ import Image from "next/image";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import logo from "@public/images/light-logo.png";
-import {
-  Avatar,
-  Button,
-  Form,
-  Input,
-  Modal,
-  message,
-  notification,
-} from "antd";
+import { Avatar, Modal, message, notification } from "antd";
 
 const AdminNavBar = () => {
   const session = useSession();
   const path = usePathname();
-
-  const [isModelOpen, setIsModelOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [form] = Form.useForm();
-
-  const [selectedKey, setSelectedKey] = useState(path);
 
   const user = {
     name: session.data?.user?.username,
     email: session.data?.user?.email,
   };
 
-  const [api, contextHolder] = notification.useNotification({
-    placement: "top",
+  const [isModelOpen, setIsModelOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [selectedKey, setSelectedKey] = useState(path);
+  const [formData, setFormData] = useState({
+    username: "",
+    oldpassword: "",
+    newpassword: "",
+    confirmnewpassword: "",
   });
-  const openNotificationWithIcon = (type, message) => {
-    api[type]({
-      message: "Success",
-      description: message,
+  const [error, setError] = useState({});
+
+  useEffect(() => {
+    // Validate the confirmnewpassword field
+    if (formData.confirmnewpassword !== formData.newpassword) {
+      setError({
+        ...error,
+        confirmnewpassword: "Confirm password must match new password",
+      });
+    } else {
+      setError({
+        ...error,
+        confirmnewpassword: "",
+      });
+    }
+  }, [formData.confirmnewpassword]);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
     });
   };
 
-  const navigation = [
-    { name: "All products", href: "/dashboard", key: "/dashboard" },
-    {
-      name: "Add products",
-      href: "/dashboard/addproducts",
-      key: "/dashboard/addproducts",
-    },
-    {
-      name: "Customer enquiry",
-      href: "/dashboard/customerenquiry",
-      key: "/dashboard/customerenquiry",
-    },
-  ];
-
-  const initialValues = {
-    username: session.data?.user?.username,
-  };
-
-  const changePassword = () => {
-    setIsModelOpen(true);
-  };
-
-  const onCancel = () => {
-    form.resetFields();
-    setIsModelOpen(false);
-  };
-
-  const validateConfirmPassword = (rule, value) => {
-    // even though rule is not used, it must be used as parameter to the correct syntax
-    return new Promise((resolve, reject) => {
-      if (value && value !== form.getFieldValue("newpassword"))
-        reject("The two passwords do not match");
-      else resolve();
-    });
-  };
-
-  const onHandleSubmit = async (newcredentials) => {
+  const onHandleSubmit = async (event) => {
+    event.preventDefault();
     setLoading(true);
     try {
       const response = await fetch(`/api/changepassword`, {
@@ -88,16 +63,12 @@ const AdminNavBar = () => {
           // Authorization: `Bearer ${session.data?.user?.accessToken}` // this doesnt work
           Authorization: session.data?.user?.accessToken, // send accesstoken from session as header
         },
-        body: JSON.stringify(newcredentials),
+        body: JSON.stringify(formData),
       });
       const data = await response.json();
 
       if (response.status === 200) {
         setLoading(false);
-        form.resetFields();
-        form.setFieldsValue({
-          username: newcredentials.username,
-        });
         // closing the model
         setTimeout(() => {
           setIsModelOpen(false);
@@ -122,6 +93,45 @@ const AdminNavBar = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const [api, contextHolder] = notification.useNotification({
+    placement: "top",
+  });
+
+  const openNotificationWithIcon = (type, message) => {
+    api[type]({
+      message: "Success",
+      description: message,
+    });
+  };
+
+  const navigation = [
+    { name: "All products", href: "/dashboard", key: "/dashboard" },
+    {
+      name: "Add products",
+      href: "/dashboard/addproducts",
+      key: "/dashboard/addproducts",
+    },
+    {
+      name: "Customer enquiry",
+      href: "/dashboard/customerenquiry",
+      key: "/dashboard/customerenquiry",
+    },
+  ];
+
+  const changePassword = () => {
+    setIsModelOpen(true);
+  };
+
+  const onCancel = () => {
+    setFormData({
+      username: "",
+      oldpassword: "",
+      newpassword: "",
+      confirmnewpassword: "",
+    });
+    setIsModelOpen(false);
   };
 
   return (
@@ -314,71 +324,102 @@ const AdminNavBar = () => {
         )}
       </Disclosure>
       <Modal
-        title="Change Password"
+        title={
+          <h2 className="mb-1 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+            Change Password
+          </h2>
+        }
         open={isModelOpen}
         maskClosable={false} // this will make the Model not disappear even if we click outside the Model
         onCancel={onCancel}
         okButtonProps={{ style: { display: "none" } }}
       >
-        <Form
-          form={form}
-          name="changepasswordform"
-          initialValues={initialValues}
-          onFinish={onHandleSubmit}
-          labelCol={{ span: 9 }}
-          wrapperCol={{ span: 12 }}
+        <form
+          className="mt-4 space-y-4 lg:mt-5 md:space-y-5"
+          onSubmit={onHandleSubmit}
         >
-          <Form.Item name="username" label="Username">
-            <Input readOnly />
-          </Form.Item>
-          <Form.Item
-            name="oldpassword"
-            label="Old Password"
-            rules={[
-              {
-                required: true,
-                message: "Please enter your old password",
-              },
-            ]}
-          >
-            <Input type="password" />
-          </Form.Item>
-          <Form.Item
-            name="newpassword"
-            label="New Password"
-            rules={[
-              {
-                required: true,
-                message: "Please enter your new password",
-              },
-            ]}
-          >
-            <Input placeholder="Donot reuse old password" type="password" />
-          </Form.Item>
-          <Form.Item
-            name="confirmnewpassword"
-            label="Confirm New Password"
-            rules={[
-              {
-                required: true,
-                message: "Please confirm your new password",
-              },
-              { validator: validateConfirmPassword },
-            ]}
-          >
-            <Input type="password" />
-          </Form.Item>
-          <Form.Item wrapperCol={{ offset: 7 }}>
-            <Button
-              className="bg-blue-500"
-              type="primary"
-              htmlType="submit"
-              loading={loading}
+          <div>
+            <label
+              htmlFor="username"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
             >
-              {loading ? "Updating..." : "Verify and Update password"}
-            </Button>
-          </Form.Item>
-        </Form>
+              Username
+            </label>
+            <input
+              type="username"
+              name="username"
+              id="username"
+              className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              required
+              defaultValue={formData.username}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="oldpassword"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Old Password
+            </label>
+            <input
+              type="password"
+              name="oldpassword"
+              id="oldpassword"
+              className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              required
+              value={formData.oldpassword}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="newpassword"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              New Password
+            </label>
+            <input
+              type="password"
+              name="newpassword"
+              id="newpassword"
+              placeholder="••••••••"
+              className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              required
+              value={formData.newpassword}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="confirmnewpassword"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Confirm password
+            </label>
+
+            <input
+              type="password"
+              name="confirmnewpassword"
+              id="confirmnewpassword"
+              placeholder="••••••••"
+              className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              required
+              value={formData.confirmnewpassword}
+              onChange={handleChange}
+            />
+            {error.confirmnewpassword && (
+              <p className="text-red-500">{error.confirmnewpassword}</p>
+            )}
+          </div>
+          <button
+            type="submit"
+            className="w-full text-white bg-blue-600 hover:bg-blue-700 disabled:bg-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+            disabled={loading || error.confirmnewpassword}
+          >
+            {loading ? "Updating..." : "Reset password"}
+          </button>
+        </form>
       </Modal>
     </section>
   );
