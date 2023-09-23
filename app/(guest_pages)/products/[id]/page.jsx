@@ -49,9 +49,9 @@ const ProductsPage = () => {
             <h3 className="text-lg mb-4 font-semibold">Nutritional Facts</h3>
             <ul className="list-disc list-inside my-2">
               {products.nutritional_facts &&
-                Object.keys(products.nutritional_facts).map((key, index) => (
-                  <li key={index} className="text-gray-600 text-md">
-                    {key}: {products.nutritional_facts[key]}
+                products.nutritional_facts.map((key, index) => (
+                  <li key={index} className="text-gray-600">
+                    {key.nutrients}: {key.quantity}
                   </li>
                 ))}
             </ul>
