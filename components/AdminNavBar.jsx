@@ -9,6 +9,7 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import logo from "@public/images/light-logo.png";
 import { Avatar, Modal, message, notification } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 
 const AdminNavBar = () => {
   const session = useSession();
@@ -325,7 +326,7 @@ const AdminNavBar = () => {
       </Disclosure>
       <Modal
         title={
-          <h2 className="mb-1 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+          <h2 className="mb-1 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
             Change Password
           </h2>
         }
@@ -341,15 +342,15 @@ const AdminNavBar = () => {
           <div>
             <label
               htmlFor="username"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              className="block mb-2 text-sm font-medium text-gray-900"
             >
               Username
             </label>
             <input
-              type="username"
+              type="text"
               name="username"
               id="username"
-              className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5"
               required
               defaultValue={formData.username}
               onChange={handleChange}
@@ -358,7 +359,7 @@ const AdminNavBar = () => {
           <div>
             <label
               htmlFor="oldpassword"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              className="block mb-2 text-sm font-medium text-gray-900"
             >
               Old Password
             </label>
@@ -366,7 +367,7 @@ const AdminNavBar = () => {
               type="password"
               name="oldpassword"
               id="oldpassword"
-              className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5"
               required
               value={formData.oldpassword}
               onChange={handleChange}
@@ -375,7 +376,7 @@ const AdminNavBar = () => {
           <div>
             <label
               htmlFor="newpassword"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              className="block mb-2 text-sm font-medium text-gray-900"
             >
               New Password
             </label>
@@ -384,7 +385,7 @@ const AdminNavBar = () => {
               name="newpassword"
               id="newpassword"
               placeholder="••••••••"
-              className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5"
               required
               value={formData.newpassword}
               onChange={handleChange}
@@ -393,7 +394,7 @@ const AdminNavBar = () => {
           <div>
             <label
               htmlFor="confirmnewpassword"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              className="block mb-2 text-sm font-medium text-gray-900"
             >
               Confirm password
             </label>
@@ -403,7 +404,7 @@ const AdminNavBar = () => {
               name="confirmnewpassword"
               id="confirmnewpassword"
               placeholder="••••••••"
-              className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5"
               required
               value={formData.confirmnewpassword}
               onChange={handleChange}
@@ -417,7 +418,16 @@ const AdminNavBar = () => {
             className="w-full text-white bg-blue-600 hover:bg-blue-700 disabled:bg-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
             disabled={loading || error.confirmnewpassword}
           >
-            {loading ? "Updating..." : "Reset password"}
+            {loading ? (
+              <LoadingOutlined
+                style={{
+                  fontSize: 24,
+                }}
+                spin
+              />
+            ) : (
+              "Reset password"
+            )}
           </button>
         </form>
       </Modal>

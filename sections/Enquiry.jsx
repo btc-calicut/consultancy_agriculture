@@ -60,7 +60,7 @@ const Enquiry = () => {
   return (
     <div id="enquiry" className="bg-zinc-100 w-full">
       {contextHolder}
-      <div className="px-4 sm:px-10 md:px-4 md:px-14 lg:px-32">
+      <div className="px-4 sm:px-10 md:px-14 lg:px-32">
         <div className="py-10 sm:py-12">
           <div className="grid grid-cols-1 md:grid-cols-5 md:gap-x-4 lg:gap-x-16 gap-y-5">
             <div className="mx-3 grid grid-cols-1 items-center justify-center text-center sm:col-span-2 sm:my-3">

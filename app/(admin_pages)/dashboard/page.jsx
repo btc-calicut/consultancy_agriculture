@@ -198,8 +198,8 @@ const Dashboard = () => {
 
   return (
     <section className="min-h-screen bg-zinc-100">
-      <div className="mx-auto px-4 py-6 sm:px-6 lg:px-8 bg-white shadow">
-        <h1 className="text-3xl font-bold tracking-tight text-gray-900">
+      <div className="p-4 px-6 bg-white shadow">
+        <h1 className="text-2xl font-bold tracking-tight text-gray-900">
           All products
         </h1>
       </div>

@@ -1,12 +1,12 @@
 "use client";
 
-import React from 'react';
-import { Table } from 'antd';
+import React from "react";
+import { Table } from "antd";
 
 const columns = [
-  { title: 'Name', dataIndex: 'name', key: 'name' },
-  { title: 'Email', dataIndex: 'email', key: 'email' },
-  { title: 'Phone', dataIndex: 'phone', key: 'phone' },
+  { title: "Name", dataIndex: "name", key: "name" },
+  { title: "Email", dataIndex: "email", key: "email" },
+  { title: "Phone", dataIndex: "phone", key: "phone" },
   Table.EXPAND_COLUMN,
   Table.SELECTION_COLUMN,
 ];
@@ -123,7 +123,6 @@ const CustomerEnquiry = () => {
     },
   ];
 
-
   const dataSource = data.map((item, index) => ({
     key: index + 1,
     name: item.name,
@@ -133,21 +132,19 @@ const CustomerEnquiry = () => {
   }));
 
   return (
-    <section className="min-h-full">
-      <div className="mx-auto px-4 py-6 sm:px-6 lg:px-8 bg-white shadow">
-        <h1 className="text-3xl font-bold tracking-tight text-gray-900">
+    <section className="min-h-screen  bg-zinc-100">
+      <div className="p-4 px-6 bg-white shadow">
+        <h1 className="text-2xl font-bold tracking-tight text-gray-900">
           Customer Enquiry Details
         </h1>
       </div>
-      <div className="mx-auto px-4 py-6 sm:px-6 lg:px-8 bg-white shadow">
+      <div className="p-5">
         <Table
           columns={columns}
           dataSource={dataSource}
           pagination={true}
           expandable={{
-            expandedRowRender: (record) => (
-              <p>{record.message}</p>
-            ),
+            expandedRowRender: (record) => <p>{record.message}</p>,
           }}
           scroll={{ y: 500 }}
           bordered
@@ -158,4 +155,3 @@ const CustomerEnquiry = () => {
 };
 
 export default CustomerEnquiry;
-
