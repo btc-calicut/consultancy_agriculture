@@ -209,7 +209,7 @@ const Dashboard = () => {
             key={prod.name}
             onClick={() => openModal(prod)}
             className={`${
-              isProductSelected(prod) ? "bg-blue-500" : "bg-white"
+              isProductSelected(prod) ? "bg-blue-300" : "bg-white"
             } shadow-lg p-4 rounded-lg overflow-hidden m-4 transition-transform transform hover:scale-105 hover:shadow-xl cursor-pointer`}
           >
             <img
