@@ -1,5 +1,6 @@
 "use client";
 
+import { signOut, useSession } from "next-auth/react";
 import { useState } from "react";
 import Image from "next/image";
 import { Button, message } from "antd";
@@ -10,6 +11,7 @@ import {
 } from "@ant-design/icons";
 
 const AddProductsPage = () => {
+  const session = useSession();
   const [loading, setLoading] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -47,20 +49,6 @@ const AddProductsPage = () => {
     setFormData({ ...formData, nutritional_facts: updatedNutritionalFacts });
   };
 
-  const handleSubmit = async (event) => {
-    setLoading(true);
-    event.preventDefault();
-    console.log(formData);
-    setLoading(false);
-    setFormData({
-      name: "",
-      description: "",
-      benefits: "",
-      nutritional_facts: [],
-      image: "",
-    });
-  };
-
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData({
@@ -87,11 +75,58 @@ const AddProductsPage = () => {
     reader.readAsDataURL(file);
     reader.onload = () => {
       const result = reader.result;
+      const resultAsString = result.toString();
       setFormData({
         ...formData,
-        image: result,
+        image: resultAsString,
       });
     };
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setLoading(true);
+    if (!formData?.nutritional_facts[0]) {
+      message.warning("Please add nutritional benefits");
+      setLoading(false);
+      return;
+    }
+    try {
+      const response = await fetch(`/api/addproducts`, {
+        method: "POST",
+        headers: {
+          // Authorization: `Bearer ${session.data?.user?.accessToken}` // this doesnt work
+          Authorization: session.data?.user?.accessToken,
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await response.json();
+      if (response.status === 200) {
+        message.success(data.message);
+        setLoading(false);
+        setFormData({
+          name: "",
+          description: "",
+          benefits: "",
+          nutritional_facts: [],
+          image: "",
+        });
+        console.log(data.data);
+      } else if (response.status === 401) {
+        message.error("Session expired. Please login again");
+        setTimeout(() => {
+          signOut();
+        }, 2000);
+      } else if (response.status === 400) {
+        message.error(data.message);
+      } else if (response.status === 500) {
+        message.error("Please try again");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -116,7 +151,7 @@ const AddProductsPage = () => {
             id="image"
             type="file"
             accept="image/*"
-            // required
+            required
             className="absolute z-30 w-full opacity-0 h-full cursor-pointer"
             onChange={handleChangeImage}
           />
@@ -142,7 +177,7 @@ const AddProductsPage = () => {
               type="text"
               name="name"
               id="name"
-              className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+              className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5"
               required
               value={formData.name}
               onChange={handleChange}
@@ -157,7 +192,7 @@ const AddProductsPage = () => {
               Product description
             </label>
             <textarea
-              className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+              className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5"
               type="text"
               name="description"
               id="description"
@@ -189,7 +224,7 @@ const AddProductsPage = () => {
             {formData.nutritional_facts.map((row, index) => (
               <div key={index} className="grid grid-cols-9 gap-2">
                 <input
-                  className="col-span-4 bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                  className="col-span-4 bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full h-10 p-2.5"
                   type="text"
                   value={row.nutrient}
                   onChange={(e) => handleNutrientChange(e, index)}
@@ -197,7 +232,7 @@ const AddProductsPage = () => {
                   required
                 />
                 <input
-                  className="col-span-4 bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                  className="col-span-4 bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full h-10 p-2.5"
                   type="text"
                   value={row.quantity}
                   onChange={(e) => handleQuantityChange(e, index)}
@@ -219,7 +254,7 @@ const AddProductsPage = () => {
               Product Benefits
             </label>
             <textarea
-              className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+              className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg block w-full p-2.5"
               type="text"
               name="benefits"
               id="benefits"

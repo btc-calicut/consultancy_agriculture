@@ -135,7 +135,7 @@ const CustomerEnquiry = () => {
     <section className="min-h-screen  bg-zinc-100">
       <div className="p-4 px-6 bg-white shadow">
         <h1 className="text-2xl font-bold tracking-tight text-gray-900">
-          Customer Enquiry Details
+          Customer Enquiry
         </h1>
       </div>
       <div className="p-5">
