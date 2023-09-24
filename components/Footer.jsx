@@ -1,6 +1,6 @@
 "use client";
 
-import { Row, Col, Divider, Input, Button } from "antd";
+import { Row, Col, Divider, Input, Button, notification } from "antd";
 import {
   FacebookOutlined,
   TwitterOutlined,
@@ -10,10 +10,54 @@ import {
   SendOutlined,
 } from "@ant-design/icons";
 import Link from "next/link";
+import { useState } from "react";
 
 const FooterComponent = () => {
+  const [disabled, setDisabled] = useState(false);
+  const [email, setEmail] = useState("");
+
+  const [api, contextHolder] = notification.useNotification({
+    placement: "top",
+  });
+  const openNotificationWithIcon = (type, message) => {
+    api[type]({
+      message: message,
+      description:
+        "Thank you for subscribing to BTC. You will now receive our latest updates and offers",
+      duration: 2.5,
+      closeIcon: false,
+    });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setDisabled(true);
+    try {
+      const newsLetterData = {
+        email: email,
+        date: new Date(),
+      };
+      const response = await fetch(`api/newsletter`, {
+        method: "POST",
+        body: JSON.stringify(newsLetterData),
+      });
+      const data = await response.json();
+      openNotificationWithIcon("success", data.message);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setDisabled(false);
+      setEmail("");
+    }
+  };
+
+  const handleChange = (event) => {
+    setEmail(event.target.value);
+  };
+
   return (
     <div className="bg-gray-950 text-gray-400 py-8 px-12">
+      {contextHolder}
       <Row gutter={[16, 16]}>
         <Col xs={24} md={12}>
           <div className="flex flex-col space-y-4 h-full">
@@ -54,9 +98,13 @@ const FooterComponent = () => {
               <Input
                 placeholder="Your email"
                 className="bg-gray-500 text-white border-gray-600"
+                value={email}
+                onChange={handleChange}
               />
               <Button
                 type="primary"
+                disabled={disabled}
+                onClick={handleSubmit}
                 className="font-poppins"
                 icon={<SendOutlined className="text-white" />}
               >
