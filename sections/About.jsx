@@ -13,7 +13,7 @@ const About = () => {
         <h1 className="mb-6 xs:mb-8 text-center text-4xl sm:text-[50px] md-text-[65px] font-bold font-popins py-4 sm:leading-[1.2]">
           About Us
         </h1>
-        <div className="mb-10 py-5 sm:px-4 px-8 text-center sm:text-left sm:grid grid-cols-2 sm:gap-x-7 gap-x-14">
+        <div className="mb-10 py-3 xs:py-5 sm:px-4 px-8 text-center sm:text-left sm:grid grid-cols-2 sm:gap-x-7 gap-x-14">
           <div>
             <h3 className="text-2xl font-semibold mb-4 sm:mb-6">Our Mission</h3>
             <p className="text-[16px] leading-[28px]">{aboutUsData.mission}</p>
@@ -29,7 +29,7 @@ const About = () => {
             />
           </div>
         </div>
-        <div className="mb-10 py-5 sm:px-4 px-8 text-center sm:text-left sm:grid grid-cols-2 sm:gap-x-7 gap-x-14">
+        <div className="mb-10 py-3 xs:py-5 sm:px-4 px-8 text-center sm:text-left sm:grid grid-cols-2 sm:gap-x-7 gap-x-14">
           <div className="hidden sm:block">
             <Image
               alt="team"
@@ -41,20 +41,20 @@ const About = () => {
             />
           </div>
           <div>
-            <h3 className="text-2xl  font-semibold mb-4 sm:mb-10 ">
+            <h3 className="text-2xl font-semibold mb-4 sm:mb-10 ">
               Our Operations
             </h3>
             <p className="text-[16px] leading-[28px]">{aboutUsData.trading}</p>
           </div>
         </div>
 
-        <div className="mb-10 py-5 sm:px-4 text-center sm:text-left">
+        <div className="mb-10 py-3 xs:py-5 sm:px-4 text-center sm:text-left">
           <h3 className="text-2xl font-semibold mb-4 sm:mb-10 ">Our Team</h3>
           <div className="text-center px-6 sm:px-18 md:px-25 sm:grid grid-cols-2 sm:gap-x-6">
             {aboutUsData.team.map((teamMember, index) => (
               <div
                 key={index}
-                className="my-5 md:m-6 sm:p-4 p-8 flex flex-col items-center rounded-lg shadow-md bg-gradient-to-tr from-slate-100 to-yellow-50"
+                className="my-5 md:m-6 sm:p-4 p-8 flex flex-col items-center rounded-lg shadow-lg bg-gradient-to-tr from-slate-50 to-gray-50"
               >
                 <div className="mb-4 w-16 sm:w-20 h-16 sm:h-20 overflow-hidden">
                   <Image
@@ -78,7 +78,7 @@ const About = () => {
           </div>
         </div>
 
-        <div className="py-5 sm:px-4 px-8 text-center sm:text-left">
+        <div className="py-3 xs:py-5 sm:px-4 px-8 text-center sm:text-left">
           <h3 className="text-2xl font-semibold mb-12">Our History</h3>
           <Timeline items={aboutUsData.history} color="red" mode="alternate" />
         </div>

@@ -6,8 +6,8 @@ import phone from "@public/images/phone.png";
 const Contact = () => {
   return (
     <div id="contact" className="bg-zinc-50 w-full">
-      <div className="flex flex-col-reverse sm:flex-row sm:items-center sm:justify-center sm:gap-x-4 px-6 sm:px-10 md:px-14 lg:px-36 py-20">
-        <div className="sm:w-1/2 p-4">
+      <div className="flex flex-col-reverse sm:flex-row sm:items-center sm:justify-center sm:gap-x-4 px-6 sm:px-10 md:px-14 lg:px-36 py-10 xs:py-20">
+        <div className="sm:w-64 p-4">
           <Carousel dots={false} autoplay>
             {data.employees.map((employee, index) => {
               return (

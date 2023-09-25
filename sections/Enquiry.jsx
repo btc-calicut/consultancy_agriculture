@@ -60,7 +60,7 @@ const Enquiry = () => {
   return (
     <div id="enquiry" className="bg-zinc-200 w-full">
       {contextHolder}
-      <div className="flex flex-col sm:flex-row sm:gap-x-4 px-6 sm:px-10 md:px-14 lg:px-36 py-20">
+      <div className="flex flex-col sm:flex-row sm:gap-x-4 px-6 sm:px-10 md:px-14 lg:px-36 py-10 xs:py-20">
         <div className="sm:w-1/2">
           <div>
             <h1 className="sm:text-left text-center text-4xl sm:text-[50px] md-text-[65px] font-bold font-popins py-4 sm:leading-[1.2]">
@@ -84,7 +84,7 @@ const Enquiry = () => {
           </p>
         </div>
 
-        <div className="my-2 sm:w-1/2 p-6 lg:p-12 shadow-2xl bg-white rounded-lg">
+        <div className="my-2 max-xs:mt-5 sm:w-1/2 p-6 lg:p-12 shadow-2xl bg-white rounded-lg">
           <form onSubmit={handleSubmit} className="space-y-4">
             <input
               className="w-full text-sm rounded-lg border border-gray-300 p-3 text-gray-800 hover:border-black "
