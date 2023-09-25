@@ -39,7 +39,7 @@ export async function POST(request) {
       use_filename: true,
       unique_filename: false,
       overwrite: true,
-      transformation: [{ width: 1000, height: 760, crop: "scale" }],
+      // transformation: [{ width: 1000, height: 760, crop: "scale" }],
     };
 
     const uploadedPhoto = await cloudinary.uploader.upload(image, options);
