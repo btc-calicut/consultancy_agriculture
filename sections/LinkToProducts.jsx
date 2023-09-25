@@ -34,7 +34,7 @@ const LinkToProducts = () => {
                 <br className="max-xs:block sm:block" />
                 Trading the Future
               </h1> */}
-              <h1 className="max-xs:pl-4 text-[50px] font-[1000] sm:leading-20 lg:leading-loose bg-gradient-to-r from-sky-400 via-teal-200 to-white bg-clip-text text-transparent font-poppins">
+              <h1 className="max-xs:pl-4 text-[60px] font-[1000] leading-[70px] sm:leading-20 lg:leading-loose bg-gradient-to-r from-sky-400 via-teal-200 to-white bg-clip-text text-transparent font-poppins">
                 Serving Your <br className="block xs:hidden" /> Needs
               </h1>
               <p className="max-xs:pl-4 text-md w-full md:w-80 max-h-60 text-white md:leading-7 text-left">

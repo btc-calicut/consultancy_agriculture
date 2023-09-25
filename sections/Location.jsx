@@ -2,9 +2,9 @@ import React from "react";
 
 const Location = () => {
   return (
-    <div id="location" className="bg-white w-full h-full">
-      <div className="px-5 sm:px-10 md:px-14 lg:px-36 py-10">
-        <h1 className="text-[#0b0924] text-center font-semibold text-[27px] xs:text-[35px] leading-normal">
+    <div id="location" className="bg-zinc-50 w-full">
+      <div className="px-6 sm:px-10 md:px-14 lg:px-36 py-20">
+        <h1 className="text-center text-4xl sm:text-[50px] md-text-[65px] font-bold font-popins py-4 sm:leading-[1.2]">
           Locate Us Here
         </h1>
         <iframe
