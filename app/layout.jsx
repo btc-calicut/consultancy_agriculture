@@ -12,7 +12,7 @@ export const metadata = {
   description: data.description,
 };
 
-const poppins = Poppins({
+const popins = Poppins({
   weight: "500",
   subsets: ["latin"],
 });
@@ -34,7 +34,7 @@ const RootLayout = ({ children }) => {
             rel="stylesheet"
           />
         </head>
-        <body className={`${poppins.className}`}>
+        <body className={`${popins.className}`}>
           <main className="main">
             <StyledComponentsRegistry>
               <ConfigProvider>{children}</ConfigProvider>

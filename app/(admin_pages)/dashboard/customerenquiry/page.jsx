@@ -1,133 +1,59 @@
 "use client";
 
-import React from "react";
-import { Table } from "antd";
+import { signOut, useSession } from "next-auth/react";
+import { useState, useEffect } from "react";
+import { Table, Input, Space, message } from "antd";
 
-const columns = [
-  { title: "Name", dataIndex: "name", key: "name" },
-  { title: "Email", dataIndex: "email", key: "email" },
-  { title: "Phone", dataIndex: "phone", key: "phone" },
-  Table.EXPAND_COLUMN,
-  Table.SELECTION_COLUMN,
-];
+const { Search } = Input;
 
 const CustomerEnquiry = () => {
-  const data = [
-    {
-      name: "John",
-      email: "john@example.com",
-      phone: "123-456-7890",
-      message: "Interested in your product",
-    },
-    {
-      name: "Jane",
-      email: "jane@example.com",
-      phone: "098-765-4321",
-      message: "Would like a demo",
-    },
-    {
-      name: "Emily",
-      email: "emily@example.com",
-      phone: "333-333-3333",
-      message: "How does this work?",
-    },
-    {
-      name: "Dave",
-      email: "dave@example.com",
-      phone: "444-444-4444",
-      message: "I need more information",
-    },
-    {
-      name: "Sarah",
-      email: "sarah@somemail.com",
-      phone: "555-555-5555",
-      message: "I have a question",
-    },
-    {
-      name: "Mike",
-      email: "Mike@mike.com",
-      phone: "666-666-6666",
-      message: "I have a question",
-    },
-    {
-      name: "John",
-      email: "john@example.com",
-      phone: "123-456-7890",
-      message: "Interested in your product",
-    },
-    {
-      name: "Jane",
-      email: "jane@example.com",
-      phone: "098-765-4321",
-      message: "Would like a demo",
-    },
-    {
-      name: "Emily",
-      email: "emily@example.com",
-      phone: "333-333-3333",
-      message: "How does this work?",
-    },
-    {
-      name: "Dave",
-      email: "dave@example.com",
-      phone: "444-444-4444",
-      message: "I need more information",
-    },
-    {
-      name: "Sarah",
-      email: "sarah@somemail.com",
-      phone: "555-555-5555",
-      message: "I have a question",
-    },
-    {
-      name: "Mike",
-      email: "Mike@mike.com",
-      phone: "666-666-6666",
-      message: "I have a question",
-    },
-    {
-      name: "John",
-      email: "john@example.com",
-      phone: "123-456-7890",
-      message: "Interested in your product",
-    },
-    {
-      name: "Jane",
-      email: "jane@example.com",
-      phone: "098-765-4321",
-      message: "Would like a demo",
-    },
-    {
-      name: "Emily",
-      email: "emily@example.com",
-      phone: "333-333-3333",
-      message: "How does this work?",
-    },
-    {
-      name: "Dave",
-      email: "dave@example.com",
-      phone: "444-444-4444",
-      message: "I need more information",
-    },
-    {
-      name: "Sarah",
-      email: "sarah@somemail.com",
-      phone: "555-555-5555",
-      message: "I have a question",
-    },
-    {
-      name: "Mike",
-      email: "Mike@mike.com",
-      phone: "666-666-6666",
-      message: "I have a question",
-    },
+  const session = useSession();
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    if (session.data?.user?.accessToken) {
+      fetchData();
+    }
+  }, [session.data?.user?.accessToken]);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch("/api/enquiry", {
+        method: "GET",
+        headers: {
+          // Authorization: `Bearer ${session.data?.user?.accessToken}` // this doesnt work
+          Authorization: session.data?.user?.accessToken,
+        },
+      });
+      const data = await response.json();
+      setData(data.info);
+      if (response.status === 401) {
+        message.error("Session expired. Please login again");
+        setTimeout(() => {
+          signOut();
+        }, 2000);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const onSearch = (value, _e, info) => console.log(info?.source, value);
+
+  const columns = [
+    { title: "Date", dataIndex: "date", key: "date" },
+    { title: "Name", dataIndex: "name", key: "name" },
+    { title: "Email", dataIndex: "email", key: "email" },
+    { title: "Phone", dataIndex: "number", key: "number" },
+    Table.EXPAND_COLUMN,
+    // Table.SELECTION_COLUMN,
   ];
 
   const dataSource = data.map((item, index) => ({
     key: index + 1,
     name: item.name,
     email: item.email,
-    phone: item.phone,
+    number: item.number,
     message: item.message,
   }));
 
@@ -138,7 +64,18 @@ const CustomerEnquiry = () => {
           Customer Enquiry
         </h1>
       </div>
-      <div className="p-5">
+      <Space className="p-5">
+        <h1 className="font-poppins text-sm">Search by Name :</h1>
+        <Search
+          placeholder="input search text"
+          onSearch={onSearch}
+          style={{
+            width: 300,
+          }}
+        />
+      </Space>
+
+      <div className="px-5">
         <Table
           columns={columns}
           dataSource={dataSource}

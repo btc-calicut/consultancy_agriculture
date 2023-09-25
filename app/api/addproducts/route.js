@@ -5,6 +5,12 @@ import { dbConnect } from "@lib/dbConfig";
 import { v2 as cloudinary } from "cloudinary";
 import ProductModel from "@models/ProductModel";
 
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_KEY,
+  api_secret: process.env.CLOUDINARY_SECRET,
+});
+
 export async function POST(request) {
   try {
     // validate accessToken from the headers
@@ -29,12 +35,6 @@ export async function POST(request) {
       );
     }
     // upload to cloudinary
-    cloudinary.config({
-      cloud_name: process.env.CLOUDINARY_NAME,
-      api_key: process.env.CLOUDINARY_KEY,
-      api_secret: process.env.CLOUDINARY_SECRET,
-    });
-
     const options = {
       use_filename: true,
       unique_filename: false,

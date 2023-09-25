@@ -24,9 +24,9 @@ const About = () => {
             <Image
               alt="team"
               src="/images/pict2.jpg"
-              className="object-cover h-full w-full rounded-2xl"
-              width={100}
-              height={100}
+              className="object-cover rounded-2xl"
+              width={500}
+              height={500}
               priority
             />
           </div>
