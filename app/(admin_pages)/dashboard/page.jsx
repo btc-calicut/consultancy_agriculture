@@ -35,8 +35,14 @@ const Dashboard = () => {
 
   const openModal = (product) => {
     if (!isSelected) {
-      setProductDetails(product);
-      setIsModalOpen(true);
+      const isMobile = window.innerWidth <= 796;
+
+      if (isMobile) {
+        router.push("/dashboard/" + product.name);
+      } else {
+        setProductDetails(product);
+        setIsModalOpen(true);
+      }
     } else {
       const isProductInList = selectedProducts.some(
         (item) => item.name === product.name
