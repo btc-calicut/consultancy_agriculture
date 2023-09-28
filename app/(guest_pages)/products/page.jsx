@@ -13,11 +13,23 @@ const ProductsPage = () => {
   const router = useRouter();
 
   useEffect(() => {
-    // Replace this fetch URL with your actual data URL
-    fetch("/assets/data.json")
-      .then((response) => response.json())
-      .then((data) => setProducts(data.products));
+    fetchData();
   }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch("/api/getproducts", {
+        method: "GET",
+      });
+      const data = await response.json();
+      setProducts(data.info);
+      if (response.status === 401) {
+        message.error("Products not found");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const openModal = (product) => {
     const isMobile = window.innerWidth <= 796;
@@ -60,7 +72,7 @@ const ProductsPage = () => {
               >
                 <img
                   className="rounded-lg w-full h-32 object-cover mb-2"
-                  src={product.image}
+                  src={product.imageUrl}
                   alt={product.name}
                 />
                 <h2 className="text-xl font-semibold">{product.name}</h2>
@@ -83,7 +95,7 @@ const ProductsPage = () => {
             <div className="p-4">
               <img
                 className="rounded-lg w-full h-48 object-cover mb-6"
-                src={selectedProduct.image}
+                src={selectedProduct.imageUrl}
                 alt={selectedProduct.name}
               />
               <div className="text-gray-700 bg-gray-100 p-4 rounded-md">
@@ -98,7 +110,7 @@ const ProductsPage = () => {
                 <ul className="list-disc list-inside my-2">
                   {selectedProduct.nutritional_facts.map((key, index) => (
                     <li key={index} className="text-gray-600">
-                      {key.nutrients}: {key.quantity}
+                      {key.nutrient}: {key.quantity}
                     </li>
                   ))}
                 </ul>

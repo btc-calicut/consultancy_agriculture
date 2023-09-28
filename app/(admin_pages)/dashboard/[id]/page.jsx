@@ -2,14 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { Breadcrumb } from "antd";
-import Link from "next/link";
 
 const ProductsPage = () => {
   const [product, setProduct] = useState(null);
 
   const pathname = usePathname();
-  const productName = pathname.replace("/products/", "").replace("%20", " ");
+  const productName = pathname.replace("/dashboard/", "").replace("%20", " ");
 
   useEffect(() => {
     fetchData();
@@ -33,19 +31,6 @@ const ProductsPage = () => {
 
   return (
     <section className="w-full px-4 py-6">
-      <Breadcrumb
-        items={[
-          {
-            title: <Link href="/">Home</Link>,
-          },
-          {
-            title: <Link href="/products">Products</Link>,
-          },
-          {
-            title: productName,
-          },
-        ]}
-      />
       {product && (
         <div className="px-4">
           <h2 className="text-2xl font-semibold my-6">{product.name}</h2>
