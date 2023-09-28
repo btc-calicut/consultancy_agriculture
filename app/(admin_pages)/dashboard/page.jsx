@@ -1,14 +1,37 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Modal, FloatButton } from "antd";
 import { CheckCircleOutlined, DeleteOutlined } from "@ant-design/icons";
+import { useRouter } from "next/navigation";
 
 const Dashboard = () => {
+  const [products, setProducts] = useState(null);
   const [productDetails, setProductDetails] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
   const [selectedProducts, setSelectedProducts] = useState([]);
+
+  const router = useRouter();
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch("/api/getproducts", {
+        method: "GET",
+      });
+      const data = await response.json();
+      setProducts(data.info);
+      if (response.status === 401) {
+        message.error("Products not found");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const openModal = (product) => {
     if (!isSelected) {
@@ -47,155 +70,6 @@ const Dashboard = () => {
     );
   };
 
-  const products = [
-    {
-      name: "Tender Coconut",
-      description:
-        "Young, fresh and healthy tender coconuts are a pure, tasty and nutritious energy drink that keeps body hydrated round the clock.\nTender coconut is the most refreshing drink and best to quench your thirst in the summer.Tender coconut has antioxidant properties which help to protect the body from free radicals.It helps to lower blood pressure level, prevent kidney stone, and support heart health.",
-      nutritional_facts: [
-        {
-          nutrients: "One cup (240 ml) contains",
-          quantity: "46 calories",
-        },
-        {
-          nutrients: "Carbohydrates",
-          quantity: "9 grams",
-        },
-        {
-          nutrients: "Fibre",
-          quantity: "3 grams",
-        },
-        {
-          nutrients: "Protein",
-          quantity: "2 grams",
-        },
-        {
-          nutrients: "Vitamin C",
-          quantity: "10% of the RDI",
-        },
-        {
-          nutrients: "Magnesium",
-          quantity: "15% of the RDI",
-        },
-        {
-          nutrients: "Manganese",
-          quantity: "17% of the RDI",
-        },
-        {
-          nutrients: "Potassium",
-          quantity: "17% of the RDI",
-        },
-        {
-          nutrients: "Sodium",
-          quantity: "11% of the RDI",
-        },
-        {
-          nutrients: "Calcium",
-          quantity: "6% of the RDI",
-        },
-      ],
-      benefits:
-        "Coconuts are a source of quick energy and refreshment. They improve digestion and immune system health.\nThey also prevent heart diseases by increasing good cholesterol and protect cells from cancer and aging as they contain Cytokinin.",
-      image: "/images/pict1.png",
-    },
-    {
-      name: "Tomato",
-      description: "Fresh and juicy tomatoes...",
-      nutritional_facts: [
-        {
-          nutrients: "One cup contains",
-          quantity: "18 calories",
-        },
-        {
-          nutrients: "Carbohydrates",
-          quantity: "4 grams",
-        },
-        {
-          nutrients: "Fibre",
-          quantity: "1 gram",
-        },
-        {
-          nutrients: "Protein",
-          quantity: "1 gram",
-        },
-        {
-          nutrients: "Vitamin C",
-          quantity: "28% of the RDI",
-        },
-        {
-          nutrients: "Vitamin A",
-          quantity: "20% of the RDI",
-        },
-      ],
-      benefits: "Rich in antioxidants...",
-      image: "/images/pict2.jpg",
-    },
-    {
-      name: "Coconut",
-      description: "Whole mature coconuts...",
-      nutritional_facts: [
-        {
-          nutrients: "One cup contains",
-          quantity: "283 calories",
-        },
-        {
-          nutrients: "Carbohydrates",
-          quantity: "12 grams",
-        },
-        {
-          nutrients: "Fibre",
-          quantity: "7 grams",
-        },
-        {
-          nutrients: "Protein",
-          quantity: "3 grams",
-        },
-        {
-          nutrients: "Saturated Fat",
-          quantity: "24 grams",
-        },
-        {
-          nutrients: "Vitamin B6",
-          quantity: "5% of the RDI",
-        },
-      ],
-      benefits: "Rich in healthy fats...",
-      image: "/images/pict3.png",
-    },
-    {
-      name: "Potato",
-      description: "Starchy, tuberous crop...",
-      nutritional_facts: [
-        {
-          nutrients: "One cup contains",
-          quantity: "116 calories",
-        },
-        {
-          nutrients: "Carbohydrates",
-          quantity: "26 grams",
-        },
-        {
-          nutrients: "Fibre",
-          quantity: "3 grams",
-        },
-        {
-          nutrients: "Protein",
-          quantity: "3 grams",
-        },
-        {
-          nutrients: "Vitamin C",
-          quantity: "37% of the RDI",
-        },
-        {
-          nutrients: "Potassium",
-          quantity: "25% of the RDI",
-        },
-      ],
-      benefits: "Rich in fiber...",
-      image: "/images/pict4.png",
-    },
-  ];
-
   return (
     <section className="min-h-screen bg-zinc-100">
       <div className="p-4 px-6 bg-white shadow">
@@ -204,24 +78,25 @@ const Dashboard = () => {
         </h1>
       </div>
       <div className="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {products.map((prod) => (
-          <div
-            key={prod.name}
-            onClick={() => openModal(prod)}
-            className={`${
-              isProductSelected(prod) ? "bg-blue-300" : "bg-white"
-            } shadow-lg p-4 rounded-lg overflow-hidden m-4 transition-transform transform hover:scale-105 hover:shadow-xl cursor-pointer`}
-          >
-            <img
-              src={prod.image}
-              alt={prod.name}
-              className="w-full h-32 object-cover rounded-lg"
-            />
-            <div className="p-4">
-              <h2 className="text-xl font-semibold">{prod.name}</h2>
+        {products &&
+          products.map((prod) => (
+            <div
+              key={prod.name}
+              onClick={() => openModal(prod)}
+              className={`${
+                isProductSelected(prod) ? "bg-blue-300" : "bg-white"
+              } shadow-lg p-4 rounded-lg overflow-hidden m-4 transition-transform transform hover:scale-105 hover:shadow-xl cursor-pointer`}
+            >
+              <img
+                src={prod.imageUrl}
+                alt={prod.name}
+                className="w-full h-32 object-cover rounded-lg"
+              />
+              <div className="p-4">
+                <h2 className="text-xl font-semibold">{prod.name}</h2>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
       <div>
         {productDetails && (
@@ -238,7 +113,7 @@ const Dashboard = () => {
               <div>
                 <img
                   className="rounded-lg w-full h-48 object-cover mb-6"
-                  src={productDetails.image}
+                  src={productDetails.imageUrl}
                   alt={productDetails.name}
                 />
                 <div className="text-gray-700 bg-gray-100 p-4 rounded-md">
@@ -253,7 +128,7 @@ const Dashboard = () => {
                   <ul className="list-disc list-inside my-2">
                     {productDetails.nutritional_facts.map((fact, index) => (
                       <li key={index} className="text-gray-600">
-                        {fact.nutrients}: {fact.quantity}
+                        {fact.nutrient}: {fact.quantity}
                       </li>
                     ))}
                   </ul>
