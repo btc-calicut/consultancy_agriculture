@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Modal, FloatButton } from "antd";
 import { CheckCircleOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 const Dashboard = () => {
   const [products, setProducts] = useState(null);
@@ -13,6 +14,7 @@ const Dashboard = () => {
   const [selectedProducts, setSelectedProducts] = useState([]);
 
   const router = useRouter();
+  const session = useSession();
 
   useEffect(() => {
     fetchData();
@@ -35,7 +37,7 @@ const Dashboard = () => {
 
   const openModal = (product) => {
     if (!isSelected) {
-      const isMobile = window.innerWidth <= 796;
+      const isMobile = window.innerWidth <= 768;
 
       if (isMobile) {
         router.push("/dashboard/" + product.name);
@@ -61,6 +63,31 @@ const Dashboard = () => {
 
   const handleCancel = () => {
     setIsModalOpen(false);
+  };
+
+  const onDeleteClick = async () => {
+    if (selectedProducts.length !== 0) {
+      try {
+        const response = await fetch("/api/deleteproduct", {
+          method: "POST",
+          headers: {
+            // Authorization: `Bearer ${session.data?.user?.accessToken}` // this doesnt work
+            Authorization: session.data?.user?.accessToken,
+          },
+          body: JSON.stringify(selectedProducts),
+        });
+        const data = await response.json();
+        console.log(data);
+        fetchData();
+
+        if (response.status === 401) {
+          message.error("Products not found");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+      setSelectedProducts([]);
+    }
   };
 
   const onSelectClick = () => {
@@ -149,16 +176,22 @@ const Dashboard = () => {
         )}
       </div>
 
-      <FloatButton
-        icon={<CheckCircleOutlined />}
-        type={isSelected ? "primary" : "default"}
-        onClick={onSelectClick}
-        style={{ right: 24 }}
-      />
-      <FloatButton
-        icon={<DeleteOutlined />}
-        style={{ right: 94, visibility: isSelected ? "visible" : "hidden" }}
-      />
+      <div className="max-md:hidden">
+        <FloatButton
+          icon={<CheckCircleOutlined />}
+          type={isSelected ? "primary" : "default"}
+          onClick={onSelectClick}
+          style={{ right: 24 }}
+        />
+        <FloatButton
+          icon={<DeleteOutlined style={{ color: "red" }} />}
+          onClick={onDeleteClick}
+          style={{
+            right: 94,
+            visibility: isSelected ? "visible" : "hidden",
+          }}
+        />
+      </div>
     </section>
   );
 };
