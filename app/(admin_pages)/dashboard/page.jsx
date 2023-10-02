@@ -189,8 +189,9 @@ const Dashboard = () => {
               onClose={() => setOverlay(false)}
               open={overlay}
               closeIcon={<DownOutlined />}
-              height="100vh"
+              height="85vh"
               headerStyle={{ textAlign: "center" }}
+              className="rounded-3xl"
             >
               <div className="w-full flex flex-col space-y-2">
                 <div className="text-gray-700 bg-gray-100 rounded-lg">
