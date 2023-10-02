@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Modal, Breadcrumb } from "antd";
+import { Modal, Breadcrumb, Drawer } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 
 const ProductsPage = () => {
@@ -99,52 +99,53 @@ const ProductsPage = () => {
       </div>
 
       {selectedProduct && mobileView && (
-        <div
-          className={`z-50 fixed bottom-0 left-0 right-0 h-[100vh] items-center justify-center transition duration-700 ease-in-out bg-white text-black border-8 ${
-            overlay ? `block` : `translate-y-[100%]`
-          }`}
+        <Drawer
+          title={
+            <h2 className="text-2xl font-semibold font-poppins">
+              {selectedProduct.name}
+            </h2>
+          }
+          placement="bottom"
+          closable={true}
+          onClose={() => setOverlay(false)}
+          open={overlay}
+          closeIcon={<DownOutlined />}
+          height="100vh"
+          headerStyle={{ textAlign: "center" }}
         >
-          <button onClick={() => setOverlay(false)}>
-            <DownOutlined className="fixed top-0 right-0 p-5 text-xl" />
-          </button>
-          <div className="w-full px-5 py-12 flex flex-col">
-            <h2 className="text-2xl font-semibold">{selectedProduct.name}</h2>
-            <div className="overflow-y-scroll space-y-2">
-              <div className="text-gray-700 bg-gray-100 rounded-lg">
-                <div className="h-48 relative w-full mb-2">
-                  <Image
-                    className="object-cover rounded-lg"
-                    src={selectedProduct.imageUrl}
-                    alt={selectedProduct.name}
-                    fill
-                    loading="lazy"
-                    sizes="100vw"
-                  />
-                </div>
-                <div className="p-4">{selectedProduct.description}</div>
+          <div className="w-full flex flex-col space-y-2">
+            <div className="text-gray-700 bg-gray-100 rounded-lg">
+              <div className="h-48 relative w-full mb-2">
+                <Image
+                  className="object-cover rounded-lg"
+                  src={selectedProduct.imageUrl}
+                  alt={selectedProduct.name}
+                  fill
+                  loading="lazy"
+                  sizes="100vw"
+                />
               </div>
-              <div className="bg-gray-100 p-4 rounded-md">
-                <h3 className="text-lg mb-4 font-semibold">
-                  Nutritional Facts
-                </h3>
-                <ul className="list-disc list-inside my-2">
-                  {selectedProduct.nutritional_facts &&
-                    selectedProduct.nutritional_facts.map((key, index) => (
-                      <li key={index} className="text-gray-700">
-                        {key.nutrient}: {key.quantity}
-                      </li>
-                    ))}
-                </ul>
-              </div>
-              <div className="bg-gray-100 p-4 rounded-md">
-                <h3 className="text-lg mb-4 font-semibold">Benefits</h3>
-                <p className="text-gray-700 text-md">
-                  {selectedProduct.benefits}
-                </p>
-              </div>
+              <div className="p-4">{selectedProduct.description}</div>
+            </div>
+            <div className="bg-gray-100 p-4 rounded-md">
+              <h3 className="text-lg mb-4 font-semibold">Nutritional Facts</h3>
+              <ul className="list-disc list-inside my-2">
+                {selectedProduct.nutritional_facts &&
+                  selectedProduct.nutritional_facts.map((key, index) => (
+                    <li key={index} className="text-gray-700">
+                      {key.nutrient}: {key.quantity}
+                    </li>
+                  ))}
+              </ul>
+            </div>
+            <div className="bg-gray-100 p-4 rounded-md">
+              <h3 className="text-lg mb-4 font-semibold">Benefits</h3>
+              <p className="text-gray-700 text-md">
+                {selectedProduct.benefits}
+              </p>
             </div>
           </div>
-        </div>
+        </Drawer>
       )}
 
       {selectedProduct && !mobileView && (
