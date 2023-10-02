@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Modal, Breadcrumb } from "antd";
-import { CloseOutlined } from "@ant-design/icons";
+import { DownOutlined } from "@ant-design/icons";
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
@@ -70,7 +70,7 @@ const ProductsPage = () => {
             },
           ]}
         />
-        <div className="mt-4 bg-zinc-100 py-3 rounded-md">
+        <div className="mt-4 bg-zinc-100 py-3 rounded-md min-h-screen">
           <h1 className="px-5 py-2 mb-4 text-[#0b0924] font-semibold text-[27px] md:text-[30px] leading-normal w-full">
             Our Products
           </h1>
@@ -78,7 +78,7 @@ const ProductsPage = () => {
             {products.map((product, index) => (
               <div
                 key={index}
-                className="bg-white p-4 rounded-lg cursor-pointer hover:shadow-lg"
+                className="bg-white p-4 rounded-lg cursor-pointer hover:shadow-lg transition duration-300"
                 onClick={() => openModal(product)}
               >
                 <div className="h-40 relative w-full mb-2">
@@ -100,45 +100,48 @@ const ProductsPage = () => {
 
       {selectedProduct && mobileView && (
         <div
-          className={`z-40 fixed bottom-0 left-0 right-0 h-[82vh] items-center justify-center transition duration-600 ease-in-out backdrop-blur-xl bg-white text-black rounded-2xl border-2 overflow-y-scroll ${
+          className={`z-50 fixed bottom-0 left-0 right-0 h-[100vh] items-center justify-center transition duration-700 ease-in-out bg-white text-black border-8 ${
             overlay ? `block` : `translate-y-[100%]`
           }`}
         >
-          <CloseOutlined
-            className="fixed top-0 right-0 p-5 text-xl"
-            onClick={() => setOverlay(false)}
-          />
-          <div className="w-full px-5 py-10 flex flex-col gap-y-2">
+          <button onClick={() => setOverlay(false)}>
+            <DownOutlined className="fixed top-0 right-0 p-5 text-xl" />
+          </button>
+          <div className="w-full px-5 py-12 flex flex-col">
             <h2 className="text-2xl font-semibold">{selectedProduct.name}</h2>
-            <div className="text-gray-700 bg-gray-100 rounded-lg">
-              <div className="h-48 relative w-full mb-2">
-                <Image
-                  className="object-cover rounded-lg"
-                  src={selectedProduct.imageUrl}
-                  alt={selectedProduct.name}
-                  fill
-                  loading="lazy"
-                  sizes="100vw"
-                />
+            <div className="overflow-y-scroll space-y-2">
+              <div className="text-gray-700 bg-gray-100 rounded-lg">
+                <div className="h-48 relative w-full mb-2">
+                  <Image
+                    className="object-cover rounded-lg"
+                    src={selectedProduct.imageUrl}
+                    alt={selectedProduct.name}
+                    fill
+                    loading="lazy"
+                    sizes="100vw"
+                  />
+                </div>
+                <div className="p-4">{selectedProduct.description}</div>
               </div>
-              <div className="p-4">{selectedProduct.description}</div>
-            </div>
-            <div className="bg-gray-100 p-4 rounded-md">
-              <h3 className="text-lg mb-4 font-semibold">Nutritional Facts</h3>
-              <ul className="list-disc list-inside my-2">
-                {selectedProduct.nutritional_facts &&
-                  selectedProduct.nutritional_facts.map((key, index) => (
-                    <li key={index} className="text-gray-700">
-                      {key.nutrient}: {key.quantity}
-                    </li>
-                  ))}
-              </ul>
-            </div>
-            <div className="bg-gray-100 p-4 rounded-md">
-              <h3 className="text-lg mb-4 font-semibold">Benefits</h3>
-              <p className="text-gray-700 text-md">
-                {selectedProduct.benefits}
-              </p>
+              <div className="bg-gray-100 p-4 rounded-md">
+                <h3 className="text-lg mb-4 font-semibold">
+                  Nutritional Facts
+                </h3>
+                <ul className="list-disc list-inside my-2">
+                  {selectedProduct.nutritional_facts &&
+                    selectedProduct.nutritional_facts.map((key, index) => (
+                      <li key={index} className="text-gray-700">
+                        {key.nutrient}: {key.quantity}
+                      </li>
+                    ))}
+                </ul>
+              </div>
+              <div className="bg-gray-100 p-4 rounded-md">
+                <h3 className="text-lg mb-4 font-semibold">Benefits</h3>
+                <p className="text-gray-700 text-md">
+                  {selectedProduct.benefits}
+                </p>
+              </div>
             </div>
           </div>
         </div>

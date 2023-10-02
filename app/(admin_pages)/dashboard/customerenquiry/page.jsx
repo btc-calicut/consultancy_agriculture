@@ -4,12 +4,14 @@ import { signOut, useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 import { Table, Input, message } from "antd";
 import moment from "moment";
+import CSVbutton from "@components/CSVbutton";
 
 const { Search } = Input;
 
 const CustomerEnquiry = () => {
   const session = useSession();
   const [data, setData] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     if (session.data?.user?.accessToken) {
@@ -39,7 +41,24 @@ const CustomerEnquiry = () => {
     }
   };
 
-  const onSearch = (value, _e, info) => console.log(info?.source, value);
+  const onSearch = (value) => {
+    setSearch(value);
+  };
+
+  let filteredData =
+    data?.[0] &&
+    data.filter((info) => {
+      return info.name.toLowerCase().includes(search.toLowerCase());
+    });
+
+  const dataSource = filteredData?.map((item, index) => ({
+    key: index + 1,
+    date: moment(item.date).format("YYYY-MM-DD"),
+    name: item.name,
+    email: item.email,
+    number: item.number,
+    message: item.message,
+  }));
 
   const columns = [
     {
@@ -90,15 +109,6 @@ const CustomerEnquiry = () => {
     // Table.SELECTION_COLUMN,
   ];
 
-  const dataSource = data.map((item, index) => ({
-    key: index + 1,
-    date: moment(item.date).format("YYYY-MM-DD"),
-    name: item.name,
-    email: item.email,
-    number: item.number,
-    message: item.message,
-  }));
-
   return (
     <section className="min-h-screen  bg-zinc-100">
       <div className="p-4 px-6 bg-white shadow">
@@ -108,13 +118,20 @@ const CustomerEnquiry = () => {
       </div>
       <div className="p-5 space-y-3">
         <h1 className="font-poppins text-sm">Search by Name :</h1>
-        <Search
-          placeholder="input search text"
-          onSearch={onSearch}
-          style={{
-            width: 300,
-          }}
-        />
+        <div className="flex flex-nowrap gap-x-2 items-center justify-between">
+          <div className="w-5/6">
+            <Search
+              placeholder="input search text"
+              allowClear
+              onSearch={onSearch}
+              enterButton
+              style={{
+                width: "100%",
+              }}
+            />
+          </div>
+          <CSVbutton data={filteredData} />
+        </div>
       </div>
 
       <div className="px-5">
