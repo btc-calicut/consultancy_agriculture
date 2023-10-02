@@ -35,6 +35,7 @@ const ScrollToTop = () => {
       style={{
         display: visible ? "flex" : "none",
         right: 24,
+        zIndex: 30,
       }}
       icon={<UpCircleFilled />}
       type="primary"

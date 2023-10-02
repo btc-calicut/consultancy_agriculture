@@ -2,7 +2,8 @@
 
 import { signOut, useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
-import { Table, Input, Space, message } from "antd";
+import { Table, Input, message } from "antd";
+import moment from "moment";
 
 const { Search } = Input;
 
@@ -41,16 +42,57 @@ const CustomerEnquiry = () => {
   const onSearch = (value, _e, info) => console.log(info?.source, value);
 
   const columns = [
-    { title: "Date", dataIndex: "date", key: "date" },
-    { title: "Name", dataIndex: "name", key: "name" },
-    { title: "Email", dataIndex: "email", key: "email" },
-    { title: "Phone", dataIndex: "number", key: "number" },
+    {
+      title: "Date",
+      dataIndex: "date",
+      key: "date",
+      width: 150,
+      align: "center",
+      sortDirections: ["ascend", "descend"],
+      sorter: (a, b) => {
+        const dateA = new Date(a.date);
+        const dateB = new Date(b.date);
+        return dateA - dateB;
+      },
+      showSorterTooltip: false,
+    },
+    {
+      title: "Name",
+      dataIndex: "name",
+      key: "name",
+      width: 200,
+      align: "center",
+      render: (text) => {
+        return text.toUpperCase();
+      },
+    },
+    {
+      title: "Email",
+      dataIndex: "email",
+      key: "email",
+      width: 250,
+      align: "center",
+      render: (text) => {
+        return text.toLowerCase();
+      },
+    },
+    {
+      title: "Phone number",
+      dataIndex: "number",
+      key: "number",
+      width: 200,
+      align: "center",
+      render: (text) => {
+        return text.toUpperCase();
+      },
+    },
     Table.EXPAND_COLUMN,
     // Table.SELECTION_COLUMN,
   ];
 
   const dataSource = data.map((item, index) => ({
     key: index + 1,
+    date: moment(item.date).format("YYYY-MM-DD"),
     name: item.name,
     email: item.email,
     number: item.number,
@@ -64,7 +106,7 @@ const CustomerEnquiry = () => {
           Customer Enquiry
         </h1>
       </div>
-      <Space className="p-5">
+      <div className="p-5 space-y-3">
         <h1 className="font-poppins text-sm">Search by Name :</h1>
         <Search
           placeholder="input search text"
@@ -73,7 +115,7 @@ const CustomerEnquiry = () => {
             width: 300,
           }}
         />
-      </Space>
+      </div>
 
       <div className="px-5">
         <Table

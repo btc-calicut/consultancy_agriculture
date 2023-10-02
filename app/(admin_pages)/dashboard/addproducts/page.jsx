@@ -67,8 +67,8 @@ const AddProductsPage = () => {
       message.error("Please upload an image file");
     }
     // 5MB in size
-    if (file.size > 5 * 1024 * 1024) {
-      message.error("Image size must be less than 5MB");
+    if (file.size > 3 * 1024 * 1024) {
+      message.error("Image size must be less than 3MB");
       return;
     }
     const reader = new FileReader();
@@ -92,7 +92,7 @@ const AddProductsPage = () => {
       return;
     }
     try {
-      const response = await fetch(`/api/addproducts`, {
+      const response = await fetch(`/api/products`, {
         method: "POST",
         headers: {
           // Authorization: `Bearer ${session.data?.user?.accessToken}` // this doesnt work
@@ -138,14 +138,14 @@ const AddProductsPage = () => {
       </div>
       <form
         onSubmit={handleSubmit}
-        className="flex items-center justify-start flex-col py-12 text-lg w-5/6 mx-auto"
+        className="flex items-center justify-start flex-col md:flex-row py-12 text-lg w-5/6 mx-auto"
       >
-        <div className="flex items-center justify-start w-full min-h-[200px] relative">
+        <div className="relative flex items-center justify-start w-full min-h-[200px] md:min-h-[720px] md:mr-4">
           <label
             htmlFor="displayimage"
             className="flex justify-center items-center z-10 text-center absolute w-full h-full text-gray-400 border-2 border-gray-300 border-dashed rounded-lg"
           >
-            {!formData.image && "Please upload a product image. Max size: 5mb"}
+            {!formData.image && `Please upload a product image. Max size: 3Mb`}
           </label>
           <input
             id="image"

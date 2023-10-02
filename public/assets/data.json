@@ -69,11 +69,12 @@
       "image": "/images/pict1.png"
     }
   ],
- "products": [
+  "sharequeries": "Whether you have inquiries about our products and services, need assistance, or simply want to share your thoughts and ideas, we're here to listen and respond. Your input is essential in helping us improve and better serve your needs. Your questions and comments are invaluable to us, and we look forward to hearing from you.",
+  "connectteam": "At BTC, we understand that questions, concerns, and issues can arise from time to time, and we're here to help. Our dedicated support team is just a click or a call away, ready to provide you with the assistance to make your experience with us as smooth and enjoyable as possible.",
+  "products": [
     {
       "name": "Tender Coconut",
-      "description":
-        "Young, fresh and healthy tender coconuts are a pure, tasty and nutritious energy drink that keeps body hydrated round the clock.\nTender coconut is the most refreshing drink and best to quench your thirst in the summer.Tender coconut has antioxidant properties which help to protect the body from free radicals.It helps to lower blood pressure level, prevent kidney stone, and support heart health.",
+      "description": "Young, fresh and healthy tender coconuts are a pure, tasty and nutritious energy drink that keeps body hydrated round the clock.\nTender coconut is the most refreshing drink and best to quench your thirst in the summer.Tender coconut has antioxidant properties which help to protect the body from free radicals.It helps to lower blood pressure level, prevent kidney stone, and support heart health.",
       "nutritional_facts": [
         {
           "nutrients": "One cup (240 ml) contains",
@@ -116,8 +117,7 @@
           "quantity": "6% of the RDI"
         }
       ],
-      "benefits":
-        "Coconuts are a source of quick energy and refreshment. They improve digestion and immune system health.\nThey also prevent heart diseases by increasing good cholesterol and protect cells from cancer and aging as they contain Cytokinin.",
+      "benefits": "Coconuts are a source of quick energy and refreshment. They improve digestion and immune system health.\nThey also prevent heart diseases by increasing good cholesterol and protect cells from cancer and aging as they contain Cytokinin.",
       "image": "/images/pict1.png"
     },
     {

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { notification } from "antd";
 import Image from "next/image";
 import messages from "@public/images/messages.png";
+import data from "@public/assets/data.json";
 
 const Enquiry = () => {
   const [disabled, setDisabled] = useState(false);
@@ -76,11 +77,7 @@ const Enquiry = () => {
           </div>
 
           <p className="hidden sm:block text-xs sm:text-sm md:text-lg text-left text-gray-500">
-            Whether you have inquiries about our products and services, need
-            assistance, or simply want to share your thoughts and ideas, we're
-            here to listen and respond. Your input is essential in helping us
-            improve and better serve your needs. Your questions and comments are
-            invaluable to us, and we look forward to hearing from you.
+            {data.sharequeries}
           </p>
         </div>
 

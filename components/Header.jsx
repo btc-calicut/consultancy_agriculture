@@ -115,8 +115,7 @@ const Header = () => {
 
         <div
           className={`fixed top-0 left-0 right-0 h-80 flex flex-col-reverse items-center justify-center space-y-10 transition duration-200 ease-in-out backdrop-blur-2xl bg-[#050414]/90 text-white ${
-            (drawerVisible ? "shadow-2xl" : "",
-            drawerVisible ? "none" : "translate-y-[-100%]")
+            drawerVisible ? `block` : `translate-y-[-100%]`
           }`}
         >
           <CloseOutlined

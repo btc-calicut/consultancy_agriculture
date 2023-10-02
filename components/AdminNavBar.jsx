@@ -2,7 +2,7 @@
 
 import { Fragment, useState, useEffect } from "react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import { Disclosure, Menu, Transition } from "@headlessui/react";

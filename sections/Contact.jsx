@@ -1,6 +1,6 @@
-import data from "@public/assets/data.json";
 import Image from "next/image";
 import { Carousel } from "antd";
+import data from "@public/assets/data.json";
 import phone from "@public/images/phone.png";
 
 const Contact = () => {
@@ -54,11 +54,7 @@ const Contact = () => {
           </div>
 
           <p className="hidden sm:block text-xs sm:text-sm md:text-lg text-left text-gray-500">
-            At BTC, we understand that questions, concerns, and issues can arise
-            from time to time, and we're here to help. Our dedicated support
-            team is just a click or a call away, ready to provide you with the
-            assistance to make your experience with us as smooth and enjoyable
-            as possible.
+            {data.connectteam}
           </p>
         </div>
       </div>

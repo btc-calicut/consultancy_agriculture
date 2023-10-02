@@ -1,30 +1,42 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Modal, Breadcrumb } from "antd";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
+import { Modal, Breadcrumb } from "antd";
+import { CloseOutlined } from "@ant-design/icons";
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [mobileView, setMobileView] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const router = useRouter();
+  const [overlay, setOverlay] = useState(false);
 
   useEffect(() => {
     fetchData();
+    handleWindowSizeChange();
+    window.addEventListener("resize", handleWindowSizeChange); // This code sets up an event listener for the "resize" event on the window object when the component mounts (i.e., when we load admin page)
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange); // This code removes the event listener when the component unmounts (i.e., when we exit the admin page)
+    };
   }, []);
+
+  const handleWindowSizeChange = () => {
+    // this if condition determines whether it is mobile view
+    if (window.innerWidth < 500) {
+      setMobileView(true);
+    } else {
+      setMobileView(false);
+    }
+  };
 
   const fetchData = async () => {
     try {
-      const response = await fetch("/api/getproducts", {
-        method: "GET",
-      });
+      const response = await fetch("/api/products");
       const data = await response.json();
-      setProducts(data.info);
-      if (response.status === 401) {
-        message.error("Products not found");
+      if (response.status === 200) {
+        setProducts(data.info);
       }
     } catch (error) {
       console.log(error);
@@ -32,18 +44,17 @@ const ProductsPage = () => {
   };
 
   const openModal = (product) => {
-    const isMobile = window.innerWidth <= 796;
-
-    if (isMobile) {
-      router.push("/products/" + product.name);
+    setSelectedProduct(product);
+    if (mobileView) {
+      setOverlay(true);
     } else {
-      setSelectedProduct(product);
       setIsModalOpen(true);
     }
   };
 
   const handleCancel = () => {
     setIsModalOpen(false);
+    setSelectedProduct(null);
   };
 
   return (
@@ -70,18 +81,70 @@ const ProductsPage = () => {
                 className="bg-white p-4 rounded-lg cursor-pointer hover:shadow-lg"
                 onClick={() => openModal(product)}
               >
-                <img
-                  className="rounded-lg w-full h-32 object-cover mb-2"
-                  src={product.imageUrl}
-                  alt={product.name}
-                />
-                <h2 className="text-xl font-semibold">{product.name}</h2>
+                <div className="h-40 relative w-full mb-2">
+                  <Image
+                    className="object-cover rounded-lg"
+                    src={product.imageUrl}
+                    alt={product.name}
+                    fill
+                    loading="lazy"
+                    sizes="100vw"
+                  />
+                </div>
+                <h2 className="text-lg font-semibold">{product.name}</h2>
               </div>
             ))}
           </div>
         </div>
       </div>
-      {selectedProduct && (
+
+      {selectedProduct && mobileView && (
+        <div
+          className={`z-40 fixed bottom-0 left-0 right-0 h-[90vh] items-center justify-center transition duration-500 ease-in-out backdrop-blur-xl bg-white text-black rounded-2xl border-2 overflow-y-scroll ${
+            overlay ? `block` : `translate-y-[100%]`
+          }`}
+        >
+          <CloseOutlined
+            className="fixed top-0 right-0 p-5 text-xl"
+            onClick={() => setOverlay(false)}
+          />
+          <div className="w-full px-5 py-10 flex flex-col gap-y-2">
+            <h2 className="text-2xl font-semibold">{selectedProduct.name}</h2>
+            <div className="text-gray-700 bg-gray-100 rounded-lg">
+              <div className="h-48 relative w-full mb-2">
+                <Image
+                  className="object-cover rounded-lg"
+                  src={selectedProduct.imageUrl}
+                  alt={selectedProduct.name}
+                  fill
+                  loading="lazy"
+                  sizes="100vw"
+                />
+              </div>
+              <div className="p-4">{selectedProduct.description}</div>
+            </div>
+            <div className="bg-gray-100 p-4 rounded-md">
+              <h3 className="text-lg mb-4 font-semibold">Nutritional Facts</h3>
+              <ul className="list-disc list-inside my-2">
+                {selectedProduct.nutritional_facts &&
+                  selectedProduct.nutritional_facts.map((key, index) => (
+                    <li key={index} className="text-gray-700">
+                      {key.nutrient}: {key.quantity}
+                    </li>
+                  ))}
+              </ul>
+            </div>
+            <div className="bg-gray-100 p-4 rounded-md">
+              <h3 className="text-lg mb-4 font-semibold">Benefits</h3>
+              <p className="text-gray-700 text-md">
+                {selectedProduct.benefits}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {selectedProduct && !mobileView && (
         <Modal
           title={
             <h2 className="text-2xl font-semibold">{selectedProduct.name}</h2>
@@ -91,18 +154,23 @@ const ProductsPage = () => {
           footer={null}
           width="70vw"
         >
-          <div className="grid grid-cols-2 ">
-            <div className="p-4">
-              <img
-                className="rounded-lg w-full h-48 object-cover mb-6"
-                src={selectedProduct.imageUrl}
-                alt={selectedProduct.name}
-              />
+          <div className="grid grid-cols-2">
+            <div className="p-4 space-y-4">
+              <div className="h-48 relative w-full">
+                <Image
+                  className="object-cover rounded-lg"
+                  src={selectedProduct.imageUrl}
+                  alt={selectedProduct.name}
+                  fill
+                  loading="lazy"
+                  sizes="100vw"
+                />
+              </div>
               <div className="text-gray-700 bg-gray-100 p-4 rounded-md">
                 {selectedProduct.description}
               </div>
             </div>
-            <div className=" p-4">
+            <div className="p-4">
               <div className="mb-6 bg-gray-100 p-4 rounded-md">
                 <h3 className="text-lg mb-4 font-semibold">
                   Nutritional Facts
