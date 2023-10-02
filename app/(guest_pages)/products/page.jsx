@@ -100,7 +100,7 @@ const ProductsPage = () => {
 
       {selectedProduct && mobileView && (
         <div
-          className={`z-40 fixed bottom-0 left-0 right-0 h-[90vh] items-center justify-center transition duration-500 ease-in-out backdrop-blur-xl bg-white text-black rounded-2xl border-2 overflow-y-scroll ${
+          className={`z-40 fixed bottom-0 left-0 right-0 h-[86vh] items-center justify-center transition duration-700 ease-in-out backdrop-blur-xl bg-white text-black rounded-2xl border-2 overflow-y-scroll ${
             overlay ? `block` : `translate-y-[100%]`
           }`}
         >
