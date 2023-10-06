@@ -31,7 +31,6 @@ export const transporter = nodemailer.createTransport({
 // template of mail to client
 export const clientMailMessage = {
   from: email,
-  to: "mymail@gmail.com",
 };
 
 // template of mail to BTC

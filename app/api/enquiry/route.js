@@ -20,6 +20,7 @@ export async function POST(request) {
     // send mail to client
     await transporter.sendMail({
       ...clientMailMessage,
+      to: email,
       subject: "Enquiry Send Successfully",
       text: "message recieved",
       html: `
