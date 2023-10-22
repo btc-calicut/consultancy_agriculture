@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
 import ejs from "ejs";
-import { promises as fs } from "fs";
+import { readFileSync } from "fs";
+import path from "path";
 import { dbConnect } from "@config/dbConfig";
 import {
   transporter,
@@ -43,11 +44,12 @@ export async function POST(request) {
       session.endSession();
 
       // send mail to client
-      const emailTemplateClient = await fs.readFile(
-        process.cwd() + "/lib/EmailTemplateClient.ejs",
-        "utf8"
+      const clientPath = path.join(
+        process.cwd(),
+        "lib",
+        "EmailTemplateClient.ejs"
       );
-
+      const emailTemplateClient = readFileSync(clientPath, "utf8");
       const renderedTemplateClient = ejs.render(emailTemplateClient, {
         name: name,
         number: number,
@@ -63,11 +65,12 @@ export async function POST(request) {
       });
 
       // send mail to BTC
-      const emailTemplateCompany = await fs.readFile(
-        process.cwd() + "/lib/EmailTemplateCompany.ejs",
-        "utf8"
+      const companyPath = path.join(
+        process.cwd(),
+        "lib",
+        "EmailTemplateCompany.ejs"
       );
-
+      const emailTemplateCompany = readFileSync(companyPath, "utf8");
       const renderedTemplateCompany = ejs.render(emailTemplateCompany, {
         name: name,
         number: number,
