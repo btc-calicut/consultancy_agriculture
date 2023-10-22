@@ -1,13 +1,15 @@
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
-import { dbConnect } from "@lib/dbConfig";
-import EnquiryModel from "@models/EnquiryModel";
-import { verifyJwtAccessToken } from "@lib/jwtaccesstoken";
+import ejs from "ejs";
+import { promises as fs } from "fs";
+import { dbConnect } from "@config/dbConfig";
 import {
   transporter,
   clientMailMessage,
   companyMailMessage,
 } from "@config/nodemailer";
+import EnquiryModel from "@models/EnquiryModel";
+import { verifyJwtAccessToken } from "@lib/jwtaccesstoken";
 
 export async function POST(request) {
   try {
@@ -17,138 +19,6 @@ export async function POST(request) {
     const reqBody = await request.json();
     const { name, email, number, message } = reqBody;
 
-    // send mail to client
-    await transporter.sendMail({
-      ...clientMailMessage,
-      to: email,
-      subject: "Inquiry Response",
-      html: `
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Inquiry Response</title>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                background-color: #f4f4f4;
-                margin: 0;
-                padding: 0;
-            }
-            .container {
-                max-width: 600px;
-                margin: 0 auto;
-                padding: 20px;
-            }
-            .header {
-                background-color: #0073e6;
-                color: #fff;
-                text-align: center;
-                padding: 10px;
-            }
-            .content {
-                background-color: #fff;
-                padding: 20px;
-                border-radius: 5px;
-            }
-            .message {
-                margin-top: 20px;
-            }
-            .signature {
-            text-align: right;
-            margin-top: 20px;
-            font-style: italic;
-            color: #666;
-        }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="header">
-                <h1>Inquiry Response</h1>
-            </div>
-            <div class="content">
-                <p>Hello ${name},</p>
-                <p>Thank you for getting in touch with us. We have received your inquiry and will get back to you as soon as possible. Below is a summary of the information you provided:</p>
-                <ul>
-                    <li><strong>Name:</strong> ${name}</li>
-                    <li><strong>Phone No.:</strong> ${number}</li>
-                    <li><strong>Email Address:</strong> ${email}</li>
-                </ul>
-                <p><strong>Message:</strong></p>
-                <div class="message">
-                    ${message}
-                </div>
-                <p>We appreciate your interest and look forward to assisting you. If you have any further questions or require additional information, please don't hesitate to reach out to us.</p>
-                <p class="signature" style="font-size: 14px;">Best regards,<br>Blueway Trading Company</p>
-        </div>
-        </div>
-    </body>
-    </html>
-  `,
-    });
-
-    // send mail to BTC
-    await transporter.sendMail({
-      ...companyMailMessage,
-      subject: `New nquiry from ${name}`,
-      html: `
-      <!DOCTYPE html>
-      <html lang="en">
-      <head>
-          <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>New Inquiry Received</title>
-          <style>
-              body {
-                font-family: Arial, sans-serif;
-                background-color: #f4f4f4;
-                margin: 0;
-                padding: 0;
-            }
-            .container {
-                max-width: 600px;
-                margin: 0 auto;
-                padding: 20px;
-            }
-            .header {
-                background-color: #0073e6;
-                color: #fff;
-                text-align: center;
-                padding: 10px;
-            }
-            .content {
-                background-color: #fff;
-                padding: 20px;
-                border-radius: 5px;
-            }
-            .message {
-                margin-top: 20px;
-            }
-          </style>
-      </head>
-      <body>
-          <div class="container">
-              <div class="header">
-                  <h1">New Inquiry Received</h1>
-              </div>
-              <div class="content">
-                  <h3><strong>Name:</strong> ${name}</h3>
-                  <h4><strong>Email:</strong> ${email}</h4>
-                  <h4><strong>Contact:</strong> ${number}</h4>
-                  <h4><strong>Message:</strong></h4>
-                  <p class="message">${message}</p>
-              </div>
-          </div>
-      </body>
-      </html>
-
-  `,
-    });
-
-    return NextResponse.json({ message: "Response recieved" }, { status: 200 });
-    /* 
     // start a new session for atomicity property
     const session = await mongoose.startSession();
     session.startTransaction();
@@ -171,7 +41,46 @@ export async function POST(request) {
       throw error;
     } finally {
       session.endSession();
-    } */
+
+      // send mail to client
+      const emailTemplateClient = await fs.readFile(
+        process.cwd() + "/lib/EmailTemplateClient.ejs",
+        "utf8"
+      );
+
+      const renderedTemplateClient = ejs.render(emailTemplateClient, {
+        name: name,
+        number: number,
+        email: email,
+        message: message,
+      });
+
+      await transporter.sendMail({
+        ...clientMailMessage,
+        to: email,
+        subject: "Inquiry Response",
+        html: renderedTemplateClient,
+      });
+
+      // send mail to BTC
+      const emailTemplateCompany = await fs.readFile(
+        process.cwd() + "/lib/EmailTemplateCompany.ejs",
+        "utf8"
+      );
+
+      const renderedTemplateCompany = ejs.render(emailTemplateCompany, {
+        name: name,
+        number: number,
+        email: email,
+        message: message,
+      });
+
+      await transporter.sendMail({
+        ...companyMailMessage,
+        subject: `New nquiry from ${name}`,
+        html: renderedTemplateCompany,
+      });
+    }
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }

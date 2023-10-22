@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 import mongoose from "mongoose";
 import { verifyJwtAccessToken } from "@lib/jwtaccesstoken";
-import { dbConnect } from "@lib/dbConfig";
+import { dbConnect } from "@config/dbConfig";
 import AdminModel from "@models/AdminModel";
 
 export async function POST(request) {

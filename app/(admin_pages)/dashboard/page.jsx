@@ -160,11 +160,11 @@ const Dashboard = () => {
                   onClick={() => openModal(prod)}
                   className={`${
                     isProductSelected(prod) ? "bg-blue-300" : "bg-white"
-                  } shadow-lg p-4 rounded-lg overflow-hidden m-4 transition-transform transform hover:scale-105 hover:shadow-xl cursor-pointer`}
+                  } shadow-lg p-0.5 rounded-lg overflow-hidden m-4 transition-transform transform hover:scale-105 hover:shadow-xl cursor-pointer`}
                 >
-                  <div className="h-40 relative w-full mb-2">
+                  <div className="h-40 relative w-full">
                     <Image
-                      className="object-cover rounded-lg"
+                      className="object-cover rounded-t-lg"
                       src={prod.imageUrl}
                       alt={prod.name}
                       fill
@@ -172,7 +172,9 @@ const Dashboard = () => {
                       sizes="100vw"
                     />
                   </div>
-                  <h2 className="text-lg font-semibold">{prod.name}</h2>
+                  <div className="p-2">
+                    <h2 className="text-md">{prod.name}</h2>
+                  </div>
                 </div>
               ))}
           </div>

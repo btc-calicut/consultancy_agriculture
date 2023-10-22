@@ -28,12 +28,6 @@ const LinkToProducts = () => {
         <div className=" py-3 xs:py-7 px-4 sm:px-10 md:px-14 lg:px-36">
           <div className="flex flex-col xs:items-start h-full">
             <div className="flex flex-col py-2 gap-x-3 max-lg:gap-y-5">
-              {/* <h1 className="max-xs:pl-4 text-[40px] xs:text-[40px] font-[1000] sm:leading-20 lg:leading-loose bg-gradient-to-r from-sky-400 via-teal-200 to-white bg-clip-text text-transparent font-poppins">
-                Cultivating Quality, <br className="max-xs:block" />
-                Harvesting Opportunities,
-                <br className="max-xs:block sm:block" />
-                Trading the Future
-              </h1> */}
               <h1 className="max-xs:pl-4 text-[60px] font-[1000] leading-[70px] sm:leading-20 lg:leading-loose bg-gradient-to-r from-sky-400 via-teal-200 to-white bg-clip-text text-transparent font-poppins">
                 Serving Your <br className="block xs:hidden" /> Needs
               </h1>
@@ -63,7 +57,7 @@ const LinkToProducts = () => {
                   ></path>
                 </svg>
               </span>
-              <span className="absolute w-full h-full flex items-center justify-center text-white transition-all duration-300 transform group-hover:translate-x-full ease">
+              <span className="select-none absolute w-full h-full flex items-center justify-center text-white transition-all duration-300 transform group-hover:translate-x-full ease">
                 Take to Products
               </span>
             </Link>

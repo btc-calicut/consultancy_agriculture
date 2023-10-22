@@ -66,7 +66,6 @@ const About = () => {
                     priority
                   />
                 </div>
-
                 <h4 className="text-lg mb-6 font-semibold">
                   {teamMember.name}
                 </h4>

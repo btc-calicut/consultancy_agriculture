@@ -124,7 +124,7 @@ const CustomerEnquiry = () => {
               placeholder="input search text"
               allowClear
               onSearch={onSearch}
-              enterButton
+              // enterButton
               style={{
                 width: "100%",
               }}

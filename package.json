@@ -17,6 +17,7 @@
     "autoprefixer": "10.4.15",
     "bcrypt": "^5.1.1",
     "cloudinary": "^1.40.0",
+    "ejs": "^3.1.9",
     "eslint-config-next": "^13.5.3",
     "jsonwebtoken": "^9.0.2",
     "leaflet": "^1.9.4",

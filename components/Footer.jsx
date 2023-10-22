@@ -13,7 +13,6 @@ import Link from "next/link";
 import { useState } from "react";
 
 const FooterComponent = () => {
-  const [disabled, setDisabled] = useState(false);
   const [email, setEmail] = useState("");
 
   const [api, contextHolder] = notification.useNotification({
@@ -31,23 +30,25 @@ const FooterComponent = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setDisabled(true);
-    try {
+    const emailPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+    if (emailPattern.test(email)) {
+      openNotificationWithIcon("success", "Subscribed");
+
       const newsLetterData = {
         email: email,
         date: new Date(),
       };
-      const response = await fetch(`api/newsletter`, {
-        method: "POST",
-        body: JSON.stringify(newsLetterData),
-      });
-      const data = await response.json();
-      openNotificationWithIcon("success", data.message);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setDisabled(false);
+
       setEmail("");
+
+      try {
+        await fetch(`api/newsletter`, {
+          method: "POST",
+          body: JSON.stringify(newsLetterData),
+        });
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
@@ -103,7 +104,6 @@ const FooterComponent = () => {
               />
               <Button
                 type="primary"
-                disabled={disabled}
                 onClick={handleSubmit}
                 className="font-poppins"
                 icon={<SendOutlined className="text-white" />}

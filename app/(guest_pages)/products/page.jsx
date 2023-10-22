@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Modal, Breadcrumb, Drawer } from "antd";
 import { DownOutlined } from "@ant-design/icons";
+import ProductCard from "@components/ProductCard";
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
@@ -59,7 +60,7 @@ const ProductsPage = () => {
 
   return (
     <section className="w-full">
-      <div className="mx-4 sm:mx-10 md:mx-14 lg:mx-36 my-6">
+      <div className="mx-4 sm:mx-10 md:mx-14 lg:mx-28 my-6">
         <Breadcrumb
           items={[
             {
@@ -74,25 +75,13 @@ const ProductsPage = () => {
           <h1 className="px-5 py-2 mb-4 text-[#0b0924] font-semibold text-[27px] md:text-[30px] leading-normal w-full">
             Our Products
           </h1>
-          <div className="px-5 mb-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 md:gap-4 text-center">
+          <div className="px-5 mb-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 md:gap-4">
             {products.map((product, index) => (
-              <div
+              <ProductCard
                 key={index}
-                className="bg-white p-4 rounded-lg cursor-pointer hover:shadow-lg transition duration-300"
-                onClick={() => openModal(product)}
-              >
-                <div className="h-40 relative w-full mb-2">
-                  <Image
-                    className="object-cover rounded-lg"
-                    src={product.imageUrl}
-                    alt={product.name}
-                    fill
-                    loading="lazy"
-                    sizes="100vw"
-                  />
-                </div>
-                <h2 className="text-lg font-semibold">{product.name}</h2>
-              </div>
+                product={product}
+                openModal={openModal}
+              />
             ))}
           </div>
         </div>

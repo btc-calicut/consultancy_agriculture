@@ -7,7 +7,6 @@ import messages from "@public/images/messages.png";
 import data from "@public/assets/data.json";
 
 const Enquiry = () => {
-  const [disabled, setDisabled] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -29,24 +28,21 @@ const Enquiry = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setDisabled(true);
+    openNotificationWithIcon("success", "Response recieved");
+    const copyFormData = { ...formData };
+    setFormData({
+      name: "",
+      email: "",
+      number: "",
+      message: "",
+    });
     try {
-      const response = await fetch(`api/enquiry`, {
+      await fetch(`api/enquiry`, {
         method: "POST",
-        body: JSON.stringify(formData),
+        body: JSON.stringify(copyFormData),
       });
-      const data = await response.json();
-      openNotificationWithIcon("success", data.message);
     } catch (error) {
       console.log(error);
-    } finally {
-      setDisabled(false);
-      setFormData({
-        name: "",
-        email: "",
-        number: "",
-        message: "",
-      });
     }
   };
 
@@ -61,10 +57,10 @@ const Enquiry = () => {
   return (
     <div id="enquiry" className="bg-zinc-200 w-full">
       {contextHolder}
-      <div className="flex flex-col sm:flex-row sm:gap-x-4 px-6 sm:px-10 md:px-14 lg:px-36 py-10 xs:py-20">
+      <div className="flex flex-col gap-y-2 sm:flex-row sm:gap-x-4 px-6 sm:px-10 md:px-14 lg:px-36 py-10 xs:py-20">
         <div className="sm:w-1/2">
           <div>
-            <h1 className="sm:text-left text-center text-4xl sm:text-[50px] md-text-[65px] font-bold font-popins py-4 sm:leading-[1.2]">
+            <h1 className="sm:text-left text-center text-4xl sm:text-[50px] md-text-[65px] font-bold font-popins py-4 leading-[1.4]">
               Share Your Queries With Us
             </h1>
             <Image
@@ -72,10 +68,9 @@ const Enquiry = () => {
               src={messages}
               width={60}
               height={60}
-              className="hidden sm:block"
+              className="hidden sm:block mb-2"
             />
           </div>
-
           <p className="hidden sm:block text-xs sm:text-sm md:text-lg text-left text-gray-500">
             {data.sharequeries}
           </p>
@@ -131,7 +126,6 @@ const Enquiry = () => {
               <button
                 type="submit"
                 className="inline-block w-full rounded-lg bg-[#080621] px-5 py-3 font-medium text-white sm:w-auto"
-                disabled={disabled}
               >
                 Send Enquiry
               </button>

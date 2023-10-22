@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { verifyJwtAccessToken } from "@lib/jwtaccesstoken";
-import { dbConnect } from "@lib/dbConfig";
+import { dbConnect } from "@config/dbConfig";
 
 export async function GET(request) {
   try {

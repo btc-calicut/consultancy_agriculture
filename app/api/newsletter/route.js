@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
-import { dbConnect } from "@lib/dbConfig";
+import { dbConnect } from "@config/dbConfig";
 import NewsLetterModel from "@models/NewsLetterModel";
 
 export async function POST(request) {

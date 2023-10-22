@@ -136,7 +136,7 @@ const AdminNavBar = () => {
   };
 
   return (
-    <section>
+    <section className="select-none">
       {contextHolder}
       <Disclosure as="nav" className="bg-gray-800">
         {({ open }) => (

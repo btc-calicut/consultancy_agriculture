@@ -4,7 +4,7 @@ import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
 import AdminModel from "@models/AdminModel";
-import { dbConnect } from "@lib/dbConfig";
+import { dbConnect } from "@config/dbConfig";
 import { signJwtAccessToken } from "@lib/jwtaccesstoken";
 
 export const authOptions = {
