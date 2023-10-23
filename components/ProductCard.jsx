@@ -3,10 +3,10 @@ import Image from "next/image";
 
 const ProductCard = ({ product, openModal }) => {
   return (
-    <div className="shadow-xl border rounded-lg max-w-sm bg-gray-900 border-gray-700 hover:bg-gray-950 transition duration-300 hover:scale-[.97]">
+    <div className="shadow-xl border rounded-md max-w-sm bg-gray-900 hover:bg-gray-950 transition duration-300 hover:scale-[.97]">
       <div className="h-40 relative w-full">
         <Image
-          className="object-cover rounded-t-lg"
+          className="object-cover rounded-t-md"
           src={product.imageUrl}
           alt={product.name}
           fill
