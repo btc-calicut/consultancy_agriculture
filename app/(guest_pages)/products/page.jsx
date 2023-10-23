@@ -1,13 +1,7 @@
 import ClientProductPage from "@components/ClientProductPage";
-import { inDevEnvironment } from "@config/ProdDev";
 
 async function fetchProducts() {
-  let response = null;
-  if (inDevEnvironment) {
-    response = await fetch(`http://localhost:3000/api/products`);
-  } else {
-    response = await fetch(`${process.env.PROD_DOMAIN}/api/products`);
-  }
+  const response = await fetch(`${process.env.DOMAIN}api/products`);
   if (!response.status === 200) {
     // This will activate the closest `error.js` Error Boundary
     throw new Error("Failed to fetch data");
