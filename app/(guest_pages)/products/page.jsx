@@ -1,5 +1,8 @@
 import ClientProductPage from "@components/ClientProductPage";
 
+// This is to force dynamic SSR during run time only. Not build time
+export const dynamic = "force-dynamic";
+
 async function fetchProducts() {
   const response = await fetch(`${process.env.DOMAIN}api/products`);
   if (!response.status === 200) {
