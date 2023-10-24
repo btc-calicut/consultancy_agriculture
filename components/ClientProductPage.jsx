@@ -7,7 +7,7 @@ import { Modal, Breadcrumb, Drawer } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import ProductCard from "@components/ProductCard";
 
-export default function ClientProductPage({ products }) {
+const ClientProductPage = ({ products }) => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [mobileView, setMobileView] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -173,4 +173,6 @@ export default function ClientProductPage({ products }) {
       )}
     </section>
   );
-}
+};
+
+export default ClientProductPage;

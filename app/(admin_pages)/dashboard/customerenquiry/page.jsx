@@ -10,14 +10,15 @@ const { Search } = Input;
 
 const CustomerEnquiry = () => {
   const session = useSession();
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    if (session.data?.user?.accessToken) {
+    console.log(session);
+    if (session.status === "authenticated") {
       fetchData();
     }
-  }, [session.data?.user?.accessToken]);
+  }, [session.status]);
 
   const fetchData = async () => {
     try {
@@ -46,7 +47,7 @@ const CustomerEnquiry = () => {
   };
 
   let filteredData =
-    data?.[0] &&
+    data &&
     data.filter((info) => {
       return info.name.toLowerCase().includes(search.toLowerCase());
     });

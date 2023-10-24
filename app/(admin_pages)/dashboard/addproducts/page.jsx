@@ -66,7 +66,7 @@ const AddProductsPage = () => {
     if (!file.type.includes("image")) {
       message.error("Please upload an image file");
     }
-    // 5MB in size
+    // 3MB in size
     if (file.size > 3 * 1024 * 1024) {
       message.error("Image size must be less than 3MB");
       return;
