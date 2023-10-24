@@ -58,9 +58,9 @@ const ClientProductPage = ({ products }) => {
           ]}
         />
         <div className="mt-4 bg-zinc-100 py-3 rounded-md min-h-screen">
-          <h1 className="px-5 py-2 mb-4 text-[#0b0924] font-semibold text-[27px] md:text-[30px] leading-normal w-full">
+          <h2 className="px-5 py-2 mb-4 text-[#0b0924] font-semibold text-[27px] md:text-[30px] leading-normal w-full">
             Our Products
-          </h1>
+          </h2>
           <div className="px-5 mb-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 md:gap-4">
             {products.map((product, index) => (
               <ProductCard
