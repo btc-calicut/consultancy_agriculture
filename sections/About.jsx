@@ -13,13 +13,13 @@ const About = () => {
       className="w-full h-full bg-[url('/images/background.jpg')]"
     >
       <div className="py-20 px-6 sm:px-10 md:px-14 lg:px-36 backdrop-blur-md bg-zinc-100/80">
-        <h1 className="mb-6 text-center text-4xl sm:text-[50px] md-text-[65px] font-bold font-popins sm:leading-[1.4]">
+        <h1 className="mb-10 text-center text-4xl sm:text-[50px] md-text-[65px] font-bold font-popins sm:leading-[1.4]">
           About Us
         </h1>
 
         <div className="mb-10 px-4 text-left sm:grid grid-cols-2 sm:gap-x-7">
           <div>
-            <h3 className="mb-12 text-3xl max-sm:text-2xl font-semibold">
+            <h3 className="mb-6 xs:mb-12 text-3xl max-sm:text-2xl font-semibold">
               Our Mission
             </h3>
             <p className="text-[16px] leading-[28px] text-justify">
@@ -48,7 +48,7 @@ const About = () => {
             />
           </div>
           <div>
-            <h3 className="mb-12 text-3xl max-sm:text-2xl font-semibold">
+            <h3 className="mb-6 xs:mb-12 text-3xl max-sm:text-2xl font-semibold">
               Our Operations
             </h3>
             <p className="text-[16px] leading-[28px] text-justify">
@@ -58,7 +58,7 @@ const About = () => {
         </div>
 
         <div className="mb-10 px-4 text-left">
-          <h3 className="mb-12 text-3xl max-sm:text-2xl font-semibold">
+          <h3 className="mb-6 xs:mb-12 text-3xl max-sm:text-2xl font-semibold">
             Our Team
           </h3>
           <div className="text-center grid lg:grid-cols-2 gap-4">
@@ -93,7 +93,7 @@ const About = () => {
         </div>
 
         <div className="px-4 text-left">
-          <h3 className="mb-12 text-3xl max-sm:text-2xl font-semibold">
+          <h3 className="mb-6 xs:mb-12 text-3xl max-sm:text-2xl font-semibold">
             Our History
           </h3>
           <Timeline items={aboutUsData.history} color="red" mode="alternate" />
