@@ -12,13 +12,16 @@ const About = () => {
       id="about"
       className="w-full h-full bg-[url('/images/background.jpg')]"
     >
-      <div className="px-5 sm:px-10 md:px-14 lg:px-36 py-20 backdrop-blur-md bg-zinc-100/90">
-        <h1 className="mb-6 xs:mb-8 text-center text-4xl sm:text-[50px] md-text-[65px] font-bold font-popins py-4 sm:leading-[1.2]">
+      <div className="py-20 px-6 sm:px-10 md:px-14 lg:px-36 backdrop-blur-md bg-zinc-100/80">
+        <h1 className="mb-6 text-center text-4xl sm:text-[50px] md-text-[65px] font-bold font-popins sm:leading-[1.4]">
           About Us
         </h1>
-        <div className="mb-10 py-3 xs:py-5 sm:px-4 px-8 text-center sm:text-left sm:grid grid-cols-2 sm:gap-x-7">
+
+        <div className="mb-10 px-4 text-left sm:grid grid-cols-2 sm:gap-x-7">
           <div>
-            <h3 className="text-3xl font-semibold mb-4 sm:mb-6">Our Mission</h3>
+            <h3 className="mb-12 text-3xl max-sm:text-2xl font-semibold">
+              Our Mission
+            </h3>
             <p className="text-[16px] leading-[28px] text-justify">
               {aboutUsData.mission}
             </p>
@@ -33,18 +36,19 @@ const About = () => {
             />
           </div>
         </div>
-        <div className="mb-10 py-3 xs:py-5 sm:px-4 px-8 text-center sm:text-left sm:grid grid-cols-2 sm:gap-x-7">
+
+        <div className="mb-10 px-4 text-left sm:grid grid-cols-2 sm:gap-x-7">
           <div className="relative hidden sm:block">
             <Image
               alt="team"
-              src="/images/pict2.jpg"
+              src="/images/pict2.png"
               className="object-cover rounded-2xl"
               fill
               priority
             />
           </div>
           <div>
-            <h3 className="text-3xl font-semibold mb-4 sm:mb-10 ">
+            <h3 className="mb-12 text-3xl max-sm:text-2xl font-semibold">
               Our Operations
             </h3>
             <p className="text-[16px] leading-[28px] text-justify">
@@ -53,8 +57,10 @@ const About = () => {
           </div>
         </div>
 
-        <div className="mb-10 py-3 xs:py-5 sm:px-4 text-center sm:text-left">
-          <h3 className="text-3xl font-semibold mb-4 sm:mb-10 ">Our Team</h3>
+        <div className="mb-10 px-4 text-left">
+          <h3 className="mb-12 text-3xl max-sm:text-2xl font-semibold">
+            Our Team
+          </h3>
           <div className="text-center grid lg:grid-cols-2 gap-4">
             {aboutUsData.team.map((teamMember, index) => (
               <div
@@ -67,7 +73,7 @@ const About = () => {
                     src={teamMember.image}
                     className="object-cover w-full h-full"
                     fill
-                    loading="lazy"
+                    priority
                   />
                 </div>
                 <div className="p-6">
@@ -86,8 +92,10 @@ const About = () => {
           </div>
         </div>
 
-        <div className="py-3 sm:px-4 px-8 text-center sm:text-left">
-          <h3 className="text-3xl font-semibold mb-12">Our History</h3>
+        <div className="px-4 text-left">
+          <h3 className="mb-12 text-3xl max-sm:text-2xl font-semibold">
+            Our History
+          </h3>
           <Timeline items={aboutUsData.history} color="red" mode="alternate" />
         </div>
       </div>

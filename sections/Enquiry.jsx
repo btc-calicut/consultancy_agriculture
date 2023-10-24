@@ -55,12 +55,12 @@ const Enquiry = () => {
   };
 
   return (
-    <div id="enquiry" className="bg-zinc-300 w-full">
+    <div id="enquiry" className="w-full bg-[url('/images/background.jpg')]">
       {contextHolder}
-      <div className="flex flex-col gap-y-2 sm:flex-row sm:gap-x-4 px-6 sm:px-10 md:px-14 lg:px-36 py-10 xs:py-20">
+      <div className="py-20 sm:gap-x-20 px-6 sm:px-10 md:px-14 lg:px-36 flex flex-col gap-y-2 sm:flex-row backdrop-blur-md bg-zinc-300/80">
         <div className="sm:w-1/2">
           <div>
-            <h1 className="sm:text-left text-center text-4xl sm:text-[50px] md-text-[65px] font-bold font-popins py-4 leading-[1.4]">
+            <h1 className="mb-6 sm:text-left text-center text-4xl sm:text-[50px] md-text-[65px] font-bold font-popins sm:leading-[1.4]">
               Share Your Queries With Us
             </h1>
             <Image

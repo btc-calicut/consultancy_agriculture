@@ -10,7 +10,7 @@ const Contact = () => {
       <div className="z-10 absolute -bottom-40 -left-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
       <div className="z-10 absolute -top-40 -right-0 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
       <div className="z-10 absolute -top-20 -right-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
-      <div className="flex flex-col-reverse gap-y-2 sm:flex-row sm:items-center sm:justify-center sm:gap-x-20 px-6 sm:px-10 md:px-14 lg:px-36 py-10 xs:py-20">
+      <div className="py-20 px-6 sm:px-10 md:px-14 lg:px-36 sm:gap-x-20 flex flex-col-reverse gap-y-2 sm:flex-row sm:items-center sm:justify-center">
         <div className="z-20 relative sm:w-80 p-2 shadow-md rounded-lg hover:scale-105 transition ease-in-out duration-300">
           <Carousel dots={false} autoplay>
             {data.employees.map((employee, index) => {
@@ -44,7 +44,7 @@ const Contact = () => {
         </div>
 
         <div className="z-20 sm:w-1/2">
-          <h1 className="sm:text-right text-center text-4xl sm:text-[50px] md-text-[65px] font-bold font-popins py-4 sm:leading-[1.4]">
+          <h1 className="mb-6 sm:text-right text-center text-4xl sm:text-[50px] md-text-[65px] font-bold font-popins sm:leading-[1.4]">
             Connect with Our Team
           </h1>
           <div className="flex flex-row-reverse mb-2">
