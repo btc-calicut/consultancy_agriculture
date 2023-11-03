@@ -29,7 +29,6 @@ const About = () => {
               src="/images/ourmission.jpg"
               className="object-cover rounded-2xl"
               fill
-              sizes="50vw"
               priority
             />
           </div>
@@ -42,7 +41,6 @@ const About = () => {
               src="/images/operations.jpg"
               className="object-cover rounded-2xl"
               fill
-              sizes="50vw"
               priority
             />
           </div>
@@ -82,7 +80,7 @@ const About = () => {
                   <h4 className="mb-2 font-sans text-2xl max-xs:text-sm antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
                     {teamMember.name}
                   </h4>
-                  <p className="font-sans text-sm font-normal leading-relaxed max-xs:leading-[16px] text-gray-700">
+                  <p className="font-sans text-[10px] xs:text-sm font-normal leading-[15px] xs:leading-relaxed text-gray-700">
                     {teamMember.description}
                   </p>
                 </div>
