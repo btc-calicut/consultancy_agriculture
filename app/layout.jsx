@@ -1,10 +1,10 @@
 import { Poppins } from "next/font/google";
 import "@styles/globals.css";
 import data from "@public/assets/data.json";
-import AuthContextProvider from "@context/AuthContextProvider";
+import AuthContextProvider from "@config/AuthContextProvider";
 
 // This config is only required for antd and not related to project.
-import StyledComponentsRegistry from "@lib/AntdRegistry";
+import StyledComponentsRegistry from "@config/AntdRegistry";
 import { ConfigProvider } from "antd";
 
 export const metadata = {
