@@ -4,7 +4,7 @@ import data from "@public/assets/data.json";
 import AuthContextProvider from "@config/AuthContextProvider";
 
 // This config is only required for antd and not related to project.
-import StyledComponentsRegistry from "@config/AntdRegistry";
+import StyledComponentsRegistry from "@lib/AntdRegistry";
 import { ConfigProvider } from "antd";
 
 export const metadata = {
