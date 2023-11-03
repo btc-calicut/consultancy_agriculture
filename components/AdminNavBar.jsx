@@ -7,9 +7,9 @@ import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import logo from "@public/images/light-logo.png";
 import { Avatar, Modal, message, notification } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
+import logo from "@public/images/light-logo.png";
 
 const AdminNavBar = () => {
   const session = useSession();

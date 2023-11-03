@@ -55,7 +55,7 @@ const Enquiry = () => {
   };
 
   return (
-    <div id="enquiry" className="w-full bg-[url('/images/background.jpg')]">
+    <div id="enquiry" className="w-full bg-background">
       {contextHolder}
       <div className="py-20 sm:gap-x-20 px-6 sm:px-10 md:px-14 lg:px-36 flex flex-col gap-y-2 sm:flex-row backdrop-blur-md bg-zinc-300/80">
         <div className="sm:w-1/2">
@@ -114,18 +114,18 @@ const Enquiry = () => {
             <textarea
               className="w-full text-sm rounded-lg border border-gray-300 p-3 text-gray-800 hover:border-black"
               placeholder="Message"
-              rows="8"
+              rows="12"
               name="message"
               id="message"
               required
               value={formData.message}
               onChange={handleChange}
-            ></textarea>
+            />
 
             <div className="mt-4">
               <button
                 type="submit"
-                className="inline-block w-full rounded-lg bg-[#080621] px-5 py-3 font-medium text-white sm:w-auto"
+                className="inline-block w-full rounded-lg bg-[#080621] px-5 py-3 font-medium text-white lg:w-auto"
               >
                 Send Enquiry
               </button>

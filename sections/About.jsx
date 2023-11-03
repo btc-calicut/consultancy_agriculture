@@ -8,16 +8,13 @@ const aboutUsData = data.aboutus;
 
 const About = () => {
   return (
-    <div
-      id="about"
-      className="w-full h-full bg-[url('/images/background.jpg')]"
-    >
+    <div id="about" className="w-full h-full bg-background">
       <div className="py-20 px-6 sm:px-10 md:px-14 lg:px-36 backdrop-blur-md bg-zinc-100/80">
         <h1 className="mb-10 text-center text-4xl sm:text-[50px] md-text-[65px] font-bold font-popins sm:leading-[1.4]">
           About Us
         </h1>
 
-        <div className="mb-10 px-4 text-left sm:grid grid-cols-2 sm:gap-x-7">
+        <div className="mb-10 sm:mb-24 px-4 text-left sm:grid grid-cols-2 sm:gap-x-7">
           <div>
             <h3 className="mb-6 xs:mb-12 text-3xl max-sm:text-2xl font-semibold">
               Our Mission
@@ -29,21 +26,23 @@ const About = () => {
           <div className="relative hidden sm:block">
             <Image
               alt="team"
-              src="/images/ourmission.png"
+              src="/images/ourmission.jpg"
               className="object-cover rounded-2xl"
               fill
+              sizes="50vw"
               priority
             />
           </div>
         </div>
 
-        <div className="mb-10 px-4 text-left sm:grid grid-cols-2 sm:gap-x-7">
+        <div className="mb-10 sm:mb-24 px-4 text-left sm:grid grid-cols-2 sm:gap-x-7">
           <div className="relative hidden sm:block">
             <Image
               alt="team"
-              src="/images/pict2.png"
+              src="/images/operations.jpg"
               className="object-cover rounded-2xl"
               fill
+              sizes="50vw"
               priority
             />
           </div>
@@ -57,7 +56,7 @@ const About = () => {
           </div>
         </div>
 
-        <div className="mb-10 px-4 text-left">
+        <div className="mb-10 sm:mb-24 px-4 text-left">
           <h3 className="mb-6 xs:mb-12 text-3xl max-sm:text-2xl font-semibold">
             Our Team
           </h3>
@@ -83,7 +82,7 @@ const About = () => {
                   <h4 className="mb-2 font-sans text-2xl max-xs:text-sm antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
                     {teamMember.name}
                   </h4>
-                  <p className="font-sans text-base max-xs:text-sm font-normal leading-relaxed max-xs:leading-[16px] text-gray-700">
+                  <p className="font-sans text-sm font-normal leading-relaxed max-xs:leading-[16px] text-gray-700">
                     {teamMember.description}
                   </p>
                 </div>

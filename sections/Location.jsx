@@ -2,7 +2,7 @@ import React from "react";
 
 const Location = () => {
   return (
-    <div id="location" className="w-full bg-[url('/images/background.jpg')]">
+    <div id="location" className="w-full bg-background">
       <div className="py-20 sm:gap-x-20 px-6 sm:px-10 md:px-14 lg:px-36 backdrop-blur-md bg-white/80">
         <h1 className="mb-6 text-center text-4xl sm:text-[50px] md-text-[65px] font-bold font-popins sm:leading-[1.4]">
           Locate Us Here

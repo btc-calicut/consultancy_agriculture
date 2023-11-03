@@ -111,7 +111,7 @@ const AddProductsPage = () => {
           nutritional_facts: [],
           image: "",
         });
-        console.log(data.data);
+        // console.log(data.data);
       } else if (response.status === 401) {
         message.error("Session expired. Please login again");
         setTimeout(() => {

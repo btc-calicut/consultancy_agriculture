@@ -28,7 +28,7 @@ const LinkToProducts = () => {
         <div className=" py-3 xs:py-7 px-4 sm:px-10 md:px-14 lg:px-36">
           <div className="flex flex-col xs:items-start h-full">
             <div className="flex flex-col py-2 gap-x-3 max-lg:gap-y-5">
-              <h1 className="max-xs:pl-4 text-[60px] font-[1000] leading-[70px] sm:leading-20 lg:leading-loose bg-gradient-to-r from-sky-400 via-teal-200 to-white bg-clip-text text-transparent font-poppins">
+              <h1 className="py-1 max-xs:pl-4 text-[60px] font-[1000] leading-[70px] sm:leading-20 lg:leading-loose bg-gradient-to-r from-sky-400 via-teal-200 to-white bg-clip-text text-transparent font-poppins">
                 Serving Your <br className="block xs:hidden" /> Needs
               </h1>
               <p className="max-xs:pl-4 text-md w-full md:w-80 max-h-60 text-white md:leading-7 text-left">
