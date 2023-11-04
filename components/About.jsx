@@ -3,10 +3,12 @@ import { Timeline } from "antd";
 import Image from "next/image";
 
 import data from "@public/assets/data.json";
+import ourmission from "@public/images/ourmission.jpg";
+import operations from "@public/images/operations.jpg";
 
 const aboutUsData = data.aboutus;
 
-const About = () => {
+export default function About() {
   return (
     <div id="about" className="w-full h-full bg-background">
       <div className="py-20 px-6 sm:px-10 md:px-14 lg:px-36 backdrop-blur-md bg-zinc-100/80">
@@ -25,11 +27,13 @@ const About = () => {
           </div>
           <div className="relative hidden sm:block">
             <Image
-              alt="team"
-              src="/images/ourmission.jpg"
+              alt="mission"
+              src={ourmission}
               className="object-cover rounded-2xl"
               fill
               priority
+              placeholder="blur"
+              sizes="100vw"
             />
           </div>
         </div>
@@ -37,11 +41,13 @@ const About = () => {
         <div className="mb-10 sm:mb-24 px-4 text-left sm:grid grid-cols-2 sm:gap-x-7">
           <div className="relative hidden sm:block">
             <Image
-              alt="team"
-              src="/images/operations.jpg"
+              alt="operations"
+              src={operations}
               className="object-cover rounded-2xl"
               fill
               priority
+              placeholder="blur"
+              sizes="100vw"
             />
           </div>
           <div>
@@ -71,6 +77,9 @@ const About = () => {
                     className="object-cover w-full h-full"
                     fill
                     priority
+                    placeholder="blur"
+                    blurDataURL="data:image/webp;base64,UklGRpACAABXRUJQVlA4WAoAAAAgAAAAHAEAvAAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDggogAAANAOAJ0BKh0BvQA/cbjZZbSvLCcgKAKQLglpbuF2oAAWlsnIe+2TkPfgCAe+2TkPgP0u14uTkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32yciIHk5D32ych9C+l2vFych8B+l2vFych78AQD32ych77cy/T2ycKAA/uFO8+mfmtFtxm2ZdnDSYS00ZzyAgSvWI4AAXnJhAAAAAA=="
+                    sizes="100vw"
                   />
                 </div>
                 <div className="p-6">
@@ -98,6 +107,4 @@ const About = () => {
       </div>
     </div>
   );
-};
-
-export default About;
+}

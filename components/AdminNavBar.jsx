@@ -5,13 +5,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
+import postChangePassword from "@utils/postChangePassword";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Avatar, Modal, message, notification } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import logo from "@public/images/light-logo.png";
 
-const AdminNavBar = () => {
+export default function AdminNavBar() {
   const session = useSession();
   const path = usePathname();
 
@@ -57,39 +58,33 @@ const AdminNavBar = () => {
   const onHandleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
+
+    // post request to api
     try {
-      const response = await fetch(`/api/changepassword`, {
-        method: "POST",
-        headers: {
-          // Authorization: `Bearer ${session.data?.user?.accessToken}` // this doesnt work
-          Authorization: session.data?.user?.accessToken, // send accesstoken from session as header
-        },
-        body: JSON.stringify(formData),
-      });
+      const accessToken = session.data?.user?.accessToken;
+      const response = await postChangePassword(accessToken, formData);
       const data = await response.json();
 
       if (response.status === 200) {
-        setLoading(false);
+        openNotificationWithIcon("success", data.message);
         // closing the model
         setTimeout(() => {
           setIsModelOpen(false);
         }, 1000);
-        openNotificationWithIcon("success", data.message);
         // signout the user
         setTimeout(() => {
-          signOut();
+          signOut({ callbackUrl: "/auth/signin" });
         }, 5000);
       } else if (response.status === 401) {
         message.error("Session expired. Please login again");
         setTimeout(() => {
-          signOut();
-        }, 2000);
+          signOut({ callbackUrl: "/auth/signin" });
+        }, 3000);
       } else if (response.status === 400) {
         message.error(data.message);
-      } else if (response.status === 500) {
-        message.error("Please try again");
       }
     } catch (error) {
+      message.error("Please try again");
       console.error(error);
     } finally {
       setLoading(false);
@@ -225,7 +220,9 @@ const AdminNavBar = () => {
                           <Menu.Item>
                             {({ active }) => (
                               <a
-                                onClick={() => signOut()}
+                                onClick={() =>
+                                  signOut({ callbackUrl: "/auth/signin" })
+                                }
                                 className={`block px-4 py-2 text-sm text-gray-700 cursor-pointer ${
                                   active ? "bg-gray-100" : ""
                                 }`}
@@ -314,7 +311,7 @@ const AdminNavBar = () => {
                   </Disclosure.Button>
                   <Disclosure.Button
                     className="w-full block text-left rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
-                    onClick={() => signOut()}
+                    onClick={() => signOut({ callbackUrl: "/auth/signin" })}
                   >
                     Sign out
                   </Disclosure.Button>
@@ -433,6 +430,4 @@ const AdminNavBar = () => {
       </Modal>
     </section>
   );
-};
-
-export default AdminNavBar;
+}

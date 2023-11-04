@@ -9,8 +9,9 @@ import {
   MinusCircleOutlined,
   PlusOutlined,
 } from "@ant-design/icons";
+import postAddProducts from "@utils/postAddProducts";
 
-const AddProductsPage = () => {
+export default function AddProductsPage() {
   const session = useSession();
   const [loading, setLoading] = useState(false);
 
@@ -91,19 +92,15 @@ const AddProductsPage = () => {
       setLoading(false);
       return;
     }
+
+    // post request to api
     try {
-      const response = await fetch(`/api/products`, {
-        method: "POST",
-        headers: {
-          // Authorization: `Bearer ${session.data?.user?.accessToken}` // this doesnt work
-          Authorization: session.data?.user?.accessToken,
-        },
-        body: JSON.stringify(formData),
-      });
+      const accessToken = session.data?.user?.accessToken;
+      const response = await postAddProducts(accessToken, formData);
       const data = await response.json();
+
       if (response.status === 200) {
         message.success(data.message);
-        setLoading(false);
         setFormData({
           name: "",
           description: "",
@@ -111,19 +108,17 @@ const AddProductsPage = () => {
           nutritional_facts: [],
           image: "",
         });
-        // console.log(data.data);
       } else if (response.status === 401) {
         message.error("Session expired. Please login again");
         setTimeout(() => {
-          signOut();
-        }, 2000);
+          signOut({ callbackUrl: "/auth/signin" });
+        }, 3000);
       } else if (response.status === 400) {
         message.error(data.message);
-      } else if (response.status === 500) {
-        message.error("Please try again");
       }
     } catch (error) {
-      console.log(error);
+      message.error("Please try again");
+      console.error(error);
     } finally {
       setLoading(false);
     }
@@ -288,6 +283,4 @@ const AddProductsPage = () => {
       </form>
     </section>
   );
-};
-
-export default AddProductsPage;
+}

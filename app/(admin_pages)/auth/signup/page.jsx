@@ -1,9 +1,10 @@
 "use client";
 
+import postAdminSignup from "@utils/postAdminSignup";
 import Link from "next/link";
 import { useState } from "react";
 
-const AdminSignUp = () => {
+export default function AdminSignUp() {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -13,14 +14,10 @@ const AdminSignUp = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("/api/signup", {
-        method: "POST",
-        body: JSON.stringify(formData),
-      });
-      const data = await response.json();
+      const data = await postAdminSignup(formData);
       console.log(data);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     } finally {
       setFormData({
         username: "",
@@ -119,6 +116,4 @@ const AdminSignUp = () => {
       </div>
     </section>
   );
-};
-
-export default AdminSignUp;
+}

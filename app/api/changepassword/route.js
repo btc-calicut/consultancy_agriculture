@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 import mongoose from "mongoose";
 import { verifyJwtAccessToken } from "@lib/jwtaccesstoken";
-import { dbConnect } from "@config/dbConfig";
+import { dbConnect } from "@lib/dbConfig";
 import AdminModel from "@models/AdminModel";
 
 export async function POST(request) {
@@ -11,7 +11,7 @@ export async function POST(request) {
     const accessToken = request.headers.get("authorization");
     if (!accessToken || !verifyJwtAccessToken(accessToken)) {
       return NextResponse.json(
-        { message: "unauthorized user" },
+        { message: "Unauthorized user with no token" },
         { status: 401 }
       );
     }

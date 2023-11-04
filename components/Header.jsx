@@ -5,8 +5,9 @@ import Image from "next/image";
 import { useState } from "react";
 import { CloseOutlined, MenuOutlined } from "@ant-design/icons";
 import logo from "@public/images/logo.png";
+import Link from "next/link";
 
-const Header = () => {
+export default function Header() {
   const [selectedKey, setSelectedKey] = useState("about");
   const [drawerVisible, setDrawerVisible] = useState(false);
 
@@ -64,13 +65,16 @@ const Header = () => {
       className="select-none sticky top-0 z-40 px-5 py-1 xs:py-2 flex items-center justify-end backdrop-blur-md bg-white/20 shadow-xl"
     >
       <div className="flex gap-x-1 xs:gap-x-2 items-center w-full">
-        <Image
-          alt="logo"
-          src={logo}
-          height={33}
-          width={33}
-          className="object-cover rounded-full my-3"
-        />
+        <Link href="/">
+          <Image
+            alt="logo"
+            src={logo}
+            height={33}
+            width={33}
+            className="object-cover rounded-full my-3"
+          />
+        </Link>
+
         <p className="text-4xl mb-2 font-thin font-playfair-display">|</p>
         <p className="font-thin font-playfair-display text-xl xs:text-2xl text-black tracking-wide">
           BTC
@@ -137,6 +141,4 @@ const Header = () => {
       </div>
     </nav>
   );
-};
-
-export default Header;
+}

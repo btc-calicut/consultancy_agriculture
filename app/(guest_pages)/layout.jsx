@@ -2,7 +2,7 @@ import Header from "@components/Header";
 import ScrollToTop from "@components/ScrollToTop";
 import FooterComponent from "@components/Footer";
 
-const ClientHomeLayout = ({ children }) => {
+export default function ClientHomeLayout({ children }) {
   return (
     <section>
       <Header />
@@ -11,6 +11,4 @@ const ClientHomeLayout = ({ children }) => {
       <FooterComponent />
     </section>
   );
-};
-
-export default ClientHomeLayout;
+}

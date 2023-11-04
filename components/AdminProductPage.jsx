@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import deleteProducts from "@utils/deleteProducts";
 import { Modal, FloatButton, message, Drawer } from "antd";
 import {
   CheckCircleOutlined,
@@ -10,7 +12,7 @@ import {
   DeleteOutlined,
 } from "@ant-design/icons";
 
-const AdminProductPage = ({ products }) => {
+export default function AdminProductPage({ products }) {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isSelected, setIsSelected] = useState(false);
   const [selectedProductList, setSelectedProductList] = useState([]);
@@ -18,6 +20,7 @@ const AdminProductPage = ({ products }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [overlay, setOverlay] = useState(false);
 
+  const router = useRouter();
   const session = useSession();
 
   useEffect(() => {
@@ -76,38 +79,44 @@ const AdminProductPage = ({ products }) => {
           onDeleteClick();
         },
       });
+    } else {
+      message.warning("No products selected");
     }
   };
+
   const onDeleteClick = async () => {
+    // delete request to api
     try {
-      const response = await fetch("/api/products", {
-        method: "DELETE",
-        headers: {
-          // Authorization: `Bearer ${session.data?.user?.accessToken}` // this doesnt work
-          Authorization: session.data?.user?.accessToken,
-        },
-        body: JSON.stringify(selectedProductList),
-      });
-      await response.json();
+      const accessToken = session.data?.user?.accessToken;
+      const response = await deleteProducts(accessToken, selectedProductList);
+
       if (response.status === 200) {
-        message.success("Deleted");
+        message.success("Product deleted");
+        // to toggle the tick button
+        onSelectClick();
+        // to refresh the page
+        router.refresh();
       } else if (response.status === 401) {
         message.error("Session expired. Please login again");
+        // signout the user
         setTimeout(() => {
-          signOut();
+          signOut({ callbackUrl: "/auth/signin" });
         }, 3000);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     } finally {
       setSelectedProductList([]);
     }
   };
 
+  // doubt
   const onSelectClick = () => {
+    // this if statment is to reset the selectProduct array when we click the tick button again
     if (isSelected) {
       setSelectedProductList([]);
     }
+    // this toggles the state os the tick button
     setIsSelected(!isSelected);
   };
 
@@ -130,6 +139,7 @@ const AdminProductPage = ({ products }) => {
               All products
             </h1>
           </div>
+
           <div className="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {products &&
               products.map((prod) => (
@@ -147,6 +157,8 @@ const AdminProductPage = ({ products }) => {
                       alt={prod.name}
                       fill
                       loading="lazy"
+                      placeholder="blur"
+                      blurDataURL="data:image/webp;base64,UklGRpACAABXRUJQVlA4WAoAAAAgAAAAHAEAvAAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDggogAAANAOAJ0BKh0BvQA/cbjZZbSvLCcgKAKQLglpbuF2oAAWlsnIe+2TkPfgCAe+2TkPgP0u14uTkPfbJyHvtk5D32ych77ZOQ99snIe+2TkPfbJyHvtk5D32yciIHk5D32ych9C+l2vFych8B+l2vFych78AQD32ych77cy/T2ycKAA/uFO8+mfmtFtxm2ZdnDSYS00ZzyAgSvWI4AAXnJhAAAAAA=="
                       sizes="100vw"
                     />
                   </div>
@@ -170,7 +182,7 @@ const AdminProductPage = ({ products }) => {
               open={overlay}
               closeIcon={<DownOutlined />}
               height="85vh"
-              headerStyle={{ textAlign: "center" }}
+              styles={{ header: { textAlign: "center" } }}
               className="rounded-3xl"
             >
               <div className="w-full flex flex-col space-y-2">
@@ -281,6 +293,4 @@ const AdminProductPage = ({ products }) => {
       )}
     </>
   );
-};
-
-export default AdminProductPage;
+}

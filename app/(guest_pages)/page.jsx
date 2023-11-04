@@ -1,10 +1,10 @@
-import LinkToProducts from "@sections/LinkToProducts";
-import About from "@sections/About";
-import Contact from "@sections/Contact";
-import Enquiry from "@sections/Enquiry";
-import Location from "@sections/Location";
+import LinkToProducts from "@components/LinkToProducts";
+import About from "@components/About";
+import Contact from "@components/Contact";
+import Enquiry from "@components/Enquiry";
+import Location from "@components/Location";
 
-const HomePage = () => {
+export default function HomePage() {
   return (
     <section className="w-full">
       <LinkToProducts />
@@ -14,6 +14,4 @@ const HomePage = () => {
       <Location />
     </section>
   );
-};
-
-export default HomePage;
+}

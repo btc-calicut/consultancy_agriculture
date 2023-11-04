@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
 import { verifyJwtAccessToken } from "@lib/jwtaccesstoken";
-import { dbConnect } from "@config/dbConfig";
+import { dbConnect } from "@lib/dbConfig";
 import { v2 as cloudinary } from "cloudinary";
 import ProductModel from "@models/ProductModel";
 
@@ -34,7 +34,7 @@ export async function POST(request) {
     const accessToken = request.headers.get("authorization");
     if (!accessToken || !verifyJwtAccessToken(accessToken)) {
       return NextResponse.json(
-        { message: "unauthorized user" },
+        { message: "Unauthorized user with no access token" },
         { status: 401 }
       );
     }
@@ -102,7 +102,7 @@ export async function DELETE(request) {
     const accessToken = request.headers.get("authorization");
     if (!accessToken || !verifyJwtAccessToken(accessToken)) {
       return NextResponse.json(
-        { message: "unauthorized user" },
+        { message: "Unauthorized user with no access token" },
         { status: 401 }
       );
     }
@@ -128,7 +128,7 @@ export async function DELETE(request) {
             });
           })
         );
-        console.log("All files deleted successfully");
+        // console.log("All files deleted successfully");
       } catch (error) {
         console.log("Error occurred during file deletion:", error);
       }
@@ -144,10 +144,9 @@ export async function DELETE(request) {
         _id: { $in: productlist.map((item) => item._id) },
       });
       await session.commitTransaction();
-      console.log(data);
       return NextResponse.json(
         {
-          message: "Product created",
+          message: "Products deleted",
           info: data,
         },
         { status: 200 }

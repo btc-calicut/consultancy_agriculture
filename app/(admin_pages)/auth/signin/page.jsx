@@ -9,7 +9,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 import logo from "@public/images/logo.png";
 import Image from "next/image";
 
-const AdminSignin = () => {
+export default function AdminSignin() {
   const router = useRouter();
 
   const [disabled, setDisabled] = useState(false);
@@ -210,6 +210,4 @@ const AdminSignin = () => {
       </div>
     </div>
   );
-};
-
-export default AdminSignin;
+}

@@ -1,7 +1,6 @@
-import React from "react";
 import { CSVLink } from "react-csv";
 
-const CSVbutton = ({ data }) => {
+export default function CSVbutton({ data }) {
   const selectedData =
     (data &&
       data.map((info) => {
@@ -22,6 +21,4 @@ const CSVbutton = ({ data }) => {
       </CSVLink>
     </button>
   );
-};
-
-export default CSVbutton;
+}

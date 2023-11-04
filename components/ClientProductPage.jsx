@@ -7,7 +7,7 @@ import { Modal, Breadcrumb, Drawer } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 import ProductCard from "@components/ProductCard";
 
-const ClientProductPage = ({ products }) => {
+export default function ClientProductPage({ products }) {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [mobileView, setMobileView] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -86,7 +86,7 @@ const ClientProductPage = ({ products }) => {
           open={overlay}
           closeIcon={<DownOutlined />}
           height="85vh"
-          headerStyle={{ textAlign: "center" }}
+          styles={{ header: { textAlign: "center" } }}
           className="rounded-3xl"
         >
           <div className="w-full flex flex-col space-y-2">
@@ -173,6 +173,4 @@ const ClientProductPage = ({ products }) => {
       )}
     </section>
   );
-};
-
-export default ClientProductPage;
+}

@@ -1,6 +1,4 @@
-import React from "react";
-
-const Location = () => {
+export default function Location() {
   return (
     <div id="location" className="w-full bg-background">
       <div className="py-20 sm:gap-x-20 px-6 sm:px-10 md:px-14 lg:px-36 backdrop-blur-md bg-white/80">
@@ -18,5 +16,4 @@ const Location = () => {
       </div>
     </div>
   );
-};
-export default Location;
+}

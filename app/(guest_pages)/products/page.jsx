@@ -1,31 +1,23 @@
-import ClientProductPage from "@components/ClientProductPage";
-import data from "@public/assets/data.json";
-
-// This is to force dynamic SSR during run time only and not build time
+// This is to force dynamic SSR during run time, avoiding static SSR at build time
 // This also disables data caching on server. i.e., they perform the same function as cache: "no-store" or next: { revalidate: 0 }
 export const dynamic = "force-dynamic";
+
+import getProducts from "@utils/getProducts";
+import ClientProductPage from "@components/ClientProductPage";
 
 export async function generateMetadata() {
   // const products = await fetchProductsInfo();
   return {
     // description: products.info,
     alternates: {
-      canonical: "/products"
-    }
-  }
-}
-
-async function fetchProducts() {
-  const response = await fetch(`${process.env.DOMAIN}/api/products`);
-  if (!response.status === 200) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error("Failed to fetch data");
-  }
-  const data = await response.json();
-  return data;
+      canonical: "/products",
+    },
+  };
 }
 
 export default async function ProductsPage() {
-  const products = await fetchProducts();
+  // get request to api
+  const products = await getProducts();
+
   return <ClientProductPage products={products.info} />;
 }

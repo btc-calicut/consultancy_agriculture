@@ -1,7 +1,7 @@
 import { Poppins } from "next/font/google";
 import "@styles/globals.css";
 import data from "@public/assets/data.json";
-import AuthContextProvider from "@config/AuthContextProvider";
+import AuthContextProvider from "@lib/AuthContextProvider";
 
 // This config is only required for antd and not related to project.
 import StyledComponentsRegistry from "@lib/AntdRegistry";
@@ -10,35 +10,42 @@ import { ConfigProvider } from "antd";
 export const metadata = {
   title: data.title,
   description: data.description,
-  keywords: ['BTC','Blueway Trading Company','Blueway','Trading','Agri products'],
-  generator: 'Next.js',
-  applicationName: 'Next.js',
-  referrer: 'origin-when-cross-origin',
-  metadataBase: new URL("https://bluewaytradingcompany.vercel.app"),
+  keywords: [
+    "BTC",
+    "Blueway Trading Company",
+    "Blueway",
+    "Trading",
+    "Agri products",
+  ],
+  generator: "Next.js",
+  applicationName: "Next.js",
+  referrer: "origin-when-cross-origin",
+  // metadataBase: new URL("https://bluewaytradingcompany.vercel.app"),
+  metadataBase: new URL(`${process.env.DOMAIN}`),
   alternates: {
-    canonical: '/',
+    canonical: "/",
   },
   openGraph: {
     title: data.title,
     description: data.description,
-    url: 'https://bluewaytradingcompany.vercel.app',
-    siteName: 'Blueway Trading Company',
+    // url: "https://bluewaytradingcompany.vercel.app",
+    url: `${process.env.DOMAIN}`,
+    siteName: "Blueway Trading Company",
     images: [
       {
-        url: '/images/pict1.jpg',
+        url: "/images/pict1.jpg",
         width: 800,
         height: 600,
       },
-      
     ],
-    locale: 'en_US',
-    type: 'website',
+    locale: "en_US",
+    type: "website",
   },
   icons: {
-    icon: '/images/logo.png',
-    apple: '/images/logo.png',
+    icon: "/images/logo.png",
+    apple: "/images/logo.png",
   },
-  category: 'technology',
+  category: "technology",
   robots: {
     index: false,
     follow: true,
@@ -46,11 +53,11 @@ export const metadata = {
       index: true,
       follow: false,
       noimageindex: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    }
-  }
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 const popins = Poppins({
@@ -58,7 +65,7 @@ const popins = Poppins({
   subsets: ["latin"],
 });
 
-const RootLayout = ({ children }) => {
+export default function RootLayout({ children }) {
   return (
     <AuthContextProvider>
       <html lang="en">
@@ -85,6 +92,4 @@ const RootLayout = ({ children }) => {
       </html>
     </AuthContextProvider>
   );
-};
-
-export default RootLayout;
+}

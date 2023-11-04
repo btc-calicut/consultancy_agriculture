@@ -3,7 +3,7 @@ import { Carousel } from "antd";
 import data from "@public/assets/data.json";
 import phone from "@public/images/phone.png";
 
-const Contact = () => {
+export default function Contact() {
   return (
     <div id="contact" className="relative overflow-hidden bg-zinc-50 w-full">
       <div className="z-10 absolute -bottom-32 -left-40 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
@@ -27,6 +27,7 @@ const Contact = () => {
                       width={100}
                       height={100}
                       priority
+                      sizes="10px"
                     />
                   </div>
                   <div className="flex flex-col font-poppins text-center">
@@ -63,6 +64,4 @@ const Contact = () => {
       </div>
     </div>
   );
-};
-
-export default Contact;
+}

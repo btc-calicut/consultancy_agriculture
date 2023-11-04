@@ -3,10 +3,11 @@
 import { useState } from "react";
 import { notification } from "antd";
 import Image from "next/image";
+import postEnquiry from "@utils/postEnquiry";
 import messages from "@public/images/messages.png";
 import data from "@public/assets/data.json";
 
-const Enquiry = () => {
+export default function Enquiry() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -36,13 +37,13 @@ const Enquiry = () => {
       number: "",
       message: "",
     });
+
+    // post request to api
     try {
-      await fetch(`api/enquiry`, {
-        method: "POST",
-        body: JSON.stringify(copyFormData),
-      });
+      const data = await postEnquiry(copyFormData);
+      // console.log(data);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -135,6 +136,4 @@ const Enquiry = () => {
       </div>
     </div>
   );
-};
-
-export default Enquiry;
+}

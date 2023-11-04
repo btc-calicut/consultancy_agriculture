@@ -5,40 +5,38 @@ import { useState, useEffect } from "react";
 import { Table, Input, message } from "antd";
 import moment from "moment";
 import CSVbutton from "@components/CSVbutton";
+import getCustomerEnquiry from "@utils/getCustomerEnquiry";
 
 const { Search } = Input;
 
-const CustomerEnquiry = () => {
+export default function CustomerEnquiry() {
   const session = useSession();
   const [data, setData] = useState(null);
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    console.log(session);
     if (session.status === "authenticated") {
       fetchData();
     }
   }, [session.status]);
 
   const fetchData = async () => {
+    // get request to api
     try {
-      const response = await fetch("/api/enquiry", {
-        method: "GET",
-        headers: {
-          // Authorization: `Bearer ${session.data?.user?.accessToken}` // this doesnt work
-          Authorization: session.data?.user?.accessToken,
-        },
-      });
+      const accessToken = session.data?.user?.accessToken;
+      const response = await getCustomerEnquiry(accessToken);
       const data = await response.json();
-      setData(data.info);
-      if (response.status === 401) {
+
+      if (response.status === 200) {
+        setData(data.info);
+      } else if (response.status === 401) {
         message.error("Session expired. Please login again");
         setTimeout(() => {
-          signOut();
-        }, 2000);
+          signOut({ callbackUrl: "/auth/signin" });
+        }, 3000);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -62,6 +60,7 @@ const CustomerEnquiry = () => {
   }));
 
   const columns = [
+    Table.EXPAND_COLUMN,
     {
       title: "Date",
       dataIndex: "date",
@@ -106,7 +105,6 @@ const CustomerEnquiry = () => {
         return text.toUpperCase();
       },
     },
-    Table.EXPAND_COLUMN,
     // Table.SELECTION_COLUMN,
   ];
 
@@ -149,6 +147,4 @@ const CustomerEnquiry = () => {
       </div>
     </section>
   );
-};
-
-export default CustomerEnquiry;
+}

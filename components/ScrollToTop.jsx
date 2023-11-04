@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { FloatButton } from "antd";
 import { UpCircleFilled } from "@ant-design/icons";
 
-const ScrollToTop = () => {
+export default function ScrollToTop() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -41,6 +41,4 @@ const ScrollToTop = () => {
       type="primary"
     />
   );
-};
-
-export default ScrollToTop;
+}

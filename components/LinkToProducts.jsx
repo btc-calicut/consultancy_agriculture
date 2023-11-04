@@ -3,7 +3,7 @@ import { Carousel } from "antd";
 import data from "@public/assets/data.json";
 import Image from "next/image";
 
-const LinkToProducts = () => {
+export default function LinkToProducts() {
   return (
     <div className="h-[85vh] xs:h-[460px] relative lg:min-h-[430px]">
       <Carousel dots={false} autoplay>
@@ -66,6 +66,4 @@ const LinkToProducts = () => {
       </div>
     </div>
   );
-};
-
-export default LinkToProducts;
+}

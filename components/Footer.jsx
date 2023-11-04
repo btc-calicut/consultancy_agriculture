@@ -1,5 +1,8 @@
 "use client";
 
+import Link from "next/link";
+import { useState } from "react";
+import postNewsletter from "@utils/postNewsletter";
 import { Row, Col, Divider, Input, Button, notification } from "antd";
 import {
   FacebookOutlined,
@@ -9,10 +12,8 @@ import {
   PhoneOutlined,
   SendOutlined,
 } from "@ant-design/icons";
-import Link from "next/link";
-import { useState } from "react";
 
-const FooterComponent = () => {
+export default function Footer() {
   const [email, setEmail] = useState("");
 
   const [api, contextHolder] = notification.useNotification({
@@ -34,20 +35,14 @@ const FooterComponent = () => {
     if (emailPattern.test(email)) {
       openNotificationWithIcon("success", "Subscribed");
 
-      const newsLetterData = {
-        email: email,
-        date: new Date(),
-      };
-
-      setEmail("");
-
+      // post request to api
       try {
-        await fetch(`api/newsletter`, {
-          method: "POST",
-          body: JSON.stringify(newsLetterData),
-        });
+        const data = await postNewsletter(email);
+        // console.log(data);
       } catch (error) {
-        console.log(error);
+        console.error(error);
+      } finally {
+        setEmail("");
       }
     }
   };
@@ -151,6 +146,4 @@ const FooterComponent = () => {
       </Row>
     </div>
   );
-};
-
-export default FooterComponent;
+}

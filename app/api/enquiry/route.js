@@ -3,12 +3,12 @@ import mongoose from "mongoose";
 import ejs from "ejs";
 import { readFileSync } from "fs";
 import path from "path";
-import { dbConnect } from "@config/dbConfig";
+import { dbConnect } from "@lib/dbConfig";
 import {
   transporter,
   clientMailMessage,
   companyMailMessage,
-} from "@config/nodemailer";
+} from "@lib/nodemailer";
 import EnquiryModel from "@models/EnquiryModel";
 import { verifyJwtAccessToken } from "@lib/jwtaccesstoken";
 
@@ -34,7 +34,7 @@ export async function POST(request) {
 
       await session.commitTransaction();
       return NextResponse.json(
-        { message: "Response recieved" },
+        { message: "Email recieved successfuly" },
         { status: 200 }
       );
     } catch (error) {
@@ -80,7 +80,7 @@ export async function POST(request) {
 
       await transporter.sendMail({
         ...companyMailMessage,
-        subject: `New nquiry from ${name}`,
+        subject: `New enquiry from ${name}`,
         html: renderedTemplateCompany,
       });
     }
@@ -95,7 +95,7 @@ export async function GET(request) {
     const accessToken = request.headers.get("authorization");
     if (!accessToken || !verifyJwtAccessToken(accessToken)) {
       return NextResponse.json(
-        { message: "unauthorized user" },
+        { message: "Unauthorized user with no access token" },
         { status: 401 }
       );
     }

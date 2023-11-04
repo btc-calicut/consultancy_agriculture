@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const Error404 = () => {
+export default function Error404() {
   return (
     <section className="bg-white dark:bg-gray-900 ">
       <div className="container flex items-center min-h-screen px-6 py-12 mx-auto">
@@ -39,6 +39,4 @@ const Error404 = () => {
       </div>
     </section>
   );
-};
-
-export default Error404;
+}
