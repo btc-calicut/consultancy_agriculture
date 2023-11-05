@@ -62,7 +62,7 @@ export default function Header() {
   return (
     <nav
       id="navbar"
-      className="select-none sticky top-0 z-40 px-5 py-1 xs:py-2 flex items-center justify-end backdrop-blur-md bg-white/20 shadow-xl"
+      className="select-none sticky top-0 z-40 px-5 py-0.5 xs:py-2 flex items-center justify-end backdrop-blur-md bg-white/20 shadow-xl"
     >
       <div className="flex gap-x-1 xs:gap-x-2 items-center w-full">
         <Link href="/">
@@ -114,7 +114,7 @@ export default function Header() {
           }`}
           onClick={() => setDrawerVisible(true)}
         >
-          <MenuOutlined style={{ fontSize: "30px" }} />
+          <MenuOutlined className="text-2xl" />
         </button>
 
         <div

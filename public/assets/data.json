@@ -20,16 +20,20 @@
     "trading": "As an emerging trading company, we specialize in domestic and international trade of agricultural products, including Coconut, Tender coconut, various vegetables, and fruits. Our commitment lies in sourcing and supplying products of the highest quality and goodness. Our expert purchase team operates from different locations in India, ensuring the utmost care in material selection. We also maintain a direct purchase system from farmers, assuring product quality and grade.",
     "history": [
       {
-        "children": "Formed BTC 2023"
+        "children": "Formed BTC 2023",
+        "style": { "fontSize": "17px" }
       },
       {
-        "children": "Started domestic trading 2023"
+        "children": "Started domestic trading",
+        "style": { "fontSize": "17px" }
       },
       {
-        "children": "Expanded to international markets 2023"
+        "children": "Expanded to international markets 2023",
+        "style": { "fontSize": "17px" }
       },
       {
-        "children": "Aiming to be a market leader by 2026"
+        "children": "Aiming to be a market leader by 2026",
+        "style": { "fontSize": "17px" }
       }
     ]
   },

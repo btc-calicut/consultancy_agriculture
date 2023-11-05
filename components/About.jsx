@@ -10,18 +10,18 @@ const aboutUsData = data.aboutus;
 
 export default function About() {
   return (
-    <div id="about" className="w-full h-full bg-background">
-      <div className="py-20 px-6 sm:px-10 md:px-14 lg:px-36 backdrop-blur-md bg-zinc-100/80">
-        <h1 className="mb-10 text-center text-4xl sm:text-[50px] md-text-[65px] font-bold font-popins sm:leading-[1.4]">
+    <div id="about" className="w-full bg-background">
+      <div className="py-20 px-6 sm:px-10 md:px-14 lg:px-36 backdrop-blur-3xl bg-white/90">
+        <h2 className="mb-10 text-center text-4xl sm:text-[50px] md-text-[65px] font-bold font-popins sm:leading-[1.4]">
           About Us
-        </h1>
+        </h2>
 
-        <div className="mb-10 sm:mb-24 px-4 text-left sm:grid grid-cols-2 sm:gap-x-7">
+        <div className="mb-10 sm:mb-24 text-left sm:grid grid-cols-2 sm:gap-x-7">
           <div>
             <h3 className="mb-6 xs:mb-12 text-3xl max-sm:text-2xl font-semibold">
               Our Mission
             </h3>
-            <p className="text-[16px] leading-[28px] text-justify">
+            <p className="text-[14px] xs:text-[16px] leading-[26px] xs:leading-[28px] text-justify text-gray-900">
               {aboutUsData.mission}
             </p>
           </div>
@@ -38,7 +38,7 @@ export default function About() {
           </div>
         </div>
 
-        <div className="mb-10 sm:mb-24 px-4 text-left sm:grid grid-cols-2 sm:gap-x-7">
+        <div className="mb-10 sm:mb-24 text-left sm:grid grid-cols-2 sm:gap-x-7">
           <div className="relative hidden sm:block">
             <Image
               alt="operations"
@@ -54,13 +54,13 @@ export default function About() {
             <h3 className="mb-6 xs:mb-12 text-3xl max-sm:text-2xl font-semibold">
               Our Operations
             </h3>
-            <p className="text-[16px] leading-[28px] text-justify">
+            <p className="text-[14px] xs:text-[16px] leading-[26px] xs:leading-[28px] text-justify text-gray-900">
               {aboutUsData.trading}
             </p>
           </div>
         </div>
 
-        <div className="mb-10 sm:mb-24 px-4 text-left">
+        <div className="mb-10 sm:mb-24 text-left">
           <h3 className="mb-6 xs:mb-12 text-3xl max-sm:text-2xl font-semibold">
             Our Team
           </h3>
@@ -98,11 +98,11 @@ export default function About() {
           </div>
         </div>
 
-        <div className="px-4 text-left">
+        <div className="text-left -mb-5">
           <h3 className="mb-6 xs:mb-12 text-3xl max-sm:text-2xl font-semibold">
             Our History
           </h3>
-          <Timeline items={aboutUsData.history} color="red" mode="alternate" />
+          <Timeline items={aboutUsData.history} mode="alternate" />
         </div>
       </div>
     </div>

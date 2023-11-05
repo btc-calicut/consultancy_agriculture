@@ -8,19 +8,27 @@ import StyledComponentsRegistry from "@lib/AntdRegistry";
 import { ConfigProvider } from "antd";
 
 export const metadata = {
-  title: data.title,
+  // inorder for the "title.template" to work, the pages in that specific route must also have a "title" in its metadata.
+  // if the pages in that specific route have no "title", then "title.default" of the closest parent Layout will be shown for that particular page
+  title: { default: data.title, template: "%s | BTC" },
   description: data.description,
   keywords: [
     "BTC",
     "Blueway Trading Company",
     "Blueway",
     "Trading",
-    "Agri products",
+    "Agriproducts",
+    "btc calicut",
   ],
   generator: "Next.js",
-  applicationName: "Next.js",
+  applicationName: "Blueway Trading Company",
   referrer: "origin-when-cross-origin",
-  // metadataBase: new URL("https://bluewaytradingcompany.vercel.app"),
+  authors: [{ name: "Aswin" }, { name: "Edwin" }, { name: "Arun" }],
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   metadataBase: new URL(`${process.env.DOMAIN}`),
   alternates: {
     canonical: "/",
@@ -28,12 +36,11 @@ export const metadata = {
   openGraph: {
     title: data.title,
     description: data.description,
-    // url: "https://bluewaytradingcompany.vercel.app",
     url: `${process.env.DOMAIN}`,
     siteName: "Blueway Trading Company",
     images: [
       {
-        url: "/images/pict1.jpg",
+        url: "/images/logo-background.jpg",
         width: 800,
         height: 600,
       },
@@ -42,8 +49,8 @@ export const metadata = {
     type: "website",
   },
   icons: {
-    icon: "/images/logo.png",
-    apple: "/images/logo.png",
+    icon: "/images/logo-background.jpg",
+    apple: "/images/logo-background.jpg",
   },
   category: "technology",
   robots: {

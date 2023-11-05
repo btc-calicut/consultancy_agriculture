@@ -8,6 +8,7 @@ import ClientProductPage from "@components/ClientProductPage";
 export async function generateMetadata() {
   // const products = await fetchProductsInfo();
   return {
+    title: "Products",
     // description: products.info,
     alternates: {
       canonical: "/products",

@@ -1,5 +1,4 @@
 export default function sitemap() {
-  // const baseUrl = "https://bluewaytradingcompany.vercel.app"
   const baseUrl = `${process.env.DOMAIN}`;
 
   return [

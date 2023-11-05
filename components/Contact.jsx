@@ -5,7 +5,7 @@ import phone from "@public/images/phone.png";
 
 export default function Contact() {
   return (
-    <div id="contact" className="relative overflow-hidden bg-zinc-50 w-full">
+    <div id="contact" className="relative overflow-hidden bg-white w-full">
       <div className="z-10 absolute -bottom-32 -left-40 w-80 h-80 border-4 border-gray-300 rounded-full border-opacity-30 border-t-8" />
       <div className="z-10 absolute -bottom-40 -left-20 w-80 h-80 border-4 border-gray-300 rounded-full border-opacity-30 border-t-8" />
       <div className="z-10 absolute -top-40 -right-0 w-80 h-80 border-4 border-gray-300 rounded-full border-opacity-30 border-t-8" />
@@ -45,9 +45,9 @@ export default function Contact() {
         </div>
 
         <div className="z-20 sm:w-1/2">
-          <h1 className="mb-6 sm:text-right text-center text-4xl sm:text-[50px] md-text-[65px] font-bold font-popins sm:leading-[1.4]">
+          <h2 className="mb-6 sm:text-right text-center text-4xl sm:text-[50px] md-text-[65px] font-bold font-popins sm:leading-[1.4]">
             Connect with Our Team
-          </h1>
+          </h2>
           <div className="flex flex-row-reverse mb-2">
             <Image
               alt="phone"

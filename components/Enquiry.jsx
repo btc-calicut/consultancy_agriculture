@@ -56,14 +56,14 @@ export default function Enquiry() {
   };
 
   return (
-    <div id="enquiry" className="w-full bg-background">
+    <div id="enquiry" className="w-full bg-background bg-contain ">
       {contextHolder}
-      <div className="py-20 sm:gap-x-20 px-6 sm:px-10 md:px-14 lg:px-36 flex flex-col gap-y-2 sm:flex-row backdrop-blur-md bg-zinc-300/80">
+      <div className="py-20 sm:gap-x-20 px-6 sm:px-10 md:px-14 lg:px-36 flex flex-col gap-y-2 sm:flex-row backdrop-blur-md bg-zinc-400/80">
         <div className="sm:w-1/2">
           <div>
-            <h1 className="mb-6 sm:text-left text-center text-4xl sm:text-[50px] md-text-[65px] font-bold font-popins sm:leading-[1.4]">
+            <h2 className="text-black mb-6 sm:text-left text-center text-4xl sm:text-[50px] md-text-[65px] font-bold font-popins sm:leading-[1.4]">
               Share Your Queries With Us
-            </h1>
+            </h2>
             <Image
               alt="messages"
               src={messages}
@@ -72,7 +72,7 @@ export default function Enquiry() {
               className="hidden sm:block mb-2"
             />
           </div>
-          <p className="hidden sm:block text-xs sm:text-sm md:text-lg text-left text-gray-500">
+          <p className="hidden sm:block text-xs sm:text-sm md:text-lg text-left text-gray-800">
             {data.sharequeries}
           </p>
         </div>
@@ -126,7 +126,7 @@ export default function Enquiry() {
             <div className="mt-4">
               <button
                 type="submit"
-                className="inline-block w-full rounded-lg bg-[#080621] px-5 py-3 font-medium text-white lg:w-auto"
+                className="inline-block w-full rounded-lg bg-[#080621] px-5 py-2 font-medium text-white lg:w-auto"
               >
                 Send Enquiry
               </button>

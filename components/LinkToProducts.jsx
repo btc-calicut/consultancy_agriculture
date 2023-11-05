@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Carousel } from "antd";
 import data from "@public/assets/data.json";
 import Image from "next/image";
+import { ArrowRightOutlined } from "@ant-design/icons";
 
 export default function LinkToProducts() {
   return (
@@ -44,7 +45,7 @@ export default function LinkToProducts() {
               className="relative max-xs:ml-3 w-40 h-10 my-2 xs:mb-6 px-6 py-3 inline-flex items-center justify-center bg-gradient-to-tl from-blue-700 via-blue-800 to-indigo-950 rounded-full shadow-3xl overflow-hidden transition duration-300 ease-out group"
             >
               <span className="absolute inset-0 w-full h-full flex items-center justify-center text-blue-900 bg-white duration-300 -translate-x-full group-hover:translate-x-0 ease">
-                <svg
+                {/* <svg
                   className="w-6 h-6"
                   fill="none"
                   stroke="currentColor"
@@ -57,7 +58,8 @@ export default function LinkToProducts() {
                     strokeWidth="2"
                     d="M14 5l7 7m0 0l-7 7m7-7H3"
                   ></path>
-                </svg>
+                </svg> */}
+                <ArrowRightOutlined className="text-2xl" />
               </span>
               <span className="select-none absolute w-full h-full flex items-center justify-center text-white transition-all duration-300 transform group-hover:translate-x-full ease">
                 Take to Products

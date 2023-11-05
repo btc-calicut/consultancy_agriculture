@@ -52,7 +52,7 @@ export default function Footer() {
   };
 
   return (
-    <div className="bg-gray-950 text-gray-400 py-8 px-12">
+    <div className="bg-gray-950 text-gray-400 p-12">
       {contextHolder}
       <Row gutter={[16, 16]}>
         <Col xs={24} md={12}>
