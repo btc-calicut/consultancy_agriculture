@@ -52,14 +52,14 @@ export const metadata = {
     icon: "/images/logo-background.jpg",
     apple: "/images/logo-background.jpg",
   },
-  category: "technology",
+  category: "agri products trading",
   robots: {
-    index: false,
+    index: true,
     follow: true,
     googleBot: {
       index: true,
-      follow: false,
-      noimageindex: true,
+      follow: true,
+      noimageindex: false,
       "max-video-preview": -1,
       "max-image-preview": "large",
       "max-snippet": -1,

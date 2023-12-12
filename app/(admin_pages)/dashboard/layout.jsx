@@ -3,7 +3,15 @@ import AdminNavBar from "@components/AdminNavBar";
 export const metadata = {
   robots: {
     index: false,
-    nocache: true,
+    follow: false,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
