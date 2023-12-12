@@ -31,6 +31,27 @@ export async function POST(request) {
       throw error;
     } finally {
       session.endSession();
+
+      // send mail to client
+      const clientPath = path.join(
+        process.cwd(),
+        "lib",
+        "EmailTemplateClientSubscribe.ejs"
+      );
+      const emailTemplateClient = readFileSync(clientPath, "utf8");
+      const renderedTemplateClient = ejs.render(emailTemplateClient, {
+        name: name,
+        number: number,
+        email: email,
+        message: message,
+      });
+
+      await transporter.sendMail({
+        ...clientMailMessage,
+        to: email,
+        subject: "Inquiry Response",
+        html: renderedTemplateClient,
+      });
     }
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
