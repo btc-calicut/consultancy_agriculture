@@ -6,10 +6,17 @@ import getProducts from "@utils/getProducts";
 import ClientProductPage from "@components/ClientProductPage";
 
 export async function generateMetadata() {
-  // const products = await fetchProductsInfo();
+  const products = await getProducts();
+  const productNames = products.info.map((product) => product.name);
   return {
-    title: "Products",
-    // description: products.info,
+    description: `Discover our latest selection of products available for trading. We offer ${
+      productNames.length > 1
+        ? "a diverse range of high-quality items, including"
+        : "the high-quality product"
+    } ${productNames.join(
+      ", "
+    )}. Explore our up-to-date inventory and take advantage of the opportunities in the market.`,
+    keywords: productNames,
     alternates: {
       canonical: "/products",
     },
