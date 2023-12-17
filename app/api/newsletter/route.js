@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
 import { dbConnect } from "@lib/dbConfig";
+import ejs from "ejs";
+import { readFileSync } from "fs";
+import path from "path";
+import { transporter, clientMailMessage } from "@lib/nodemailer";
 import NewsLetterModel from "@models/NewsLetterModel";
 
 export async function POST(request) {
@@ -38,12 +42,16 @@ export async function POST(request) {
         "lib",
         "EmailTemplateClientSubscribe.ejs"
       );
+
+      const emailWithoutDomain = email.replace(/@.+$/, "");
+      const name =
+        emailWithoutDomain.charAt(0).toUpperCase() +
+        emailWithoutDomain.slice(1);
+
       const emailTemplateClient = readFileSync(clientPath, "utf8");
       const renderedTemplateClient = ejs.render(emailTemplateClient, {
         name: name,
-        number: number,
-        email: email,
-        message: message,
+        email: process.env.EMAIL,
       });
 
       await transporter.sendMail({
