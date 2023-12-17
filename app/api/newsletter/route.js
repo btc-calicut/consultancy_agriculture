@@ -13,7 +13,7 @@ export async function POST(request) {
     await dbConnect();
 
     const reqBody = await request.json();
-    const { email, date } = reqBody;
+    const { email } = reqBody;
 
     // start a new session for atomicity property
     const session = await mongoose.startSession();
@@ -22,7 +22,6 @@ export async function POST(request) {
     try {
       await NewsLetterModel.create({
         email: email,
-        date: date,
       });
 
       await session.commitTransaction();
@@ -47,7 +46,6 @@ export async function POST(request) {
       const name =
         emailWithoutDomain.charAt(0).toUpperCase() +
         emailWithoutDomain.slice(1);
-
       const emailTemplateClient = readFileSync(clientPath, "utf8");
       const renderedTemplateClient = ejs.render(emailTemplateClient, {
         name: name,
@@ -57,7 +55,7 @@ export async function POST(request) {
       await transporter.sendMail({
         ...clientMailMessage,
         to: email,
-        subject: "Inquiry Response",
+        subject: "BTC Newsletter",
         html: renderedTemplateClient,
       });
     }

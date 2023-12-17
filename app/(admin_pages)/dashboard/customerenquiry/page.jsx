@@ -2,10 +2,11 @@
 
 import { signOut, useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
-import { Table, Input, message } from "antd";
+import { Table, Input, message, Dropdown, Space } from "antd";
+import { DownOutlined, IdcardTwoTone, MailTwoTone } from "@ant-design/icons";
 import moment from "moment";
-import CSVbutton from "@components/CSVbutton";
 import getCustomerEnquiry from "@utils/getCustomerEnquiry";
+import { CSVLink } from "react-csv";
 
 const { Search } = Input;
 
@@ -44,13 +45,13 @@ export default function CustomerEnquiry() {
     setSearch(value);
   };
 
-  let filteredData =
+  let filteredDataForSearch =
     data &&
     data.filter((info) => {
       return info.name.toLowerCase().includes(search.toLowerCase());
     });
 
-  const dataSource = filteredData?.map((item, index) => ({
+  const dataSource = filteredDataForSearch?.map((item, index) => ({
     key: index + 1,
     date: moment(item.date).format("YYYY-MM-DD"),
     name: item.name,
@@ -58,6 +59,16 @@ export default function CustomerEnquiry() {
     number: item.number,
     message: item.message,
   }));
+
+  let dataForCustomerExport = filteredDataForSearch?.map((info) => {
+    return {
+      Date: info.date,
+      Name: info.name,
+      Email: info.email,
+      Phone_number: info.number,
+      Message: info.message,
+    };
+  });
 
   const columns = [
     Table.EXPAND_COLUMN,
@@ -108,6 +119,27 @@ export default function CustomerEnquiry() {
     // Table.SELECTION_COLUMN,
   ];
 
+  const items = [
+    {
+      key: "1",
+      label: (
+        <CSVLink filename="Customer Enquiry" data={dataForCustomerExport || []}>
+          Enquiry list
+        </CSVLink>
+      ),
+      icon: <IdcardTwoTone />,
+    },
+    {
+      key: "2",
+      label: (
+        <CSVLink filename="Customer Enquiry" data={[]}>
+          Subscribers list
+        </CSVLink>
+      ),
+      icon: <MailTwoTone />,
+    },
+  ];
+
   return (
     <section className="min-h-screen  bg-zinc-100">
       <div className="p-4 px-6 bg-white shadow">
@@ -129,7 +161,18 @@ export default function CustomerEnquiry() {
               }}
             />
           </div>
-          <CSVbutton data={filteredData} />
+          <Dropdown
+            menu={{
+              items,
+            }}
+          >
+            <a onClick={(e) => e.preventDefault()}>
+              <Space className="p-0.5 px-2 border-2 rounded-lg text-white bg-gray-950 shadow-md">
+                Export
+                <DownOutlined />
+              </Space>
+            </a>
+          </Dropdown>
         </div>
       </div>
 

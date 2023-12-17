@@ -1,5 +1,5 @@
 import { Poppins } from "next/font/google";
-import "@styles/globals.css";
+import "./globals.css";
 import data from "@public/assets/data.json";
 import AuthContextProvider from "@lib/AuthContextProvider";
 

@@ -37,12 +37,11 @@ export default function Footer() {
 
       // post request to api
       try {
-        const data = await postNewsletter(email);
-        // console.log(data);
+        const cpy_email = email;
+        setEmail("");
+        await postNewsletter(cpy_email);
       } catch (error) {
         console.error(error);
-      } finally {
-        setEmail("");
       }
     }
   };
@@ -52,7 +51,7 @@ export default function Footer() {
   };
 
   return (
-    <div className="bg-gray-950 text-gray-400 p-12">
+    <div className="bg-gray-950 text-gray-400 p-8 xs:p-12">
       {contextHolder}
       <Row gutter={[16, 16]}>
         <Col xs={24} md={12}>
@@ -135,7 +134,7 @@ export default function Footer() {
             </div>
           </div>
           <p className="font-poppins text-center text-sm">
-            Copyright (c) . All rights reserved.{" "}
+            Copyright (c). All rights reserved.
           </p>
 
           <br />
