@@ -6,6 +6,7 @@ import { readFileSync } from "fs";
 import path from "path";
 import { transporter, clientMailMessage } from "@lib/nodemailer";
 import NewsLetterModel from "@models/NewsLetterModel";
+import { verifyJwtAccessToken } from "@lib/jwtaccesstoken";
 
 export async function POST(request) {
   try {
@@ -59,6 +60,33 @@ export async function POST(request) {
         html: renderedTemplateClient,
       });
     }
+  } catch (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+}
+
+export async function GET(request) {
+  try {
+    // validate accessToken from the headers
+    const accessToken = request.headers.get("authorization");
+    if (!accessToken || !verifyJwtAccessToken(accessToken)) {
+      return NextResponse.json(
+        { message: "Unauthorized user with no access token" },
+        { status: 401 }
+      );
+    }
+
+    // start database
+    await dbConnect();
+    const data = await NewsLetterModel.find();
+
+    return NextResponse.json(
+      {
+        message: "Success",
+        info: data,
+      },
+      { status: 200 }
+    );
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
