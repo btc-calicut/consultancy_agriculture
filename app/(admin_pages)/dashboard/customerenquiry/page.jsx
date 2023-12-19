@@ -7,6 +7,7 @@ import { DownOutlined, IdcardTwoTone, MailTwoTone } from "@ant-design/icons";
 import moment from "moment";
 import getCustomerEnquiry from "@utils/getCustomerEnquiry";
 import { CSVLink } from "react-csv";
+import getSubscriberList from "@utils/getSubscriberList";
 
 const { Search } = Input;
 
@@ -14,10 +15,11 @@ export default function CustomerEnquiry() {
   const session = useSession();
   const [data, setData] = useState(null);
   const [search, setSearch] = useState("");
+  const [subscribersList, setSubscribersList] = useState(null);
 
   useEffect(() => {
     if (session.status === "authenticated") {
-      fetchData();
+      Promise.all([fetchData(), fetchSubscribersList()]);
     }
   }, [session.status]);
 
@@ -30,6 +32,24 @@ export default function CustomerEnquiry() {
 
       if (response.status === 200) {
         setData(data.info);
+      } else if (response.status === 401) {
+        message.error("Session expired. Please login again");
+        setTimeout(() => {
+          signOut({ callbackUrl: "/auth/signin" });
+        }, 3000);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const fetchSubscribersList = async () => {
+    try {
+      const accessToken = session.data?.user?.accessToken;
+      const response = await getSubscriberList(accessToken);
+      const data = await response.json();
+      if (response.status === 200) {
+        setSubscribersList(data.info);
       } else if (response.status === 401) {
         message.error("Session expired. Please login again");
         setTimeout(() => {
@@ -119,6 +139,13 @@ export default function CustomerEnquiry() {
     // Table.SELECTION_COLUMN,
   ];
 
+  let dataForSubscriberListExport = subscribersList?.map((info) => {
+    return {
+      Date: info.date,
+      Email: info.email,
+    };
+  });
+
   const items = [
     {
       key: "1",
@@ -132,7 +159,10 @@ export default function CustomerEnquiry() {
     {
       key: "2",
       label: (
-        <CSVLink filename="Customer Enquiry" data={[]}>
+        <CSVLink
+          filename="Subscribers list"
+          data={dataForSubscriberListExport || []}
+        >
           Subscribers list
         </CSVLink>
       ),
