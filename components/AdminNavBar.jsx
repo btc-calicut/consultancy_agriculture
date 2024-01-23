@@ -191,7 +191,9 @@ export default function AdminNavBar() {
                               backgroundColor: "#87d068",
                             }}
                           >
-                            B
+                            {user && user.name
+                              ? user.name[0].toUpperCase()
+                              : ""}
                           </Avatar>
                         </Menu.Button>
                       </div>
@@ -280,7 +282,7 @@ export default function AdminNavBar() {
                         backgroundColor: "#87d068",
                       }}
                     >
-                      B
+                      {user && user.name ? user.name[0].toUpperCase() : ""}
                     </Avatar>
                   </div>
                   <div className="ml-3">
