@@ -23,7 +23,7 @@ export default function Contact() {
                     <Image
                       alt={employee.name}
                       src={employee.image}
-                      className="object-cover h-full w-full rounded-full"
+                      className="object-cover w-full rounded-full"
                       width={100}
                       height={100}
                       priority

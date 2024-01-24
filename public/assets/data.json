@@ -5,16 +5,16 @@
     "mission": "At our core, we aspire to become a market leader in the agricultural trading sector by the year 2026. Our vision extends beyond borders as we aim to expand our presence in international markets with our own naturally cultivated products",
     "team": [
       {
+        "name": "Mr. RIJUL JOSEPH",
+        "role": "Business Development Head",
+        "description": "A Chartered Engineer, spearheads our business development and strategies. Currently serves as our business development head",
+        "image": "/images/rijul.jpeg"
+      },
+      {
         "name": "Mr. JOSEPH DILIP KUMAR",
         "role": "Manging Partner",
         "description": "Has a distinguished career as a retired manager from SBI. Manages our finance department and its operations",
         "image": "/images/joseph.jpg"
-      },
-      {
-        "name": "Mr. RIJUL JOSEPH",
-        "role": "Business Development Head",
-        "description": "A Chartered Engineer, spearheads our business development and strategies. Currently serves as our business development head",
-        "image": "/images/rijul.jpg"
       }
     ],
     "trading": "As an emerging trading company, we specialize in domestic and international trade of agricultural products, including Coconut, Tender coconut, various vegetables, and fruits. Our commitment lies in sourcing and supplying products of the highest quality and goodness. Our expert purchase team operates from different locations in India, ensuring the utmost care in material selection. We also maintain a direct purchase system from farmers, assuring product quality and grade.",
@@ -74,7 +74,7 @@
       "phone": "+91 8129736458",
       "address": "28/1034 A, Mispah, Mayday Road, Chevayur Calicut- 673017, 0495 2967448",
       "email": "btccalicut@outlook.com",
-      "image": "/images/rijul.jpg"
+      "image": "/images/rijul.jpeg"
     }
   ],
   "sharequeries": "Whether you have inquiries about our products and services, need assistance, or simply want to share your thoughts and ideas, we're here to listen and respond. Your input is essential in helping us improve and better serve your needs. Your questions and comments are invaluable to us, and we look forward to hearing from you.",
