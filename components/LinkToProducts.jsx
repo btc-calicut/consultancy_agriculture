@@ -62,7 +62,7 @@ export default function LinkToProducts() {
                 <ArrowRightOutlined className="text-2xl" />
               </span>
               <span className="select-none absolute w-full h-full flex items-center justify-center text-white transition-all duration-300 transform group-hover:translate-x-full ease">
-                Take to Products
+                View Products
               </span>
             </Link>
           </div>
